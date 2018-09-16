@@ -1,0 +1,53 @@
+Script standard assets unity
+
+29.6.18
+MouseLookAround added, Red cube turned into red Sphere
+
+
+17.7.18
+https://unity3d.com/de/learn/tutorials/topics/multiplayer-networking/creating-player-movement-single-player
+establishing Player Controls
+
+19.7.18
+https://www.udemy.com/csharp-gamedev/learn/v4/t/lecture/8701598?start=435
+Jump
+
+25.7.18
+https://www.youtube.com/watch?v=EINgIoTG8D4
+Raycast
+
+26.7.18
+https://www.mvcode.com/lessons/first-person-camera-controls-jamie
+mouse lookat
+
+10.8.18
+added animation (udemy c# course)
+
+13.8.18
+https://unity3d.com/de/learn/tutorials/projects/roll-ball-tutorial/collecting-pick-objects
+pickups
+
+14.8.18
+https://docs.unity3d.com/ScriptReference/Collision-gameObject.html
+collision detection
+
+https://answers.unity.com/questions/894211/set-objects-child-to-activeinactive.html
+set active/inactive
+
+//https://forum.unity.com/threads/make-character-pick-up-weapons-from-the-ground-when-pressing-f.483629/
+//https://answers.unity.com/questions/211184/pick-up-the-gun.html
+weapons
+
+IMPLEMENTATION OF PICKUP SUCCEEDED
+
+29.8.18
+Implemented weapon stats
+http://csharp.net-informations.com/collection/list.htm
+Lists
+
+8.9.18
+https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
+
+very good weapon system, getting inspired
+
+SWITCHING WEAPONS NOW REALLY WORKS
