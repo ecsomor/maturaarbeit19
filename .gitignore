@@ -7,3 +7,6 @@ docs/main.out
 docs/main.toc
 docs/main.pdf
 docs/arbeitstaktik.aux
+*.userprefs
+src/obj/
+src/Temp/

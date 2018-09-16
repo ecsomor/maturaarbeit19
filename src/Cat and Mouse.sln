@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cat and Mouse", "Assembly-CSharp-firstpass.csproj", "{E52B90FE-32CB-3CFB-298A-CF5A5A5B600C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cat and Mouse", "Assembly-CSharp.csproj", "{21664F04-EA6B-45C2-5C26-3FAC56D26CFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cat and Mouse", "Assembly-CSharp-Editor-firstpass.csproj", "{9E69113A-62DC-5E38-4434-B4C191884865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E52B90FE-32CB-3CFB-298A-CF5A5A5B600C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E52B90FE-32CB-3CFB-298A-CF5A5A5B600C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E52B90FE-32CB-3CFB-298A-CF5A5A5B600C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E52B90FE-32CB-3CFB-298A-CF5A5A5B600C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21664F04-EA6B-45C2-5C26-3FAC56D26CFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21664F04-EA6B-45C2-5C26-3FAC56D26CFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21664F04-EA6B-45C2-5C26-3FAC56D26CFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21664F04-EA6B-45C2-5C26-3FAC56D26CFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E69113A-62DC-5E38-4434-B4C191884865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E69113A-62DC-5E38-4434-B4C191884865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E69113A-62DC-5E38-4434-B4C191884865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E69113A-62DC-5E38-4434-B4C191884865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

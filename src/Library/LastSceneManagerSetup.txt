@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Snapshot 1 Blaue rote Quadrate.unity
+  isLoaded: 1
+  isActive: 1
