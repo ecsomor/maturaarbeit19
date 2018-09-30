@@ -16,11 +16,15 @@ public class WeaponManager : MonoBehaviour {
 
 
 
-	public bool isplayer;
+	public bool isplayer; 
 	// Use this for initialization
+
+	//inspired by https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
+
 	void Start () {
-		weaponList = new List<GameObject> ();
-		enabledWeaponList = new List<GameObject> ();
+		weaponList = new List<GameObject> (); //list of all weapons	
+		enabledWeaponList = new List<GameObject> ();//List of Weapons in the inventory
+
 
 		weaponList.Add (Katana);
 		weaponList.Add (Bo);
@@ -31,12 +35,13 @@ public class WeaponManager : MonoBehaviour {
 		enabledWeaponList.Add(Bo);
 		enabledWeaponList.Add (Hands);
 
+
 		setActiveWeapon (Katana);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		// Switching weapons
 		if (isplayer == true) {
 			if (Input.GetAxis ("1") > 0f) {
 				setActiveWeapon (Katana);

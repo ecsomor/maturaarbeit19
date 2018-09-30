@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 		//Springen
 		if (Input.GetAxis ("Jump") > 0f) {
 
-			//isgrounded 
+			//isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true, if not then not.
 			Vector3 fwd = transform.TransformDirection (Vector3.down);
 
 
@@ -118,61 +118,61 @@ public class Player : MonoBehaviour
 			
 		//model.transform.rotation = Quaternion.Lerp(model.transform.rotation, Quaternion.Euler(0f, towardsY, 0f), Time.deltaTime);
 		
-     
-	void WeaponSwitch(){
-
-
-		///Managing equip
-		if (EquippedWeapon == 0) {
-
-			BoInHand.SetActive (false);
-			KatanaInHand.SetActive (false);
-
-		}
-		else if (EquippedWeapon == 1) {
-			if (GotWeapons.Contains ("Katana")) {
-				BoInHand.SetActive (false);
-				KatanaInHand.SetActive (true);
-
-			} 
-		}
-		else if (EquippedWeapon == 2) {
-			if (GotWeapons.Contains ("Bo")) 
-			{
-				BoInHand.SetActive (true);
-				KatanaInHand.SetActive (false);
-
-			}
-
-
-		}
-		else if (EquippedWeapon > 2) {
-			EquippedWeapon = 0;
-
-		}
-		
-	}
-
-	void OnTriggerEnter(Collider other) 
-	{
-		if (other.gameObject.CompareTag("Pickup")) 
-		{
-			
-			other.gameObject.SetActive(false);
-			if (other.gameObject.name == "Bo-Pickup") 
-			{
-				
-
-			}
-			else if (other.gameObject.name == "Katana-pickup")
-			{
-				GotWeapons.Add ("Katana");
-				EquippedWeapon = 1;
-			}
-				
-		
-		}
-	}
+   
+//	void WeaponSwitch(){
+//
+//
+//		///Managing equip
+//		if (EquippedWeapon == 0) {
+//
+//			BoInHand.SetActive (false);
+//			KatanaInHand.SetActive (false);
+//
+//		}
+//		else if (EquippedWeapon == 1) {
+//			if (GotWeapons.Contains ("Katana")) {
+//				BoInHand.SetActive (false);
+//				KatanaInHand.SetActive (true);
+//
+//			} 
+//		}
+//		else if (EquippedWeapon == 2) {
+//			if (GotWeapons.Contains ("Bo")) 
+//			{
+//				BoInHand.SetActive (true);
+//				KatanaInHand.SetActive (false);
+//
+//			}
+//
+//
+//		}
+//		else if (EquippedWeapon > 2) {
+//			EquippedWeapon = 0;
+//
+//		}
+//		
+//	}
+//
+//	void OnTriggerEnter(Collider other) 
+//	{
+//		if (other.gameObject.CompareTag("Pickup")) 
+//		{
+//			
+//			other.gameObject.SetActive(false);
+//			if (other.gameObject.name == "Bo-Pickup") 
+//			{
+//				
+//
+//			}
+//			else if (other.gameObject.name == "Katana-pickup")
+//			{
+//				GotWeapons.Add ("Katana");
+//				EquippedWeapon = 1;
+//			}
+//				
+//		
+//		}
+//	}
 }
 
 //Destroy(other.gameObject);
