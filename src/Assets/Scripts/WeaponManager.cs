@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+///This class Manages the availability and equipping of Weapons
 public class WeaponManager : MonoBehaviour {
 
 	public List<GameObject> weaponList;
@@ -16,7 +16,7 @@ public class WeaponManager : MonoBehaviour {
 
 
 
-	public bool isplayer; 
+	public bool isplayer; //Bool to differ an NPC from the Player
 	// Use this for initialization
 
 	//inspired by https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
@@ -35,8 +35,7 @@ public class WeaponManager : MonoBehaviour {
 		enabledWeaponList.Add(Bo);
 		enabledWeaponList.Add (Hands);
 
-
-		setActiveWeapon (Katana);
+		setActiveWeapon (Katana);//equip weapon in hands
 	}
 	
 	// Update is called once per frame
@@ -55,7 +54,7 @@ public class WeaponManager : MonoBehaviour {
 		}
 	}
 
-
+//void to activate the activeWeapon and deactivate all the others, as else they would all be equipped at the same time
 private void setActiveWeapon(GameObject activeWeapon)
 {
 	for (int j = 0; j < weaponList.Count; j++)
@@ -77,7 +76,7 @@ private void setActiveWeapon(GameObject activeWeapon)
 	}
 }
 
-
+//add a weapon to the available weapons list when walked over it
 public void pickedUpWeapon(GameObject weaponPickedUp)
 {
 	enabledWeaponList.Add(weaponPickedUp);

@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 	///public GameObject EquippedWeapon;
 
 	/// <summary>
-	/// weapons
+	/// weaponsystem initiation
 	/// </summary>
 	List<string> GotWeapons = new List<string>();
 	public GameObject BoInHand;
@@ -50,18 +50,19 @@ public class Player : MonoBehaviour
 
 	public int WeaponSwitchCoolDown = 3;
 
+
+    ///mostly establishing shortcuts
 	private void Start() {
 		rigid = GetComponent<Rigidbody> ();
 		m_CharacterController = GetComponent<CharacterController>();
 		anim = GetComponent<Animator> ();
-		 
 
 
 	}
 
     // Update is called once per frame
     private void Update() {
-		
+		//x and z coordinates movement
 		float x = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 		float z = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
 
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 		//Springen
 		if (Input.GetAxis ("Jump") > 0f) {
 
-			//isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true, if not then not.
+			//isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true (which means jumping is possible), if not then not.
 			Vector3 fwd = transform.TransformDirection (Vector3.down);
 
 
