@@ -4,122 +4,104 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
 
 
-
 // steuerung der Spielfigur
 public class Player : MonoBehaviour
-{	
-	private CharacterController m_CharacterController;
+{
+    private CharacterController m_CharacterController;
 
 
-	//Auf dem boden?
-	private bool isGrounded;
+    //Auf dem boden?
+    private bool isGrounded;
+
     //Laufgeschwindigkeit
     public float speed = 3f;
-	//private float towardsY = 0f;
-	
-	//sprungkraft
-	public float sprungkraft = 5f;
+    //private float towardsY = 0f;
 
-	//Health
-	public float Health = 100f;
-	//Stamina
-	public float Stamina = 100f;
+    //sprungkraft
+    public float sprungkraft = 5f;
 
-	//Das Graphische Modell, ua für drehung in Laufrichtung
-	public GameObject model;
+    //Health
+    public float Health = 100f;
 
-	//zeiger auf die animations komponente der spielfigur
-	private Animator anim;
+    //Stamina
+    public float Stamina = 100f;
 
-	//Physikkomponente
-	private Rigidbody rigid;
-	//Der winkel zu dem sich die figur um die eigene achse (=Y) drehen soll
-	public float towardsY = 90f;
+    //Das Graphische Modell, ua für drehung in Laufrichtung
+    public GameObject model;
 
+    //zeiger auf die animations komponente der spielfigur
+    private Animator anim;
 
-	///righthand for equipping stuff
-	///public GameObject EquippedWeapon;
+    //Physikkomponente
+    private Rigidbody rigid;
 
-	/// <summary>
-	/// weaponsystem initiation
-	/// </summary>
-	List<string> GotWeapons = new List<string>();
-	public GameObject BoInHand;
-	public GameObject KatanaInHand;
-	public int EquippedWeapon = 0;
+    //Der winkel zu dem sich die figur um die eigene achse (=Y) drehen soll
+    public float towardsY = 90f;
 
-	public int WeaponSwitchCoolDown = 3;
+    /// weaponsystem initiation
+    List<string> GotWeapons = new List<string>();
+
+    public GameObject BoInHand;
+    public GameObject KatanaInHand;
+    public int EquippedWeapon = 0;
+
+    public int WeaponSwitchCoolDown = 3;
 
 
     ///mostly establishing shortcuts
-	private void Start() {
-		rigid = GetComponent<Rigidbody> ();
-		m_CharacterController = GetComponent<CharacterController>();
-		anim = GetComponent<Animator> ();
-
-
-	}
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody>();
+        m_CharacterController = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
-    private void Update() {
-		//x and z coordinates movement
-		float x = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
-		float z = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
+    private void Update()
+    {
+        //x and z coordinates movement
+        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-		//animations
-		anim.SetFloat ("forward", z);
+        //animations
+        anim.SetFloat("forward", z);
 
-		//raycast for "isgrounded"
-		RaycastHit hit;
-
-
-
-		//transform.Rotate(0,x,0);
-		transform.Translate (x, 0, z);
-
-		//Springen
-		if (Input.GetAxis ("Jump") > 0f) {
-
-			//isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true (which means jumping is possible), if not then not.
-			Vector3 fwd = transform.TransformDirection (Vector3.down);
+        //raycast for "isgrounded"
+        RaycastHit hit;
 
 
-			if (Physics.Raycast (transform.position, Vector3.down, out hit, 1)) {
-				Debug.DrawLine (transform.position, hit.point);
-				print (hit.distance);
-				Vector3 power = rigid.velocity;
-				power.y = 5f;
-				rigid.velocity = power;
-			}
+        //transform.Rotate(0,x,0);
+        transform.Translate(x, 0, z);
+
+        //Springen
+        if (Input.GetAxis("Jump") > 0f)
+        {
+            //isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true (which means jumping is possible), if not then not.
+            Vector3 fwd = transform.TransformDirection(Vector3.down);
 
 
-		}
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1))
+            {
+                Debug.DrawLine(transform.position, hit.point);
+                print(hit.distance);
+                Vector3 power = rigid.velocity;
+                power.y = 5f;
+                rigid.velocity = power;
+            }
+        }
+    }
 
 
+    //transform.position += h * speed * transform.forward;
+
+    //if (h > 0f) // nach rechts gehen 
+    //	towardsY = 0f;
+    //else if (h < 0f) //nach links gehen
+    //	towardsY = 180f;
+
+    //model.transform.rotation = Quaternion.Lerp(model.transform.rotation, Quaternion.Euler(0f, towardsY, 0f), Time.deltaTime);
 
 
-
-
-
-
-
-	}
-
-
-
-
-		
-		
-		//transform.position += h * speed * transform.forward;
-		
-		//if (h > 0f) // nach rechts gehen 
-		//	towardsY = 0f;
-		//else if (h < 0f) //nach links gehen
-		//	towardsY = 180f;
-			
-		//model.transform.rotation = Quaternion.Lerp(model.transform.rotation, Quaternion.Euler(0f, towardsY, 0f), Time.deltaTime);
-		
-   
 //	void WeaponSwitch(){
 //
 //
