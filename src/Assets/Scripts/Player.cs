@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
 
@@ -38,14 +39,14 @@ public class Player : MonoBehaviour
     //Der winkel zu dem sich die figur um die eigene achse (=Y) drehen soll
     public float towardsY = 90f;
 
-    /// weaponsystem initiation
-    List<string> GotWeapons = new List<string>();
+    // weaponsystem initiation
+   // List<string> GotWeapons = new List<string>();
 
-    public GameObject BoInHand;
-    public GameObject KatanaInHand;
-    public int EquippedWeapon = 0;
+    //public GameObject BoInHand;
+    //public GameObject KatanaInHand;
+   // public int EquippedWeapon = 0;
 
-    public int WeaponSwitchCoolDown = 3;
+   /// public int WeaponSwitchCoolDown = 3;
 
 
     ///mostly establishing shortcuts
@@ -62,10 +63,11 @@ public class Player : MonoBehaviour
         //x and z coordinates movement
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        
 
         //animations
         anim.SetFloat("forward", z);
-
+        anim.SetBool("Walking", true);
         //raycast for "isgrounded"
         RaycastHit hit;
 
@@ -89,6 +91,35 @@ public class Player : MonoBehaviour
                 rigid.velocity = power;
             }
         }
+        
+        //attack
+        if (Input.GetAxis("Fire1") > 0f)
+        {
+            //Play attack animation
+            Debug.Log("Player attacked");
+			anim.Play("Katana 0");
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            if (Physics.Raycast(transform.position, Vector3.forward, out hit, 10))
+            {
+                Debug.DrawLine(transform.position, hit.point);
+                //Debug.Log("Distance:",hit.distance);
+                Vector3 power = rigid.velocity;
+                power.y = 5f;
+                rigid.velocity = power;
+                
+                
+                
+                
+                
+            
+            }
+
+               
+        }
+        
+        
+        
+        
     }
 
 

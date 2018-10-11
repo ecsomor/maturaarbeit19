@@ -13,6 +13,8 @@ public class WeaponManager : MonoBehaviour
     public GameObject Katana;
     public GameObject Hands;
 
+    public string Equipped;
+
 
     public bool isplayer; //Bool to differ an NPC from the Player
     // Use this for initialization
@@ -46,16 +48,19 @@ public class WeaponManager : MonoBehaviour
             if (Input.GetAxis("1") > 0f)
             {
                 setActiveWeapon(Katana);
+                Equipped = "Katana";
             }
 
             if (Input.GetAxis("2") > 0f)
             {
                 setActiveWeapon(Bo);
+                Equipped = "Bo";
             }
 
             if (Input.GetAxis("3") > 0f)
             {
                 setActiveWeapon(Hands);
+                Equipped = "Hands";
             }
         }
     }

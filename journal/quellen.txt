@@ -51,3 +51,24 @@ https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
 very good weapon system, getting inspired
 
 SWITCHING WEAPONS NOW REALLY WORKS
+
+8.10.18
+https://www.quora.com/How-do-I-make-an-NPC-move-in-Unity#
+https://unity3d.com/de/learn/tutorials/projects/survival-shooter/enemy-one
+inspiration for NPC movement
+
+9.10.18
+wanted to do animations, got angry, added some textures drawn in MS paint
+
+Added a house built out of cylinders with a wood texture i also created in MS paint
+
+Added the QuadNation, a terrain with quadratic shaped Mountaints, and the TriNation, which has triangle shaped Mountains
+
+10.10.18
+https://www.udemy.com/csharp-gamedev/learn/v4/t/lecture/9084486?start=0
+Adding a escape menu so u dont have to quit per alt + f4
+
+11.10.18
+Sucessfully added "End Game" button in menu
+
+With the help of my dad I got the hit animation to work
