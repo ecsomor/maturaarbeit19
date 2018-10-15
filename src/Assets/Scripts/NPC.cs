@@ -39,11 +39,17 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {    
+
+		if (NPCHealth < 0) 
+		{
+			Debug.Log ("NPC HEALTH: " + NPCHealth);
+			Destroy (AI);
+		} 
         //TODO
         //animations
         //anim.SetFloat("forward", z);
         //Go towards Players'x
-        if (player.transform.position.x > transform.position.x)
+		if (player.transform.position.x > (transform.position.x-1))
         {
             //go right
             transform.position += new Vector3(Speed*Time.deltaTime,0,0);

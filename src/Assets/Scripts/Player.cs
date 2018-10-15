@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		//Check if alive
+		if (Health < 0) {Debug.Log("YOU ARE DEAD");}//TODO DEATHSCREEN
         //x and z coordinates movement
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;

@@ -72,3 +72,17 @@ Adding a escape menu so u dont have to quit per alt + f4
 Sucessfully added "End Game" button in menu
 
 With the help of my dad I got the hit animation to work
+
+12.12.18
+https://www.youtube.com/watch?v=HrNebvxSUsU
+physical attacks
+
+Ditched the Tutorial and tried it on my own, got it to work. Thanks To Unity Physics Engine and Colliders
+
+15.10.18
+https://answers.unity.com/questions/42843/referencing-non-static-variables-from-another-scri.html
+Trying to get the weapons stats for the Weapon hit script 
+
+AI can die now 11:30
+Hitsystem also responds to hits to the Players Hitbox 12:00
+Player can die now 12:38 
