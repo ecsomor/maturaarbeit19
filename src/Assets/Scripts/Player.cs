@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     //Auf dem boden?
     private bool isGrounded;
 
+	//blockt der Spieler?
+	public bool isBlocking;
+
     //Laufgeschwindigkeit
     public float speed = 3f;
     //private float towardsY = 0f;
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour
         
 
         //animations
-        anim.SetFloat("forward", z);
+		anim.SetFloat("forward", z*3);
         anim.SetBool("Walking", true);
         //raycast for "isgrounded"
         RaycastHit hit;
@@ -118,8 +121,20 @@ public class Player : MonoBehaviour
 
                
         }
-        
-        
+		if (Input.GetAxis ("Fire2") > 0f) {
+			//Play attack animation
+
+			isBlocking = true;
+			anim.SetBool("Blocking", true);
+		} else {
+			isBlocking = false;
+			anim.SetBool ("Blocking", false);
+		}
+
+	//	if (isBlocking == true) {
+	//		Debug.Log ("Player Blocked");
+	//		anim.Play ("Block");
+	//	}
         
         
     }
