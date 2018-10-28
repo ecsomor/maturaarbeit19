@@ -18,6 +18,7 @@ public class WeaponHit : MonoBehaviour
 
 
 
+
 	public GameObject Self;
 	
 	//The Entity That is the Damaging area of the weapon (must have physics collider)

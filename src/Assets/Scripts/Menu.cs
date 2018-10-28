@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour {
 
+	public Player player;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -39,8 +41,20 @@ public class Menu : MonoBehaviour {
 	//Starts a new game
 	public void OnButtonNewPressed()
 	{
-		//TODO
 		print("Write some code here");
+		player.gameData.InitNewGame ();
+	}
+
+
+	//Speicherfunktion
+	public void OnButtonSavePressed() 
+	{
+		Debug.Log ("Speichern");
+		player.gameData.SaveGame();
+
+//		GameData savegame = new GameData ();
+//		savegame.SaveGame ();
+
 	}
 	
 		

@@ -51,10 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Baris.cs" />
      <Compile Include="Assets\Scripts\DeathScreen.cs" />
      <Compile Include="Assets\Scripts\DestroyCubes.cs" />
      <Compile Include="Assets\Scripts\DisplayHealth.cs" />
      <Compile Include="Assets\Scripts\First Person.cs" />
+     <Compile Include="Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\mouselookat.cs" />

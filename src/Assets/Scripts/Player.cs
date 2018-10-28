@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 {
     private CharacterController m_CharacterController;
 
-
     //Auf dem boden?
     private bool isGrounded;
 
@@ -51,10 +50,14 @@ public class Player : MonoBehaviour
 
    /// public int WeaponSwitchCoolDown = 3;
 
+	public GameData gameData;
 
     ///mostly establishing shortcuts
     private void Start()
     {
+		gamedddData = new GameData (this);
+		gameData.LoadGame ();
+
         rigid = GetComponent<Rigidbody>();
         m_CharacterController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
@@ -102,6 +105,7 @@ public class Player : MonoBehaviour
         {
             //Play attack animation
             Debug.Log("Player attacked");
+			//anim.SetInteger ("Attack", 1);
 			anim.Play("Katana 0");
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
             if (Physics.Raycast(transform.position, Vector3.forward, out hit, 10))
@@ -119,7 +123,7 @@ public class Player : MonoBehaviour
             
             }
 
-               
+		    
         }
 		if (Input.GetAxis ("Fire2") > 0f) {
 			//Play attack animation
@@ -139,6 +143,21 @@ public class Player : MonoBehaviour
         
     }
 
+	public void InitState()
+	{
+		transform.position = Vector3.zero;
+		transform.rotation = Quaternion.identity;
+	}
+
+	public void LoadState(GameData gameData)
+	{
+		gameData.LoadTransform ("player", transform);
+	}
+
+	public void SaveState(GameData gameData)
+	{
+		gameData.SaveTransform ("player", transform);
+	}
 
     //transform.position += h * speed * transform.forward;
 

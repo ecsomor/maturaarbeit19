@@ -101,3 +101,17 @@ Added blocking animation for the Player and connected it to the code 12:04
 18.10.18
 added stamina bar, though stamina system is not implemented yet 11:45
 Worked on Blocking 12:15
+
+
+19.10.18
+https://www.youtube.com/watch?v=y__uzGKmxt8
+Blender 3d modelling
+
+24.10.18 
+added 3d model for throwing star
+
+25.10.18
+added Stone House Model
+
+28.10.18
+Added Saving, Loading and New Game mechanics
