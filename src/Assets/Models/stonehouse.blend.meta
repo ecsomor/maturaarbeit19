@@ -218,6 +218,17 @@ ModelImporter:
     100420: Cube_211
     100422: //RootNode
     100424: woodwall2
+    100426: stonebase_001
+    100428: woodwall1
+    100430: Cube_212
+    100432: floor
+    100434: floor_001
+    100436: floor_002
+    100438: floor_003
+    100440: floor_004
+    100442: floor_005
+    100444: floor_006
+    100446: floor_007
     400000: Cube
     400002: Cube_000
     400004: Cube_001
@@ -431,6 +442,17 @@ ModelImporter:
     400420: Cube_211
     400422: //RootNode
     400424: woodwall2
+    400426: stonebase_001
+    400428: woodwall1
+    400430: Cube_212
+    400432: floor
+    400434: floor_001
+    400436: floor_002
+    400438: floor_003
+    400440: floor_004
+    400442: floor_005
+    400444: floor_006
+    400446: floor_007
     2100000: Material_001
     2100002: Material_003
     2100004: Material_004
@@ -641,6 +663,11 @@ ModelImporter:
     2100414: woodenboard_060
     2100416: woodenboard_061
     2100418: woodenboard_062
+    2100420: woodenboard_069
+    2100422: woodenboard_064
+    2100424: woodenboard_065
+    2100426: woodenboard_000
+    2100428: Material_000
     2300000: Cube
     2300002: Cube_000
     2300004: Cube_001
@@ -853,6 +880,17 @@ ModelImporter:
     2300418: Cube_210
     2300420: Cube_211
     2300422: woodwall2
+    2300424: stonebase_001
+    2300426: woodwall1
+    2300428: Cube_212
+    2300430: floor
+    2300432: floor_001
+    2300434: floor_002
+    2300436: floor_003
+    2300438: floor_004
+    2300440: floor_005
+    2300442: floor_006
+    2300444: floor_007
     3300000: Cube
     3300002: Cube_000
     3300004: Cube_001
@@ -1065,6 +1103,17 @@ ModelImporter:
     3300418: Cube_210
     3300420: Cube_211
     3300422: woodwall2
+    3300424: stonebase_001
+    3300426: woodwall1
+    3300428: Cube_212
+    3300430: floor
+    3300432: floor_001
+    3300434: floor_002
+    3300436: floor_003
+    3300438: floor_004
+    3300440: floor_005
+    3300442: floor_006
+    3300444: floor_007
     4300000: Cube_078
     4300002: Cube_002
     4300004: Cube_000
@@ -1277,6 +1326,17 @@ ModelImporter:
     4300418: Cube_209
     4300420: Cube_210
     4300422: Cube_211
+    4300424: woodwall1
+    4300426: stonebase_001
+    4300428: floor_002
+    4300430: floor
+    4300432: floor_001
+    4300434: floor_003
+    4300436: floor_004
+    4300438: floor_005
+    4300440: floor_006
+    4300442: floor_007
+    4300444: Cube_212
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

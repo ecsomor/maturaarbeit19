@@ -13,8 +13,9 @@ public class WeaponManager : MonoBehaviour
     public GameObject Katana;
     public GameObject Hands;
 
-    public string Equipped;
+    public string equipped;
 
+	private GameObject weaponInHand;
 
     public bool isplayer; //Bool to differ an NPC from the Player
     // Use this for initialization
@@ -48,19 +49,19 @@ public class WeaponManager : MonoBehaviour
             if (Input.GetAxis("1") > 0f)
             {
                 setActiveWeapon(Katana);
-                Equipped = "Katana";
+                equipped = "Katana";
             }
 
             if (Input.GetAxis("2") > 0f)
             {
                 setActiveWeapon(Bo);
-                Equipped = "Bo";
+                equipped = "Bo";
             }
 
             if (Input.GetAxis("3") > 0f)
             {
                 setActiveWeapon(Hands);
-                Equipped = "Hands";
+                equipped = "Hands";
             }
         }
     }
@@ -77,6 +78,7 @@ public class WeaponManager : MonoBehaviour
                     if (enabledWeaponList[i] == activeWeapon)
                     {
                         weaponList[j].SetActive(true);
+						weaponInHand = activeWeapon;
                     }
                 }
             }
@@ -93,7 +95,8 @@ public class WeaponManager : MonoBehaviour
         enabledWeaponList.Add(weaponPickedUp);
     }
 
-
-
-
+	public GameObject getActiveWeapon()
+	{
+		return weaponInHand;
+	}
 }

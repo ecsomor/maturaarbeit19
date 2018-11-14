@@ -9,12 +9,12 @@ public class WeaponHit : MonoBehaviour
 
 
 	//Placeholders for WeaponStats
-	private float Damage;
-	private string Name;
-	private float Defense;
-	private float Range;
-	private float Speed;
-	private float Stamina;
+	private float damage;
+	private string name;
+	private float defense;
+	private float range;
+	private float speed;
+	private float stamina;
 
 
 
@@ -28,27 +28,27 @@ public class WeaponHit : MonoBehaviour
 		//Source https://answers.unity.com/questions/42843/referencing-non-static-variables-from-another-scri.html
 
 		//pulling weapon Stats
-		Name = Self.GetComponent<Stats>().WeaponName;
-		Damage = Self.GetComponent<Stats>().WeaponDamage;//The Direct Damage applied
-		Defense = Self.GetComponent<Stats>().WeaponDefense;//The Damage Subtracted from Direct Damage while Blocking
-		Range = Self.GetComponent<Stats> ().WeaponRange;//TODO DELETE RANGE, GOING WITH COLLIDERS
-		Speed = Self.GetComponent<Stats> ().WeaponSpeed;
-		Stamina = Self.GetComponent<Stats> ().WeaponStamina;
+		name = Self.GetComponent<Stats>().WeaponName;
+		damage = Self.GetComponent<Stats>().WeaponDamage;//The Direct Damage applied
+		defense = Self.GetComponent<Stats>().WeaponDefense;//The Damage Subtracted from Direct Damage while Blocking
+		range = Self.GetComponent<Stats> ().WeaponRange;//TODO DELETE RANGE, GOING WITH COLLIDERS
+		speed = Self.GetComponent<Stats> ().WeaponSpeed;
+		stamina = Self.GetComponent<Stats> ().WeaponStamina;
 
 
 	}
 
 	void OnTriggerEnter(Collider col) 
 		{
-		Debug.Log ("Hit: " + col.name + " Weapon: " + Name);
+		Debug.Log ("Hit: " + col.name + " Weapon: " + name);
 		if (col.name == "AI") {
-			GameObject.Find (col.name).GetComponent<NPC> ().NPCHealth -= Damage;
-			Debug.Log (Damage + " Damage applied to " + col.name);
+			GameObject.Find (col.name).GetComponent<NPC> ().ChangeHealth( -damage );
+			Debug.Log (damage + " Damage applied to " + col.name);
 		} 
 		else if (col.name == "Player") 
 		{
-			GameObject.Find (col.name).GetComponent<Player> ().Health -= Damage;
-			Debug.Log (Damage + " Damage applied to " + col.name);
+			GameObject.Find (col.name).GetComponent<Player> ().ChangeHealth( -damage );
+			Debug.Log (damage + " Damage applied to " + col.name);
 		}
 
 

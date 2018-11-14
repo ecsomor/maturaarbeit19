@@ -24,10 +24,10 @@ public class Player : MonoBehaviour
     public float sprungkraft = 5f;
 
     //Health
-    public float Health = 100f;
+    public float health = 100f;
 
     //Stamina
-    public float Stamina = 100f;
+    public float stamina = 100f;
 
     //Das Graphische Modell, ua für drehung in Laufrichtung
     public GameObject model;
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     ///mostly establishing shortcuts
     private void Start()
     {
-		gamedddData = new GameData (this);
+		gameData = new GameData (this);
 		gameData.LoadGame ();
 
         rigid = GetComponent<Rigidbody>();
@@ -66,8 +66,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		ChangeStamina (Time.deltaTime * 5 );
 		//Check if alive
-		if (Health < 0) {Debug.Log("YOU ARE DEAD");}//TODO DEATHSCREEN
         //x and z coordinates movement
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
@@ -101,29 +101,33 @@ public class Player : MonoBehaviour
         }
         
         //attack
-        if (Input.GetAxis("Fire1") > 0f)
+		// TODO: either block entering second attack or do not substract full stamina
+		if (Input.GetButtonDown("Fire1") )
         {
-            //Play attack animation
-            Debug.Log("Player attacked");
-			//anim.SetInteger ("Attack", 1);
-			anim.Play("Katana 0");
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            if (Physics.Raycast(transform.position, Vector3.forward, out hit, 10))
-            {
-                Debug.DrawLine(transform.position, hit.point);
-                //Debug.Log("Distance:",hit.distance);
-                Vector3 power = rigid.velocity;
-                power.y = 5f;
-                rigid.velocity = power;
-                
-                
-                
-                
-                
-            
-            }
+			GameObject weapon = GetComponent<WeaponManager>().getActiveWeapon ();
+			float weaponstamina = weapon.GetComponent<Stats> ().WeaponStamina;
+			string weaponname = weapon.GetComponent<Stats> ().WeaponName;
+			if (stamina >= weaponstamina) 
+			{
+				//Play attack animation
+				Debug.Log ("Player attacked");
+				//anim.SetInteger ("Attack", 1);
+				if ( weaponname == "Katana" || weaponname == "Bo" )
+					anim.Play ("Katana 0");
+				else if ( weaponname == "Shuriken" )
+					anim.Play ("Katana 0"); // TODO: shuriken animation
 
-		    
+				ChangeStamina (-weaponstamina);
+
+				Vector3 fwd = transform.TransformDirection (Vector3.forward);
+				if (Physics.Raycast (transform.position, Vector3.forward, out hit, 10)) {
+					Debug.DrawLine (transform.position, hit.point);
+					//Debug.Log("Distance:",hit.distance);
+					Vector3 power = rigid.velocity;
+					power.y = 5f;
+					rigid.velocity = power;
+ 				}
+			}
         }
 		if (Input.GetAxis ("Fire2") > 0f) {
 			//Play attack animation
@@ -157,6 +161,29 @@ public class Player : MonoBehaviour
 	public void SaveState(GameData gameData)
 	{
 		gameData.SaveTransform ("player", transform);
+	}
+
+	public void ChangeHealth(float change)
+	{
+		health += change;
+
+		if (health > 100.0f)
+			health = 100.0f;
+		else if (health < 0.0f) 
+		{
+			Debug.Log("YOU ARE DEAD");
+			// gameObject.SetActive (false);
+		}
+	}
+
+	public void ChangeStamina(float change)
+	{
+		stamina += change;
+
+		if (stamina > 100.0f)
+			stamina = 100.0f;
+		else if (stamina < 0.0f)
+			stamina = 0.0f;
 	}
 
     //transform.position += h * speed * transform.forward;

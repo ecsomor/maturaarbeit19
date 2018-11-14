@@ -28,8 +28,8 @@ public class HUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Health = Player.GetComponent<Player> ().Health;
-		Stamina = Player.GetComponent<Player> ().Stamina;
+		Health = Player.GetComponent<Player> ().health;
+		Stamina = Player.GetComponent<Player> ().stamina;
 
 
 		healthSlider.value = Health;
