@@ -7,6 +7,7 @@ TagManager:
   - Pickup
   - Enemy
   - Weapon
+  - Interactive
   layers:
   - Default
   - TransparentFX

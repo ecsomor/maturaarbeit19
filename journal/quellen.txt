@@ -115,3 +115,20 @@ added Stone House Model
 
 28.10.18
 Added Saving, Loading and New Game mechanics
+
+4.11.18
+Added field of view (FOV) to the NPC, so it only follows you after it has seen you.
+
+6.11.18
+added attacking animation for the NPC
+
+11.11.18
+reworked damage code
+added placeholder for quests in HUD
+added stamina system
+
+14.11.18
+Added Flower 3D model
+added Stone Texture
+Continued Shop 3D Model
+NPC looks at player https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
