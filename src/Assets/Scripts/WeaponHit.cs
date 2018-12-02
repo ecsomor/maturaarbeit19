@@ -41,7 +41,7 @@ public class WeaponHit : MonoBehaviour
 	void OnTriggerEnter(Collider col) 
 		{
 		Debug.Log ("Hit: " + col.name + " Weapon: " + name);
-		if (col.name == "AI") {
+		if (col.tag == "Enemy") {
 			GameObject.Find (col.name).GetComponent<NPC> ().ChangeHealth( -damage );
 			Debug.Log (damage + " Damage applied to " + col.name);
 		} 

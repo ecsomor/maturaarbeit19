@@ -24,6 +24,7 @@ public class NPC : MonoBehaviour
     public float stamina = 100f;
     public float Speed = 2.0f;
 	public bool hasseenplayer = false;
+	public bool fighting = false;
     
     //physikkomponente
     private Rigidbody rigid;
@@ -32,6 +33,7 @@ public class NPC : MonoBehaviour
 	private Collider fov;
 
 	public Transform target;
+	public RaycastHit hit;
 
 
 
@@ -61,33 +63,58 @@ public class NPC : MonoBehaviour
         //anim.SetFloat("forward", z);
         //Go towards Players'x
 		if (hasseenplayer == true) 
-		{
-			anim.SetBool ("iswalking", true);
+		{	
+			//if player is in range, attack (set fighting true)
+			Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-			if (player.transform.position.x > (transform.position.x - 1)) {
-				//go right
-				transform.position += new Vector3 (Speed * Time.deltaTime, 0, 0);
-            
+
+			if (Physics.Raycast(transform.position, forward, out hit, 10))
+			{	
+
+				Debug.DrawLine(transform.position, hit.point);
+				if (hit.collider.gameObject.tag == "Player") {
+					fighting = true;
+					Debug.Log ("NPC is attacking");
+				} else {
+					fighting = false;
+					anim.ResetTrigger ("Attack");
+				}
+
+			//if fight is true fight,
+			if (fighting == true){
+					anim.SetTrigger ("Attack");
+				//fight
+
 			} else {
-				//Go left
-				transform.position -= new Vector3 (Speed * Time.deltaTime, 0, 0);
-			}
-			//go towards Players'z
-			if (player.transform.position.z > transform.position.z) {
-				//Go up
-				transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
-            
-			} else {
-				//go down
-				transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
-			}
-			transform.LookAt(target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
-		} else { anim.SetBool ("iswalking", false);}
+				
+					anim.SetBool ("iswalking", true);
+					
+					if (player.transform.position.x > (transform.position.x - 1)) {
+						//go right
+						transform.position += new Vector3 (Speed * Time.deltaTime, 0, 0);
+            		
+					} else {
+						//Go left
+						transform.position -= new Vector3 (Speed * Time.deltaTime, 0, 0);
+					}
+					//go towards Players'z
+					if (player.transform.position.z > transform.position.z) {
+						//Go up
+						transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
+            		
+					} else {
+						//go down
+						transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
+					}
+					transform.LookAt(target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+				}
+			} else { anim.SetBool ("iswalking", false);}
 
 
         
         
-    }
+    	}
+	}
 
 	void OnTriggerEnter(Collider fov)
 	{	

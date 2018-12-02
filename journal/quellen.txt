@@ -132,3 +132,16 @@ Added Flower 3D model
 added Stone Texture
 Continued Shop 3D Model
 NPC looks at player https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+
+21.11.18
+added animations for the third Kind.
+started questsystem
+
+1.12.18
+Adding key (standard: e) to interact (important for questsystem)
+fixed raycasts
+
+The npc now attacks when he is near the player and facing him
+2.12.18
+applying damage now works if a gameobject has the tag "Enemy" and has a health script called npc
+quest system continued, Interactible Object class for Flower

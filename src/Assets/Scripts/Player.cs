@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
 
 	public GameData gameData;
 
+	public Quests quests;
+
     ///mostly establishing shortcuts
     private void Start()
     {
@@ -78,6 +80,8 @@ public class Player : MonoBehaviour
         anim.SetBool("Walking", true);
         //raycast for "isgrounded"
         RaycastHit hit;
+		//Raycast for "Interact"
+		RaycastHit interactHit;
 
 
         //transform.Rotate(0,x,0);
@@ -119,16 +123,35 @@ public class Player : MonoBehaviour
 
 				ChangeStamina (-weaponstamina);
 
-				Vector3 fwd = transform.TransformDirection (Vector3.forward);
-				if (Physics.Raycast (transform.position, Vector3.forward, out hit, 10)) {
-					Debug.DrawLine (transform.position, hit.point);
-					//Debug.Log("Distance:",hit.distance);
-					Vector3 power = rigid.velocity;
-					power.y = 5f;
-					rigid.velocity = power;
- 				}
+
 			}
         }
+
+		//interact
+		if (Input.GetAxis ("Interact") > 0f) {
+			Vector3 forward = transform.TransformDirection(Vector3.forward);
+
+
+			if (Physics.Raycast(transform.position, forward, out interactHit, 10))
+			{	
+				
+				Debug.DrawLine(transform.position, interactHit.point);
+				if (interactHit.collider.gameObject.tag == "Interactive") {
+					interactHit.collider.gameObject.SendMessage ("Interacted");
+					quests.Interacted (interactHit.collider.gameObject);
+					Debug.Log ("Player used 'Interact'");//TODO
+
+				}
+
+			}
+
+
+
+
+
+		}
+
+
 		if (Input.GetAxis ("Fire2") > 0f) {
 			//Play attack animation
 
@@ -172,7 +195,7 @@ public class Player : MonoBehaviour
 		else if (health < 0.0f) 
 		{
 			Debug.Log("YOU ARE DEAD");
-			// gameObject.SetActive (false);
+			model.SetActive (false);
 		}
 	}
 
