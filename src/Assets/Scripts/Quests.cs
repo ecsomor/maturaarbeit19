@@ -3,61 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-class Quest
+public class Quests : MonoBehaviour
 {
-	
-	public Quest( string nameString, string taskString )
-	{
-		name = nameString;
-		task = taskString;
-		done = false;
-	}
-
-	public bool IsDone()
-	{
-		return done;
-	}
-
-	public void Done()
-	{
-		done = true;
-	}
-
-	public string Name()
-	{
-		return name;
-	}
-
-	public string Task()
-	{
-		return task;
-	}
-
-	private string name;
-	private string task;
-	private bool done;
-};
-
-public class Quests : MonoBehaviour {
 	private List<Quest> questlist;
 
 	public Text Questtext;
-	//public Text ActiveQuest;
-	// private GameData Quest;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		questlist = new List<Quest> ();
-		InitQuests ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		bool everythingDone = true;
 
-		foreach (Quest q in questlist )
-		{
+		foreach (Quest q in questlist) {
 			if (!q.IsDone ()) {
 				Questtext.text = q.Task ();
 				everythingDone = false;
@@ -70,21 +33,41 @@ public class Quests : MonoBehaviour {
 		}
 	}
 
-	public void Interacted(GameObject obj)
+	public void Interacted (GameObject obj)
 	{
-		foreach (Quest q in questlist )
-		{
-			if (!q.IsDone () && obj.name == q.Name()  ) {
-				q.Done ();
-				Questtext.text = "";
-				break;
-			}
-		}
+		Quest q = GetActiveQuest (obj.name);
 
+		if (q != null) {
+			if (q.Done ())
+				Questtext.text = "";
+		}
 	}
 
-	void InitQuests() {
-		questlist.Add (new Quest ("Flower", "Go and pick the flower behind the house"));
-		questlist.Add (new Quest ("FlowerBlue", "Go and pick the flower at the corner"));
+	// adds a new quest to the list
+	public void AddQuest (Quest q)
+	{
+		questlist.Add (q);
+	}
+
+	// searches for a quest by name
+	public Quest GetQuest (string name)
+	{
+		foreach (Quest q in questlist) {
+			if (name.StartsWith (q.Name ())) {
+				return q;
+			}
+		}
+		return null;
+	}
+
+	// searches for a still active quest by name
+	public Quest GetActiveQuest (string name)
+	{
+		foreach (Quest q in questlist) {
+			if (!q.IsDone () && name.StartsWith (q.Name ())) {
+				return q;
+			}
+		}
+		return null;
 	}
 }

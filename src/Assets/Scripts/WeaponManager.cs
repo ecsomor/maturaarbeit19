@@ -5,97 +5,88 @@ using UnityEngine;
 ///This class Manages the availability and equipping of Weapons
 public class WeaponManager : MonoBehaviour
 {
-    public List<GameObject> weaponList;
-    public List<GameObject> enabledWeaponList;
+	public List<GameObject> weaponList;
+	public List<GameObject> enabledWeaponList;
 
-    /// Weapons
-    public GameObject Bo;
-    public GameObject Katana;
-    public GameObject Hands;
+	/// Weapons
+	public GameObject Bo;
+	public GameObject Katana;
+	public GameObject Hands;
 
-    public string equipped;
+	public string equipped;
 
 	private GameObject weaponInHand;
 
-    public bool isplayer; //Bool to differ an NPC from the Player
-    // Use this for initialization
+	public bool isplayer;
+	//Bool to differ an NPC from the Player
+	// Use this for initialization
 
-    //inspired by https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
+	//inspired by https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
 
-    void Start()
-    {
-        weaponList = new List<GameObject>(); //list of all weapons	
-        enabledWeaponList = new List<GameObject>(); //List of Weapons in the inventory
-
-
-        weaponList.Add(Katana);
-        weaponList.Add(Bo);
-        weaponList.Add(Hands);
+	void Start ()
+	{
+		weaponList = new List<GameObject> (); //list of all weapons	
+		enabledWeaponList = new List<GameObject> (); //List of Weapons in the inventory
 
 
-        enabledWeaponList.Add(Katana);
-        enabledWeaponList.Add(Bo);
-        enabledWeaponList.Add(Hands);
+		weaponList.Add (Katana);
+		weaponList.Add (Bo);
+		weaponList.Add (Hands);
 
-        setActiveWeapon(Katana); //equip weapon in hands
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Switching weapons
-        if (isplayer == true)
-        {
-            if (Input.GetAxis("1") > 0f)
-            {
-                setActiveWeapon(Katana);
-                equipped = "Katana";
-            }
+		enabledWeaponList.Add (Katana);
+		enabledWeaponList.Add (Bo);
+		enabledWeaponList.Add (Hands);
 
-            if (Input.GetAxis("2") > 0f)
-            {
-                setActiveWeapon(Bo);
-                equipped = "Bo";
-            }
+		setActiveWeapon (Katana); //equip weapon in hands
+	}
 
-            if (Input.GetAxis("3") > 0f)
-            {
-                setActiveWeapon(Hands);
-                equipped = "Hands";
-            }
-        }
-    }
+	// Update is called once per frame
+	void Update ()
+	{
+		// Switching weapons
+		if (isplayer == true) {
+			if (Input.GetAxis ("1") > 0f) {
+				setActiveWeapon (Katana);
+				equipped = "Katana";
+			}
 
-//void to activate the activeWeapon and deactivate all the others, as else they would all be equipped at the same time
-    private void setActiveWeapon(GameObject activeWeapon)
-    {
-        for (int j = 0; j < weaponList.Count; j++)
-        {
-            if (weaponList[j] == activeWeapon)
-            {
-                for (int i = 0; i < enabledWeaponList.Count; i++)
-                {
-                    if (enabledWeaponList[i] == activeWeapon)
-                    {
-                        weaponList[j].SetActive(true);
+			if (Input.GetAxis ("2") > 0f) {
+				setActiveWeapon (Bo);
+				equipped = "Bo";
+			}
+
+			if (Input.GetAxis ("3") > 0f) {
+				setActiveWeapon (Hands);
+				equipped = "Hands";
+			}
+		}
+	}
+
+	//void to activate the activeWeapon and deactivate all the others, as else they would all be equipped at the same time
+	private void setActiveWeapon (GameObject activeWeapon)
+	{
+		for (int j = 0; j < weaponList.Count; j++) {
+			if (weaponList [j] == activeWeapon) {
+				for (int i = 0; i < enabledWeaponList.Count; i++) {
+					if (enabledWeaponList [i] == activeWeapon) {
+						weaponList [j].SetActive (true);
 						weaponInHand = activeWeapon;
-                    }
-                }
-            }
-            else
-            {
-                weaponList[j].SetActive(false);
-            }
-        }
-    }
+					}
+				}
+			} else {
+				weaponList [j].SetActive (false);
+			}
+		}
+	}
 
-//add a weapon to the available weapons list when walked over it
-    public void pickedUpWeapon(GameObject weaponPickedUp)
-    {
-        enabledWeaponList.Add(weaponPickedUp);
-    }
+	//add a weapon to the available weapons list when walked over it
+	public void pickedUpWeapon (GameObject weaponPickedUp)
+	{
+		enabledWeaponList.Add (weaponPickedUp);
+	}
 
-	public GameObject getActiveWeapon()
+	public GameObject getActiveWeapon ()
 	{
 		return weaponInHand;
 	}

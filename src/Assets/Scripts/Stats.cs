@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour {
+public class Stats : MonoBehaviour
+{
 	//anims
 	public Animation AttackAnimation;
-
+	//Weapon values
 	public string WeaponName = "Katana";
 	public float WeaponDamage = 35;
 	public float WeaponDefense = 15;
@@ -14,7 +15,7 @@ public class Stats : MonoBehaviour {
 	public float WeaponStamina = 10;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 
 

@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractibleObject : MonoBehaviour {
+public class InteractibleObject : MonoBehaviour
+{
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
-	void Interacted(){
+
+	// object is in interaction with player
+	void Interact (Player p)
+	{
 		gameObject.SetActive (false);
 	}
 }

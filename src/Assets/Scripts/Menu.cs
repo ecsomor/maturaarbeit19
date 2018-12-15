@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menu : MonoBehaviour {
+public class Menu : MonoBehaviour
+{
 
 	public Player player;
 
 	// Use this for initialization
 	void Start ()
 	{
-		GetComponent<Canvas>().enabled = false;
+		GetComponent<Canvas> ().enabled = false;
 
 	}
+
 	/// <summary>
 	/// Wahr, wenn die Taste bereits zuvor als gedrückt erkannt wurde
 	/// Nötig, um mehrfachauswertungen der Menütasten zu verhindern
@@ -22,35 +24,33 @@ public class Menu : MonoBehaviour {
 	void Update ()
 	{	
 		
-		if (Input.GetAxisRaw("Menu") > 0f)
-		{
+		if (Input.GetAxisRaw ("Menu") > 0f) {
 			if (!keyWasPressed)
-				GetComponent<Canvas>().enabled = !GetComponent<Canvas>().enabled;
+				GetComponent<Canvas> ().enabled = !GetComponent<Canvas> ().enabled;
 
 			keyWasPressed = true;
-		}
-		else
+		} else
 			keyWasPressed = false;
 	}
 	//Ends game
 	public void OnButtonEndPressed ()
 	{
-		Debug.Log("Spiel Beendet");
-		Application.Quit();
+		Debug.Log ("Spiel Beendet");
+		Application.Quit ();
 	}
 	//Starts a new game
-	public void OnButtonNewPressed()
+	public void OnButtonNewPressed ()
 	{
-		print("Write some code here");
+		print ("Write some code here");
 		player.gameData.InitNewGame ();
 	}
 
 
 	//Speicherfunktion
-	public void OnButtonSavePressed() 
+	public void OnButtonSavePressed ()
 	{
 		Debug.Log ("Speichern");
-		player.gameData.SaveGame();
+		player.gameData.SaveGame ();
 
 //		GameData savegame = new GameData ();
 //		savegame.SaveGame ();

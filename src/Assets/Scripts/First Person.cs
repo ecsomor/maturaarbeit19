@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class FirstPerson : MonoBehaviour
 {
 
@@ -16,3 +17,4 @@ public class FirstPerson : MonoBehaviour
 
     }
 }
+*/

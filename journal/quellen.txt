@@ -145,3 +145,16 @@ The npc now attacks when he is near the player and facing him
 2.12.18
 applying damage now works if a gameobject has the tag "Enemy" and has a health script called npc
 quest system continued, Interactible Object class for Flower
+
+15.12.18
+commented all the code
+
+added physic colliders to the walls of "House"
+
+updated README
+
+added text field in Hud for displaying NPC messages
+
+added display of "money" variable in the top right hand corner of the screen, adding money system
+
+you now gain 10$ per kill of a red one

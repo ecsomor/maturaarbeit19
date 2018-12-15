@@ -60,11 +60,14 @@
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\InteractibleObject.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
-     <Compile Include="Assets\Scripts\mouselookat.cs" />
+     <Compile Include="Assets\Scripts\MouseLookAtIt.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Quest.cs" />
      <Compile Include="Assets\Scripts\Quests.cs" />
      <Compile Include="Assets\Scripts\Stats.cs" />
+     <Compile Include="Assets\Scripts\TalkingObject.cs" />
+     <Compile Include="Assets\Scripts\TheThirdKind.cs" />
      <Compile Include="Assets\Scripts\WeaponHit.cs" />
      <Compile Include="Assets\Scripts\WeaponManager.cs" />
      <Compile Include="Assets\StatsUnused.cs" />

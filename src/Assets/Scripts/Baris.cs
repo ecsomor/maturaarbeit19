@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Baris : MonoBehaviour {
+
+/// <summary>
+/// This script does nothing until now, but it is meant for controling the TheThirdKind
+/// </summary>
+/*
+public class Baris : MonoBehaviour
+{
 	public GameObject Player;
 	public int Radius;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 }
+*/

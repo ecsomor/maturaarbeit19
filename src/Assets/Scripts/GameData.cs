@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class GameData 
+public class GameData
 {
 	public GameData (Player p)
 	{
@@ -12,46 +12,43 @@ public class GameData
 	}
 
 	private Player player;
-
+	//create new save
 	public void InitNewGame ()
 	{
 		player.InitState ();
 	}
-
-	public void LoadGame()
+	//Reading the savefile
+	public void LoadGame ()
 	{
-		if (!PlayerPrefs.HasKey ("GameState"))
-		{
-			InitNewGame();
-		}
-		else
-		{
-			player.LoadState(this);
+		if (!PlayerPrefs.HasKey ("GameState")) {
+			InitNewGame ();
+		} else {
+			player.LoadState (this);
 		}
 	}
-
-	public void SaveGame()
+	//write save file
+	public void SaveGame ()
 	{
 		PlayerPrefs.SetInt ("GameState", 0);
 		player.SaveState (this);
 	}
-
-	public void SaveTransform(string scope, Transform transform)
+	//saving player position
+	public void SaveTransform (string scope, Transform transform)
 	{
 		Vector3 position = transform.position;
 
-		PlayerPrefs.SetFloat (scope+"X", position.x);
-		PlayerPrefs.SetFloat (scope+"Y", position.y);
-		PlayerPrefs.SetFloat (scope+"Z", position.z);
+		PlayerPrefs.SetFloat (scope + "X", position.x);
+		PlayerPrefs.SetFloat (scope + "Y", position.y);
+		PlayerPrefs.SetFloat (scope + "Z", position.z);
 	}
-
-	public void LoadTransform(string scope, Transform transform)
+	//loading players position
+	public void LoadTransform (string scope, Transform transform)
 	{
 		Vector3 position = new Vector3 (0, 0, 0);
 
-		position.x = PlayerPrefs.GetFloat (scope+"X");
-		position.y = PlayerPrefs.GetFloat (scope+"Y");
-		position.z = PlayerPrefs.GetFloat (scope+"Z");
+		position.x = PlayerPrefs.GetFloat (scope + "X");
+		position.y = PlayerPrefs.GetFloat (scope + "Y");
+		position.z = PlayerPrefs.GetFloat (scope + "Z");
 		transform.position = position;
 	}
 }

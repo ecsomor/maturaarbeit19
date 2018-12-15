@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponStats : MonoBehaviour {
+public class WeaponStats : MonoBehaviour
+{
 
 	public string WeaponName = "Katana";
 	public float WeaponDamage = 35;
@@ -12,7 +13,7 @@ public class WeaponStats : MonoBehaviour {
 	public float WeaponStamina = 10;
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
 
 

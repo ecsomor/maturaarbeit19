@@ -10,3 +10,4 @@ docs/arbeitstaktik.aux
 *.userprefs
 src/obj/
 src/Temp/
+src/.idea/
