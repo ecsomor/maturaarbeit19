@@ -40,8 +40,8 @@ public class TheThirdKind : InteractibleObject
 			// the first time coming back, task is not yet done - give money once
 			if (bringFlowers.IsDone () == false) {
 				p.money += 30;
-				p.AddQuest (new Quest ("AI", "Fight the red figures"));
 				p.AddQuest (new Quest ("AI1", "Fight the red figures"));
+				p.AddQuest (new Quest ("AI2", "Fight the red figures"));
 				p.lastTalk = "Thank you, now you must fight the red figures";
 			}
 		} else if (qFlowerRed.IsDone () != qFlowerBlue.IsDone ()) {

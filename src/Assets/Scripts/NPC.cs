@@ -135,8 +135,14 @@ public class NPC : MonoBehaviour
 			Debug.Log ("I'M DEAD");
 			gameObject.SetActive (false);
 
+			Player p = player.GetComponent<Player> ();
+			// is killing this NPC was a quest, update it
+			Quest q = p.GetActiveQuest(gameObject.name);
+			if ( q != null )
+				q.Done();
+
 			//add money to the players balance
-			player.GetComponent<Player> ().money += 10;
+			p.money += 10;
 		}
 	}
 }

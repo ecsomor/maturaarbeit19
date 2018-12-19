@@ -153,8 +153,11 @@ added physic colliders to the walls of "House"
 
 updated README
 
-added text field in Hud for displaying NPC messages
+added text field in Hud for displaying NPC messages and connect to 'talking' objects
 
 added display of "money" variable in the top right hand corner of the screen, adding money system
 
 you now gain 10$ per kill of a red one
+
+19.12.18
+killing an NPC also closes a corresponding quest
