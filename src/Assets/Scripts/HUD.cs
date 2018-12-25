@@ -5,27 +5,28 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-	// the player instance that delivers all informations
+	// Die Spielerinstanz, welche alle Informationen liefert
 	public Player player;
 
-	// the panel containing the speech bubble
+	// Feld, welches die Sprechblase beinhaltet
 	private GameObject talking;
-	// the text object displaying the speech
+	// Textobjekt, welches den gesprochenem Text anzeigt
 	private Text talkingText;
-	// the moment of the last bubble displayed, 0 if not displayed
+	// Zeitpunkt, als die letzte Blase angezeigt wurde, 0 wenn keine angezeigt wird
 	private int speechDisplayedTime = 0;
+	// Darstellungszeit der Sprechblase
+	private const int speechDisplayDuration = 15;
 
-	// health slider
+	// Gesundheit Schieberegler
 	private Slider healthSlider;
-	// stamina slider
+	// Ausdauer Schieberegler
 	private Slider staminaSlider;
-	// the text object displaying the money player has
+	// Textobjekt welches das Geld anzeigt das der Spieler hat.
 	private Text moneyText;
 
-	// Use this for initialization
+	// Initialisierung
 	void Start ()
 	{
-		
 		GetComponent<Canvas> ().enabled = true;
 
 		talking = transform.Find ("Talking").gameObject;
@@ -37,38 +38,32 @@ public class HUD : MonoBehaviour
 		moneyText = transform.Find ("Money/Text").gameObject.GetComponent<Text> ();
 	}
 	
-	// Update is called once per frame
-	// Display status information
+	// Update wird pro frame einmal aufgerufen
+	// Statusinformationen aus Spieler übernehmen und anzeigen
 	void Update ()
 	{
 		moneyText.text = player.money + " $";
-
-//		Health = player.health;
 		healthSlider.value = player.health;
-
-//		Stamina = player.stamina;
 		staminaSlider.value = player.stamina;
 
 		string lastTalk = player.lastTalk;
-		// if the player has been talked to in the last round
+		// wenn mit dem Spieler seit letztem Mal gesprochen wurde
 		if (lastTalk.Length > 0) {
-			// display bubble with text
+			// anzeigen der Sprechblase
 			player.lastTalk = "";
 			talking.SetActive (true);
 			talkingText.text = lastTalk;
-			// remember when
+			// Zeitpunkt des Anzeigens merken
 			speechDisplayedTime = (int)Time.time;
 		} else {
-			// no new text, check whether bubble should be hidden again
+			// kein neuer text, überprüfe ob die Sprechblase wieder versteckt werden soll
 			if (speechDisplayedTime > 0) {
-				if ((int)Time.time - speechDisplayedTime > 15) {
+				if ((int)Time.time - speechDisplayedTime > speechDisplayDuration) {
 					speechDisplayedTime = 0;
 					talking.SetActive (false);
 					talkingText.text = "";
 				}
 			}
 		}	
-			
-		
 	}
 }
