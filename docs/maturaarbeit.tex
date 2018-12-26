@@ -1,0 +1,119 @@
+% latex template. https://www.overleaf.com/latex/templates/kantonsschule-wattwil-maturaarbeit-template
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[a4paper,twoside,openright]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman,english]{babel}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage{scrhack}
+
+\usepackage[backend=biber]{biblatex}
+% \usepackage{cite}
+
+\usepackage{glossary}
+
+% Latin Modern
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+% Layout
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% Mathe Packages
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Kopf- und Fusszeilen
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+\ihead[]{\headmark}
+\chead[]{}
+\ohead[]{\pagemark}
+\ifoot[]{}
+\cfoot[\pagemark]{}
+\ofoot[]{}
+\pagestyle{scrheadings}
+
+\usepackage{makeidx}
+
+% Einfügen von Bildern
+\usepackage{graphicx}
+\usepackage{svg}
+
+% schöne Tabellen
+\usepackage{booktabs}
+
+% Hyperlinks in PDF
+\usepackage{hyperref}
+% komfortable Referenzen mit cleverref
+% \usepackage[german]{varioref}
+\usepackage[ngerman]{cleveref}
+
+% Listings Darstellung
+% \usepackage{listings}
+\usepackage{listingsutf8}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue}}
+\lstset{style=sharpc,basicstyle=\sffamily ,showstringspaces=false,literate={ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+}
+
+\titlehead{Kantonsschule im Lee \hfill Elias Csomor\\
+Fachschaft Informatik \hfill Heldweg 12\\
+Rychenbergstrasse 140 \hfill 8475 Ossingen\\
+8400 Winterthur
+}
+\subject{Maturaarbeit}
+\title{SimpleRPG \\
+ Ein einfaches Rollenspiel in Unity 3D}
+\subtitle{Erschaffen eines Spiels von null}
+\author{\texorpdfstring{Elias Csomor\\[1cm]\\[1cm] {\small Betreuer: Thomas Graf}}{Hans Muster}}
+\date{\small Stand 2.9.2018}
+
+% PDF Docinfo
+
+\makeatletter
+\hypersetup{
+	pdftitle={\@title},%
+	pdfsubject={\@subject},%
+	pdfauthor={\@author},%
+	pdfkeywords={},%
+	colorlinks,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,%
+	urlcolor=black}%
+\makeatother
+
+% Real Content
+
+\bibliography{verzeichnis}
+
+
+\begin{document}
+\selectlanguage{ngerman}
+\maketitle % <- Titel setzen
+\cleardoublepage
+\pagenumbering{roman} % <- römische Seitennummerierung
+\tableofcontents % <- Inhaltsverzeichnis
+\cleardoublepage % <- neue Seite
+\pagenumbering{arabic} % <- arabische Seitennummerierung
+
+\include{einleitung}
+
+\include{theorie}
+
+\include{prozess}
+
+\include{resultate}
+
+\include{reflexion}
+
+% \include{sources}
+% \appendix % <- Anhang
+\listoffigures % <- Abbildungsverzeichnis
+%\bibliographystyle{apalike}
+\printbibliography
+\end{document}
