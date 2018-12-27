@@ -4,44 +4,38 @@ using UnityEngine;
 
 public class WeaponHit : MonoBehaviour
 {
-	//This script should be able to apply the damage taken from the ATCK value of the weapon and apply it to the Entity it collided with
-	//The Entity that has the Stats
+	// Dieses Skript fügt Schaden in Höhe des WeaponDamage Werts 
+	// einer Waffe einem Objekt zuzufügen
 
-
-	//Placeholders for WeaponStats
+	// Platzhalter für Waffenwerte
 	private float damage;
-	private string name;
+	private string weaponname;
 	private float defense;
 	private float range;
 	private float speed;
 	private float stamina;
 
-
-
-
 	public GameObject Self;
 	
-	//The Entity That is the Damaging area of the weapon (must have physics collider)
+	// Das Element, welches die Trefferzone darstellt, muss einen Physik 
+	// Collider haben
 
 	void Start ()
 	{
-		//Source https://answers.unity.com/questions/42843/referencing-non-static-variables-from-another-scri.html
-
-		//pulling weapon Stats
-		name = Self.GetComponent<Stats> ().WeaponName;
-		damage = Self.GetComponent<Stats> ().WeaponDamage;//The Direct Damage applied
-		defense = Self.GetComponent<Stats> ().WeaponDefense;//The Damage Subtracted from Direct Damage while Blocking
-		range = Self.GetComponent<Stats> ().WeaponRange;//TODO DELETE RANGE, GOING WITH COLLIDERS
+		// abfüllen der Stats
+		weaponname = Self.GetComponent<Stats> ().WeaponName;
+		damage = Self.GetComponent<Stats> ().WeaponDamage;
+		defense = Self.GetComponent<Stats> ().WeaponDefense;
+		range = Self.GetComponent<Stats> ().WeaponRange;
 		speed = Self.GetComponent<Stats> ().WeaponSpeed;
 		stamina = Self.GetComponent<Stats> ().WeaponStamina;
-
-
 	}
 
-	//when the Weaponcollider hits something, check if it either hit "Enemy" or "Player" and apply damaged
+	// Wenn der Weapon-Collider etwas trifft, überprüfe ob etwas mit dem tag 
+	// "Enemy" oder dem namen "Player" getroffen wurde undnamee Schaden zu
 	void OnTriggerEnter (Collider col)
 	{
-		Debug.Log ("Hit: " + col.name + " Weapon: " + name);
+		Debug.Log ("Hit: " + col.name + " Weapon: " + weaponname);
 		if (col.tag == "Enemy") {
 			GameObject.Find (col.name).GetComponent<NPC> ().ChangeHealth (-damage);
 			Debug.Log (damage + " Damage applied to " + col.name);
@@ -49,11 +43,6 @@ public class WeaponHit : MonoBehaviour
 			GameObject.Find (col.name).GetComponent<Player> ().ChangeHealth (-damage);
 			Debug.Log (damage + " Damage applied to " + col.name);
 		}
-
-
-
-		//Debug.Log (secondstats.Weaponname);
-
 	}
 		
 }

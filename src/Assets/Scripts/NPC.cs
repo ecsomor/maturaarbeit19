@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-	//Bodyparts
+	// Körperteile
 	public GameObject AI;
 	public GameObject AITorso;
 	public GameObject AILeftFoot;
@@ -13,37 +13,33 @@ public class NPC : MonoBehaviour
 	public GameObject AILeftHand;
 	public GameObject AIRightHand;
     
-	//Player Object
+	//Spieler Objelt
 	public GameObject player;
 
-	//FOV
+	// Field-of-View (kann sehen)
 	public GameObject FOV;
     
-	//Initialize NPC Values
+	// Initialisiere NPC Values
 	public float health = 100f;
 	public float stamina = 100f;
 	public float Speed = 2.0f;
 	public bool hasseenplayer = false;
 	public bool fighting = false;
     
-	//physikkomponente
+	// Physikkomponente
 	private Rigidbody rigid;
-	//animationskomponente
+
+	// Animationskomponente
 	private Animator anim;
 	private Collider fov;
 
 	public Transform target;
 	public RaycastHit hit;
-
-
-
     
-	//find Player src https://www.quora.com/How-do-I-make-an-NPC-move-in-Unity#
-    
-    
+	// find Player src https://www.quora.com/How-do-I-make-an-NPC-move-in-Unity# 
 	private void Start ()
 	{	
-		//connect components
+		// Verbinde Komponenten
 		rigid = GetComponent<Rigidbody> ();
 		anim = GetComponent<Animator> ();
 		fov = FOV.GetComponent<Collider> ();
@@ -51,22 +47,16 @@ public class NPC : MonoBehaviour
 	}
 
 	private void Update ()
-	{    
-		
-		//if health is under 0, delete Gameobject
+	{    		
+		// wenn Gesundheit unter 0, zerstöre Objekt
 		if (health < 0) {
 			Debug.Log ("NPC HEALTH: " + health);
 			Destroy (AI);
 		} 
-		//TODO
-		//animations
-		//anim.SetFloat("forward", z);
-		//Go towards Players'x
-		if (hasseenplayer == true) {	
-			//if player is in range, attack (set fighting true)
-			Vector3 forward = transform.TransformDirection (Vector3.forward);
 
-			//check if "player" is in Range to attack, if so do so
+		if (hasseenplayer == true) {	
+			// wenn Spieler in Reichweite, angreifen (fighting = true )
+			Vector3 forward = transform.TransformDirection (Vector3.forward);
 			if (Physics.Raycast (transform.position, forward, out hit, 10)) {	
 
 				Debug.DrawLine (transform.position, hit.point);
@@ -78,33 +68,38 @@ public class NPC : MonoBehaviour
 					anim.ResetTrigger ("Attack");
 				}
 
-				//if fight is true fight,
 				if (fighting == true) {
+					// Animation Angriff starten
 					anim.SetTrigger ("Attack");
-					//fight
-
 				} else {
-				
+					// Animation Laufen starten
 					anim.SetBool ("iswalking", true);
 					
-					if (player.transform.position.x > (transform.position.x - 1)) {
-						//go right
-						transform.position += new Vector3 (Speed * Time.deltaTime, 0, 0);
+					if (player.transform.position.x > 
+						(transform.position.x - 1)) {
+						// nach rechts
+						transform.position += 
+							new Vector3 (Speed * Time.deltaTime, 0, 0);
             		
 					} else {
-						//Go left
-						transform.position -= new Vector3 (Speed * Time.deltaTime, 0, 0);
+						// nach links
+						transform.position -= 
+							new Vector3 (Speed * Time.deltaTime, 0, 0);
 					}
-					//go towards Players'z
+
+					// in Richtung Spieler
 					if (player.transform.position.z > transform.position.z) {
-						//Go up
-						transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
+						// nach oben
+						transform.position += 
+							new Vector3 (0, 0, Speed * Time.deltaTime);
             		
 					} else {
-						//go down
-						transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
+						// nach unten
+						transform.position -= 
+							new Vector3 (0, 0, Speed * Time.deltaTime);
 					}
-					transform.LookAt (target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+					// https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+					transform.LookAt (target);
 				}
 			} else {
 				anim.SetBool ("iswalking", false);
@@ -115,7 +110,8 @@ public class NPC : MonoBehaviour
         
 		}
 	}
-	//Spotting player
+
+	// Entdecken des Spielers
 	void OnTriggerEnter (Collider fov)
 	{	
 		if (fov.name == "Player") {
@@ -136,12 +132,12 @@ public class NPC : MonoBehaviour
 			gameObject.SetActive (false);
 
 			Player p = player.GetComponent<Player> ();
-			// is killing this NPC was a quest, update it
+			// wenn die Tötung dieses NPCs eine Aufgabe war, diese aktualisieren
 			Quest q = p.GetActiveQuest(gameObject.name);
 			if ( q != null )
 				q.Done();
 
-			//add money to the players balance
+			// Dem Player Geld geben
 			p.money += 10;
 		}
 	}

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-///This class Manages the availability and equipping of Weapons
+/// Diese Klasse verwaltet die Verfügbarkeit und Ausstattung von Waffen
 public class WeaponManager : MonoBehaviour
 {
 	public List<GameObject> weaponList;
 	public List<GameObject> enabledWeaponList;
 
-	/// Weapons
+	/// Waffen
 	public GameObject Bo;
 	public GameObject Katana;
 	public GameObject Hands;
@@ -17,16 +17,16 @@ public class WeaponManager : MonoBehaviour
 
 	private GameObject weaponInHand;
 
+	// Bool zur Unterscheidung von NPC und Player 
 	public bool isplayer;
-	//Bool to differ an NPC from the Player
-	// Use this for initialization
 
-	//inspired by https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
+	// inspiriert von 
+	// https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
 
 	void Start ()
 	{
-		weaponList = new List<GameObject> (); //list of all weapons	
-		enabledWeaponList = new List<GameObject> (); //List of Weapons in the inventory
+		weaponList = new List<GameObject> (); // alle Waffen	
+		enabledWeaponList = new List<GameObject> (); // alle verfügbaren Waffen
 
 
 		weaponList.Add (Katana);
@@ -38,13 +38,13 @@ public class WeaponManager : MonoBehaviour
 		enabledWeaponList.Add (Bo);
 		enabledWeaponList.Add (Hands);
 
-		setActiveWeapon (Katana); //equip weapon in hands
+		// mit Waffe ausrüsten
+		setActiveWeapon (Katana);  
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
-		// Switching weapons
+		// Wechseln der Waffe
 		if (isplayer == true) {
 			if (Input.GetAxis ("1") > 0f) {
 				setActiveWeapon (Katana);
@@ -63,7 +63,8 @@ public class WeaponManager : MonoBehaviour
 		}
 	}
 
-	//void to activate the activeWeapon and deactivate all the others, as else they would all be equipped at the same time
+	// die activeWeapon aktivieren und anderen zu deaktivieren, sonst 
+	// erscheinen sie gleichzeitig
 	private void setActiveWeapon (GameObject activeWeapon)
 	{
 		for (int j = 0; j < weaponList.Count; j++) {
@@ -80,7 +81,8 @@ public class WeaponManager : MonoBehaviour
 		}
 	}
 
-	//add a weapon to the available weapons list when walked over it
+	// füge eine Waffe zu der Liste der verfügbaren Waffen, 
+	// wenn man darüber läuft
 	public void pickedUpWeapon (GameObject weaponPickedUp)
 	{
 		enabledWeaponList.Add (weaponPickedUp);

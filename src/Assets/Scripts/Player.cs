@@ -4,61 +4,52 @@ using System.Security.Cryptography.X509Certificates;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
 
-
-// steuerung der Spielfigur
+// Steuerung der Spielfigur
 public class Player : MonoBehaviour
 {
 	private CharacterController m_CharacterController;
 
-	//Auf dem boden?
+	// Auf dem boden?
 	private bool isGrounded;
 
-	//blockt der Spieler?
+	// blockt der Spieler?
 	public bool isBlocking;
 
-	//Laufgeschwindigkeit
+	// Laufgeschwindigkeit
 	public float speed = 3f;
 	//private float towardsY = 0f;
 
-	//sprungkraft
+	// Sprungkraft
 	public float sprungkraft = 5f;
 
-	//Health
+	// Gesundheit
 	public float health = 100f;
 
-	//Stamina
+	// Ausdauer
 	public float stamina = 100f;
 
 	public int money = 0;
 
-	//Das Graphische Modell, ua für drehung in Laufrichtung
+	// Das Graphische Modell, ua für drehung in Laufrichtung
 	public GameObject model;
 
-	//zeiger auf die animations komponente der spielfigur
+	// Zeiger auf die animations komponente der spielfigur
 	private Animator anim;
 
-	//Physikkomponente
+	// Physikkomponente
 	private Rigidbody rigid;
 
-	//Der winkel zu dem sich die figur um die eigene achse (=Y) drehen soll
+	// Der Winkel zu dem sich die Figur um die eigene Achse (=Y) drehen soll
 	public float towardsY = 90f;
 
 	public string lastTalk;
 
-	// weaponsystem initiation
-	// List<string> GotWeapons = new List<string>();
-
-	//public GameObject BoInHand;
-	//public GameObject KatanaInHand;
-	// public int EquippedWeapon = 0;
-
-	/// public int WeaponSwitchCoolDown = 3;
 
 	public GameData gameData;
 
 	public Quests quests;
 
-	///mostly establishing shortcuts
+	/// abkürzungen etablieren
 	private void Start ()
 	{
 		gameData = new GameData (this);
@@ -68,36 +59,37 @@ public class Player : MonoBehaviour
 		m_CharacterController = GetComponent<CharacterController> ();
 		anim = GetComponent<Animator> ();
 
-		AddQuest (new Quest ("TheThirdKind", "You must search the wise green man"));
+		AddQuest (
+			new Quest ("TheThirdKind", "You must search the wise green man"));
 	}
 
 	// Update is called once per frame
 	private void Update ()
 	{
 		ChangeStamina (Time.deltaTime * 5);
-		//Check if alive
-		//x and z coordinates movement
+		// überprüfe ob lebendig
+		// x und z Koordinaten Bewegung
 		float x = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
 		float z = Input.GetAxis ("Vertical") * Time.deltaTime * speed;
         
 
-		//animations
+		// Animationen
 		anim.SetFloat ("forward", z * 3);
 		anim.SetBool ("Walking", true);
-		//raycast for "isgrounded"
+		// raycast für "isgrounded"
 		RaycastHit hit;
-		//Raycast for "Interact"
+		// raycast für "Interact"
 		RaycastHit interactHit;
 
 
-		//transform.Rotate(0,x,0);
+
 		transform.Translate (x, 0, z);
 
-		//Springen
+		// Springen
 		if (Input.GetAxis ("Jump") > 0f) {
-			//isgrounded: Vector to the ground with length 1. If it hits something, isgrounded will be true (which means jumping is possible), if not then not.
-			Vector3 fwd = transform.TransformDirection (Vector3.down);
-
+			// isgrounded: Vektor Richtung Boden mit Länge 1. 
+			// Wenn er etwas trifft, ist isgrounded true (was bedeutet,
+			// dass springen möglich ist). Wenn nicht, dann nicht. 
 
 			if (Physics.Raycast (transform.position, Vector3.down, out hit, 1)) {
 				Debug.DrawLine (transform.position, hit.point);
@@ -108,49 +100,44 @@ public class Player : MonoBehaviour
 			}
 		}
         
-		//attack
-		// TODO: either block entering second attack or do not substract full stamina
+		// Angriff
 		if (Input.GetButtonDown ("Fire1")) {	
-			//get and compare weapon stats
-			GameObject weapon = GetComponent<WeaponManager> ().getActiveWeapon ();
+			// hole und vergleiche Waffenwerte
+			GameObject weapon = GetComponent<WeaponManager> ().getActiveWeapon();
 			float weaponstamina = weapon.GetComponent<Stats> ().WeaponStamina;
 			string weaponname = weapon.GetComponent<Stats> ().WeaponName;
 			if (stamina >= weaponstamina) {
-				//Play attack animation
+				//Spiel Attackier-Animation
 				Debug.Log ("Player attacked");
-				//anim.SetInteger ("Attack", 1);
 				if (weaponname == "Katana" || weaponname == "Bo")
 					anim.Play ("Katana 0");
 				else if (weaponname == "Shuriken")
-					anim.Play ("Katana 0"); // TODO: shuriken animation
+					anim.Play ("Katana 0"); 
 
 				ChangeStamina (-weaponstamina);
-
-
 			}
 		}
 
-		//interact (standard button "E")
+		// Interagieren (Standard "E")
 		if (Input.GetAxis ("Interact") > 0f) {
 			Vector3 forward = transform.TransformDirection (Vector3.forward);
 
-
-			if (Physics.Raycast (transform.position, forward, out interactHit, 10)) {	
-				
+			if (Physics.Raycast (transform.position, forward, 
+				out interactHit, 10)) {	
 				Debug.DrawLine (transform.position, interactHit.point);
 				if (interactHit.collider.gameObject.tag == "Interactive") {
-					// send a message
-					interactHit.collider.gameObject.SendMessage ("Interact", (Player)this);
-					// update quest - if existed
+					// sende eine Nachricht
+					interactHit.collider.gameObject.SendMessage ("Interact", 
+						(Player)this);
+					// Aufgabe aktualisieren - wenn sie existiert
 					quests.Interacted (interactHit.collider.gameObject);
 				}
 			}
 				
 		}
 
-
 		if (Input.GetAxis ("Fire2") > 0f) {
-			//Play attack animation
+			// spiel Attackier-Animation
 
 			isBlocking = true;
 			anim.SetBool ("Blocking", true);
@@ -163,8 +150,6 @@ public class Player : MonoBehaviour
 		//		Debug.Log ("Player Blocked");
 		//		anim.Play ("Block");
 		//	}
-        
-        
 	}
 
 	public void InitState ()
@@ -205,89 +190,22 @@ public class Player : MonoBehaviour
 			stamina = 0.0f;
 	}
 
-	// adds a new quest to the list
+	// Fügt der Liste eine neue Aufgabe hinzu
 	public void AddQuest (Quest q)
 	{
 		quests.AddQuest (q);
 	}
 
-	// searches for a quest by name
+	// Sucht nach einer Aufgabe per Name
 	public Quest GetQuest (string name)
 	{
 		return quests.GetQuest (name);
 	}
 
-	// searches for a still active quest by name
+	// Sucht nach einer aktiven Aufgabe per Name
 	public Quest GetActiveQuest (string name)
 	{
 		return quests.GetActiveQuest (name);
 	}
 
-	//transform.position += h * speed * transform.forward;
-
-	//if (h > 0f) // nach rechts gehen
-	//	towardsY = 0f;
-	//else if (h < 0f) //nach links gehen
-	//	towardsY = 180f;
-
-	//model.transform.rotation = Quaternion.Lerp(model.transform.rotation, Quaternion.Euler(0f, towardsY, 0f), Time.deltaTime);
-
-
-	//	void WeaponSwitch(){
-	//
-	//
-	//		///Managing equip
-	//		if (EquippedWeapon == 0) {
-	//
-	//			BoInHand.SetActive (false);
-	//			KatanaInHand.SetActive (false);
-	//
-	//		}
-	//		else if (EquippedWeapon == 1) {
-	//			if (GotWeapons.Contains ("Katana")) {
-	//				BoInHand.SetActive (false);
-	//				KatanaInHand.SetActive (true);
-	//
-	//			}
-	//		}
-	//		else if (EquippedWeapon == 2) {
-	//			if (GotWeapons.Contains ("Bo"))
-	//			{
-	//				BoInHand.SetActive (true);
-	//				KatanaInHand.SetActive (false);
-	//
-	//			}
-	//
-	//
-	//		}
-	//		else if (EquippedWeapon > 2) {
-	//			EquippedWeapon = 0;
-	//
-	//		}
-	//
-	//	}
-	//
-	//	void OnTriggerEnter(Collider other)
-	//	{
-	//		if (other.gameObject.CompareTag("Pickup"))
-	//		{
-	//
-	//			other.gameObject.SetActive(false);
-	//			if (other.gameObject.name == "Bo-Pickup")
-	//			{
-	//
-	//
-	//			}
-	//			else if (other.gameObject.name == "Katana-pickup")
-	//			{
-	//				GotWeapons.Add ("Katana");
-	//				EquippedWeapon = 1;
-	//			}
-	//
-	//
-	//		}
-	//	}
 }
-
-//Destroy(other.gameObject);
-//
