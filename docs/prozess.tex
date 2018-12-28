@@ -23,18 +23,18 @@ Wenn es also an die Umsetzung einer Idee kam, schrieb ich den Code in ein schon 
 Falls es nicht funktionierte, wurde entweder ein anderer Ansatz gewählt oder ich arbeitete daran bis es geklappt hat.
 Sobald funktional alles glatt lief, musste der Code aufgeräumt werden. Dabei wurden die noch vorhandenen Spuren der nicht erfolgreichen Versuche entfernt, der gewünschte Code allenfalls bereinigt und vereinfacht. Wenn es grosse Code-Teile waren, dann sollten die benötigten Teile eigenständig werden, denn ein einziges riesiges Skript welches das ganze Spiel steuert, ist weder besonders gut für das rasche Arbeiten, noch wird es von anderen Programmierern/Programmiererinnen gerne gesehen, da die Übersichtlichkeit verloren geht.
 
-Das Aufräumen oder Auslagern passierte dadurch, dass ich entweder manuell ändert oder ein neues Skript erstellt habe und dort den getesteten Code hinein kopierte, oder ich habe den Code mit Hilfe von MonoDevelop \textbf{refaktorisiert} (\cref{subsubsec:refactoring}). 
+Das Aufräumen oder Auslagern passierte dadurch, dass ich entweder manuell ändert oder ein neues Skript erstellt habe und dort den getesteten Code hinein kopierte, oder ich habe den Code mit Hilfe von MonoDevelop \textbf{refaktorisiert} (Erklärung im übernächsten Abschnitt). 
 
-\subsubsection{Inspirationsquellen}
+\subsection{Inspirationsquellen}
 Was das erfinden der Objekte und Geschichte angeht, diente mir vor allem meine rege Fantasie als Inspiration.
 Doch ab und an half auch diese nichts, gerade dann wenn es um komplizierte Funktionalitäten 
 ging (e.g. Vektoren für Interact und Jump).
 %todo screenshot?
 In diesen Fällen konsultierte ich eine Website namens Udemy. Diese bietet eine grosse Spannweite an Kursen. Mein Vater hatte mir dort vor ein paar Monaten einen Programmierkurs für C\# geschenkt, welcher sich nun als nützlich erweisen sollte.
 Dieser Kurs war eine auf sich aufbauende Videoserie, in welcher ein 2D Spiel von A-Z entwickelt wurde.
-Da mein Spiel jedoch 3D sein sollte und der Udemy Kurs beim besten willen nicht alle Thematiken abdecken konnte, blieb mir als oft letzte Hoffnung noch die öffentliche Tutorialwebseite von Unity. \cite{unity3dtutorial}
+Da mein Spiel jedoch 3D sein sollte und der Udemy Kurs beim besten willen nicht alle Thematiken abdecken konnte, blieb mir als oft letzte Hoffnung noch die öffentliche Tutorialwebseite von Unity. \footfullcite{unity3dtutorial}
 
-\subsubsection{Refaktorisierung}
+\subsection{Refaktorisierung}
 \label{subsubsec:refactoring}
 Quellen in https://de.wikipedia.org/wiki/Refactoring
 Umsetzung mit MonoDevelop
@@ -64,40 +64,85 @@ Damit das Spiel wirklich gut benutzbar wird, benötigt es gewisse Funktionen, di
 \subsubsection{Menu}
 Skript: Menu.cs\\
 Start Menu
+
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/menuscreen.png}
+\caption{Menü}
+\end{figure}
+
 Das Menü beinhaltet vier Elemente: Einen \textbf{Canvas}, also eine "Plache", die für uns hier als Hintergrundabdunklung fungiert.
 Dann gibt es 3 Buttons:
 \paragraph{new game}
 Dies setzt alle im Savefile gespeicherten daten zurück und Startet das Spiel neu.
 
+\begin{lstlisting}
+//Starts a new game
+public void OnButtonNewPressed ()
+{
+	print ("Write some code here");
+	player.gameData.InitNewGame ();
+}
+
+\end{lstlisting}
+
 \paragraph{save game}
 Dieser Knopf tut nichts anderes als bestimmte Daten wie die X,Y,Z position des Spielers in ein Textfile zu schreiben. Bei einem Neustart des Spiels werden diese Angaben wieder eingelesen und  übernommen.
 
-\paragraph{quit game}
-Das einzige was dieser Knopf macht ist einen Command namens "Application.quit" ausführen, welcher das ganze Programm beendet. 
+\begin{lstlisting}
+//Speicherfunktion
+public void OnButtonSavePressed ()
+{
+	Debug.Log ("Speichern");
+	player.gameData.SaveGame ();
+}
+	
+\end{lstlisting}
+
+\paragraph{end game}
+Das einzige, was dieser Knopf macht, ist einen Unity Befehl namens \lstinline{Application.quit}  ausführen, welcher das ganze Programm beendet. 
+
+\begin{lstlisting}
+//Ends game
+public void OnButtonEndPressed ()
+{
+	Debug.Log ("Spiel Beendet");
+	Application.Quit ();
+}
+\end{lstlisting}
 
 \subsubsection{GameData}
 Skript: GameData.cs
 Die Daten des aktuellen Spiels
 - Stand speichern
+\\
+
 
 \subsubsection{Heads-Up Display HUD}
 Skript: HUD.cs
 Heads-Up Display
 
+\begin{figure}[H]
+\includegraphics[scale=0.8]{screenshots/hud.png}
+\caption{HUD}
+\end{figure}
+
 Ein Heads-up Display ist eine Anzeigefläche die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
 Somit sind die Informationen in jeder situation Ablesbar.
  
-\paragraph{Questbereich}\mbox{} \\
-Der Questbereich befindet sich oben rechts.
-Darin wird die Aktuelle Quest angezeigt.
+\paragraph{Aufgabenbereich (1)}\mbox{} \\
+Der Aufgabenbereich befindet sich oben rechts.
+Darin wird die jeweils aktuelle Aufgabe angezeigt.
 
-\paragraph{Zustandsdisplay}\mbox{} \\
-Das Zustandsdisplay befindet sich oben links 
-%todo screenshot
+\paragraph{Zustandsdisplay (2)}\mbox{} \\
+Das Zustandsdisplay befindet sich oben links im HUD.
+
 Es besteht aus zwei Schiebereglern \lstinline{Slider}, einer für die Gesundheit \lstinline{player.health} und einer für die Ausdauer \lstinline{player.stamina} des Spielers.
 Ein Schieberegler ist ein 2D Balken, der einen Wert verkörpert. Man kann ihm in der Entwicklungsumgebung einen minimalen und einen maximalen Wert geben, hier ist das bei beiden 0-100.
 
-TODO: screenshot
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/nullhundert.png}
+\caption{Slider value}
+\end{figure}
 
 Abgefüllt werden diese Balken durch das HUD-script, welches bei jedem \lstinline{Update} Aufrug die aktuellen Werte aus dem \lstinline{Player} Objekt ausliest und in die Schieberegler weitergibt.
 
@@ -111,7 +156,7 @@ public class HUD : MonoBehaviour
 	private Slider staminaSlider;
 	(...)
 	// Statusinformationen aus Spieler übernehmen und anzeigen
-	void Update ()
+	void Update()
 	{
 		(...)
 		healthSlider.value = player.health;
@@ -121,13 +166,13 @@ public class HUD : MonoBehaviour
 }
 \end{lstlisting}
 
-\paragraph{Kommunikationsbereich}\mbox{} \\
-Der Kommunikationsbereich befindet sich im zwischen der Mitte und dem unteren Drittel des Bildschirmes.
+\paragraph{Kommunikationsbereich (3)}\mbox{} \\
+Der Kommunikationsbereich befindet sich zwischen der Mitte und dem unteren Drittel des Bildschirmes.
 Normalerweise ist er deaktiviert.
 Aktiviert wird er dann, wenn ein \lstinline{Interact} Aufruf das Attribut \lstinline{lastTalk} des Players neu setzt:
 
 \begin{lstlisting}[caption={Kommunikation setzen}]
-void Interact (Player p)
+void Interact(Player p)
 {
 	(...)
 	p.lastTalk = "You must pick the two flowers ...";
@@ -157,7 +202,7 @@ public class HUD : MonoBehaviour
 	
 	// Update wird pro frame einmal aufgerufen
 	// Statusinformationen aus Spieler übernehmen und anzeigen
-	void Update ()
+	void Update()
 	{
 		(...)
 		string lastTalk = player.lastTalk;
@@ -165,7 +210,7 @@ public class HUD : MonoBehaviour
 		if (lastTalk.Length > 0) {
 			// anzeigen der Sprechblase
 			player.lastTalk = "";
-			talking.SetActive (true);//hier wird die Sprechblase aktiviert
+			talking.SetActive(true);//hier wird die Sprechblase aktiviert
 			talkingText.text = lastTalk;
 			// Zeitpunkt des Anzeigens merken
 			speechDisplayedTime = (int)Time.time;
@@ -176,7 +221,7 @@ public class HUD : MonoBehaviour
 				if ((int)Time.time - speechDisplayedTime > 
 					speechDisplayDuration) {
 					speechDisplayedTime = 0;
-					talking.SetActive (false);//hier wird die Sprechblase deaktiviert
+					talking.SetActive(false);//hier wird die Sprechblase deaktiviert
 					talkingText.text = "";
 				}
 			}
@@ -188,6 +233,14 @@ public class HUD : MonoBehaviour
 
 %todo ein ausblenden
 \subsection{Spieler}
+
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/player.png}
+\caption{Player 3D Modell}
+\end{figure}
+
+Das Modell besteht rein aus Würfeln und Rechtecken.
+
 
 \subsubsection{Player}
 Skript: Player.cs
@@ -210,17 +263,17 @@ Dieser Wert wird dann zur vorherigen Gesundheit addiert.
 
 Dass die Gesundheit nicht über 100 geht und falls sie unter 0 geht man auch tatsächlich stirbt, dafür sorgen die If-statements. Für den NPC sieht es so gut wie gleich aus.
 \begin{lstlisting}
-public void ChangeHealth (float change)
-	{
-		health += change;
+public void ChangeHealth(float change)
+{
+	health += change;
 
-		if (health > 100.0f)
-			health = 100.0f;
-		else if (health < 0.0f) {
-			Debug.Log ("YOU ARE DEAD");
-			model.SetActive (false);//lässt das gameObject verschwinden
-		}
+	if (health > 100.0f)
+		health = 100.0f;
+	else if (health < 0.0f) {
+		Debug.Log("YOU ARE DEAD");
+		model.SetActive(false);//lässt das gameObject verschwinden
 	}
+}
 \end{lstlisting}
 OO-Beispiel:Data Encapsulation, Single Definition Rule, private members, public Methods, , damit keine Veränderung von aussen, und 1 Ort, an welchem z.B. Entscheide über Tod gefällt werden können.
 
@@ -256,23 +309,48 @@ Die Untätig-Animation oder auch \textbf{Idle-Animation} war die einfachste Anim
 Diese Animation war die schwierigste, da sie neben einer Positionsveränderung auch eine Drehung verlangte.
 Das Problem war, dass bei einer Drehung der Hand diese aus ihrer Form fiel und die in der Hand gehaltene Waffe ebenso falsch skaliert wurde.
 
-Dieses Problem behob ich mit feintuning and den Kurven.
+Dieses Problem behob ich mit Feintuning and den Kurven.
 Das bedeutet es verändert sich immer noch ein wenig, aber nicht mehr in einem störenden Ausmass.
 
-\subsubsection{Animator}
-%screenshot animator
+\subsubsection{Animation}
 Um eine Animation zu erstellen gibt man ihr zuerst einen Namen.
 Danach öffnet sich ein leeres Fenster des Unity-Animators.
 Dort hinein kann man per drag and drop GameObjekte hinzufügen und wählen, ob man Rotation, Proportion oder Position verändern will (es gibt noch viele andere Optionen die man verändern 
 kann, aber diese habe ich nicht benutzt).
 
+\begin{figure}[H]
+\includegraphics[scale=0.7]{screenshots/animations.png}
+\caption{Animationskurven}
+\end{figure}
 
+In diesem Beispiel handelt sich hier um eine Laufanimation welche nur die Füsse kontrolliert.
+Man sieht hier besonders, wie sich die Füsse nicht Ruckartig, sondern fliessend und einander entgegengesetzt bewegen.
+
+\subsubsection{Animator}
+Der Animator ist das Element, welches den Wechsel zwischen verschiedenen Animationen übernimmt.
+Zeiger können von einem Zustand auf einen anderen verweisen.
+Diese Zeiger wiederum kann man an Bedingungen koppeln.
+\begin{figure}[H]
+\includegraphics[scale=0.7]{screenshots/animator.png}
+\caption{Animator}
+\end{figure}
+
+%todo: UML für zustandsübergänge?
 
 \subsection{Waffen}
 %todo shuriken?
 
 Es gibt drei  Waffen: Das Katana, Das Bo, und die Fäuste.
 Jede Waffe hat verschiedene Werte was Schaden, Ausdauerkosten und Reichweite angeht.
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/katana.png}
+\caption{Katana}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/bo.png}
+\caption{Bo}
+\end{figure}
 
 
 
@@ -298,16 +376,16 @@ Das hier verwendete Script ermittelt das Kennzeichen des getroffenen Objekts und
 Der Wert des Schadens, berechnet sich aus der Waffenwirkung, welche es aus den \lstinline{Stats} der jeweiligen Waffe ausliest.
 
 \begin{lstlisting}[caption={Waffentreffer}]
-damage = Self.GetComponent<Stats> ().WeaponDamage;
+damage = Self.GetComponent<Stats>().WeaponDamage;
 
-void OnTriggerEnter (Collider col)
+void OnTriggerEnter(Collider col)
 {
 	if (col.tag == "Enemy") {
-		GameObject.Find (col.name).GetComponent<NPC> ().ChangeHealth (-damage);
-		Debug.Log (damage + " Damage applied to " + col.name);
+		GameObject.Find (col.name).GetComponent<NPC>().ChangeHealth(-damage);
+		Debug.Log(damage + " Damage applied to " + col.name);
 	} else if (col.name == "Player") {
-		GameObject.Find (col.name).GetComponent<Player> ().ChangeHealth (-damage);
-		Debug.Log (damage + " Damage applied to " + col.name);
+		GameObject.Find (col.name).GetComponent<Player>().ChangeHealth(-damage);
+		Debug.Log(damage + " Damage applied to " + col.name);
 	}
 }
 \end{lstlisting}
@@ -323,6 +401,7 @@ Verwaltet die verschiedenen Waffen und deren Einsatz
 
 \subsection{Figuren}
 
+
 \subsubsection{InteractibleObject}
 Skript: InteractibleObject.cs
 Alle Drittobjekte mit denen interagiert werden kann
@@ -330,69 +409,65 @@ Alle Drittobjekte mit denen interagiert werden kann
 Die Funktion des interagierens sendet einen Strahl aus.
 Wenn dieser Strahl etwas trifft wird überprüft, ob das getroffene GameObject den Tag "Interactive" hat. Falls ja, wird eine Nachricht mit dem Inhalt "Interact" an das getroffene Objekt geschickt. Falls der Tag nicht vorhanden ist, passiert nichts.
 
-\begin{lstlisting}
-//interact (standard button "E")
-		if (Input.GetAxis ("Interact") > 0f) {
-			Vector3 forward = transform.TransformDirection (Vector3.forward);
+\begin{lstlisting}[caption={Auslösen der Interaktion}]
+// Interaktion (standard button "E")
+if (Input.GetAxis ("Interact") > 0f) {
+	Vector3 forward = transform.TransformDirection (Vector3.forward);
 
-
-			if (Physics.Raycast (transform.position, forward, out interactHit, 10)) {	
-				
-				Debug.DrawLine (transform.position, interactHit.point);
-				if (interactHit.collider.gameObject.tag == "Interactive") {
-					// send a message
-					interactHit.collider.gameObject.SendMessage ("Interact", (Player)this);
-					// update quest - if existed
-					quests.Interacted (interactHit.collider.gameObject);
-				}
-			}
-				
+	if (Physics.Raycast (transform.position, forward, out interactHit, 10)) {	
+		
+		Debug.DrawLine (transform.position, interactHit.point);
+		if (interactHit.collider.gameObject.tag == "Interactive") {
+			// send a message
+			interactHit.collider.gameObject.SendMessage ("Interact", (Player)this);
+			// update quest - if existed
+			quests.Interacted(interactHit.collider.gameObject);
 		}
+	}	
+}
 \end{lstlisting}
 
-\paragraph{sammeln}\mbox{} \\
-Wie jedes gute RPG braucht auch das meine eine klassische sammel-Aufgabe.
+\paragraph{Sammeln}\mbox{} \\
+Wie jedes gute RPG braucht auch das meine eine klassische Sammel-Aufgabe.
 Normalerweise schicken einen diese Aufgaben über die gesamte Karte um eine gewisse Anzahl an Gegenständen zu sammeln.
-In diesem Spiel ist der weg nicht allzu weit: sie stehen direkt hinter dem Haus der Figur, die einem den Auftrag gibt.
+In diesem Spiel ist der Weg nicht allzu weit: sie stehen direkt hinter dem Haus der Figur, die einem den Auftrag gibt.
 
 Sobald der Spieler mit den Blumen interagiert, verschwinden sie: sie wurden gepflückt.
-Dies passiert, weil die oben beschriebene Nachricht "Interact" bei dem Objekt "Blume" ein Skript ausführt, welches das Objekt deaktiviert.
-\begin{lstlisting}
-void Interact (Player p)
-	{
-		gameObject.SetActive (false);
-	}
+Dies passiert, weil die oben beschriebene Nachricht \lstinline{Interact} bei dem Objekt \lstinline{Blume} ein Skript ausführt, welches das Objekt deaktiviert.
+\begin{lstlisting}[caption={Standardimplementation von Interact}]
+void Interact(Player p)
+{
+	gameObject.SetActive(false);
+}
 \end{lstlisting}
  
-\paragraph{reden}\mbox{} \\
- 
- Es gibt nur ein einziges GameObject das mit dem Player redet, und das ist TheThirdKind.
+\paragraph{Reden}\mbox{} \\
+Es gibt nur ein einziges \lstinline{GameObject} das mit dem Player redet, und das ist \lstinline{TheThirdKind}.
  Das Gesprochene erscheint in einer Sprechblase.
  
 \begin{lstlisting}[caption={Gesprochenes aktualisieren}]
-
-	void Update ()
-	{
-		(...)
-		string lastTalk = player.lastTalk;
-		// wenn mit dem Spieler seit letztem Mal gesprochen wurde
-		if (lastTalk.Length > 0) {
-			// anzeigen der Sprechblase
-			player.lastTalk = "";
-			talking.SetActive (true);
-			talkingText.text = lastTalk; //hier wird der Text ersetzt
-			// Zeitpunkt des Anzeigens merken
-			speechDisplayedTime = (int)Time.time;
-		} 
-	}
+void Update()
+{
+	(...)
+	string lastTalk = player.lastTalk;
+	// wenn mit dem Spieler seit letztem Mal gesprochen wurde
+	if (lastTalk.Length > 0) {
+		// anzeigen der Sprechblase
+		player.lastTalk = "";
+		talking.SetActive(true);
+		talkingText.text = lastTalk; //hier wird der Text ersetzt
+		// Zeitpunkt des Anzeigens merken
+		speechDisplayedTime = (int)Time.time;
+	} 
+}
 \end{lstlisting}
-Um dies auszulösen, muss lastTalk geändert werden.
-Dies passiert, wenn der Spieler mit dem TheThirdKind Objekt Interagiert 
+Um dies auszulösen, muss \lstinline{lastTalk} des Spielers geändert werden.
+Dies passiert, wenn der Spieler mit dem \lstinline{TheThirdKind} Objekt Interagiert 
 \begin{lstlisting}
-void Interact (Player p)
-	{
+void Interact(Player p)
+{
 	p.lastTalk = "You must pick the two flowers and bring them to me";
-	}
+}
 \end{lstlisting}
 
 
@@ -401,34 +476,37 @@ OO-Beispiel: Subclassing, Polymorphism
 \subsubsection{NPC.cs}
 Skript: NPC.cs
 Autonome Gegner
-- aktivieren
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/npc.png}
+\caption{NPC 3D Modell}
+\end{figure}
+Das 3D Modell besteht rein aus Kugeln.
+
+\paragraph{aktivieren}
 Dass der NPC auf den Spieler aufmerksam wird, muss er ihn zuerst sehen.
 Dafür hat der NPC einen Collider, welcher sein Sichtfeld darstellt.
-%todo npc sichtfeld screenshot
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/fov.png}
+\caption{Sichtfeld des NPCs}
+\end{figure}
 Sobald der Spieler diesen Collider einmal berührt hat, wird der Bewegungscode aktiviert.
 \begin{lstlisting}
 public bool hasseenplayer = false;
-private void Start ()
-	{
+private void Start()
+{
 	player = GameObject.FindGameObjectWithTag ("Player");
+}
+	
+//Spotting player
+void OnTriggerEnter(Collider fov)
+{	
+	if (fov.name == "Player") {
+		Debug.Log("has seen");
+		hasseenplayer = true;
 	}
-	
-	//Spotting player
-	void OnTriggerEnter (Collider fov)
-	{	
-		if (fov.name == "Player") {
-			Debug.Log ("has seen");
-			hasseenplayer = true;
-		}
-
-	}
-	
-
-	
-
-
+}
 \end{lstlisting}
-- bewegen
+\paragraph{bewegen }
 Der NPC richtet sich nach dem Spieler aus und geht so lange auf ihn zu, bis die X und Y Koordinaten auf eine Differenz von 1 genau übereinstimmen.
 Dann Spielt der NPC seine attackier-Animation ab.
 \begin{lstlisting}
@@ -442,7 +520,7 @@ if (hasseenplayer == true) {
 		Debug.DrawLine (transform.position, hit.point);
 		if (hit.collider.gameObject.tag == "Player") {
 			fighting = true;
-			Debug.Log ("NPC is attacking");
+			Debug.Log("NPC is attacking");
 		} else {
 			fighting = false;
 			anim.ResetTrigger ("Attack");
@@ -452,8 +530,7 @@ if (hasseenplayer == true) {
 		if (fighting == true) {
 			anim.SetTrigger ("Attack");
 			//fight
-			} else {
-				
+		} else {	
 			anim.SetBool ("iswalking", true);
 					
 			if (player.transform.position.x > (transform.position.x - 1)) {
@@ -468,22 +545,29 @@ if (hasseenplayer == true) {
 			if (player.transform.position.z > transform.position.z) {
 				//Go up
 				transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
-            		
-				} else {
+			} else {
 				//go down
 				transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
-				}
-				transform.LookAt (target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
 			}
-		} else {
-			anim.SetBool ("iswalking", false);
+			transform.LookAt (target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
 		}
+	} else {
+			anim.SetBool ("iswalking", false);
+	}
 }
 
 \end{lstlisting}
 \subsubsection{TheThirdKind.cs}
 Skript: TheThirdKind.cs
 Weiser der den Spieler über die nächsten Schritte
+
+TheThirdKind ist ein Schlüsselelement des Spiels. Zu ihm muss man zu Beginn gehen, um die Blumen-Aufgabe zu erhalten.
+Er sollte der aus vielen RPGs bekannten Auftraggeber sein, der einen quer durch die Welt schickt um ein paar Rohstoffe zu sammeln.
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/t3k.png}
+\caption{ TheThirdKind 3D Modell}
+\end{figure}
+Dieses 3D Modell besteht nur aus Kegel.
 
 \subsection{Aufgaben}
 

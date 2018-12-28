@@ -7,7 +7,7 @@
 \usepackage{scrhack}
 
 % Alternative zu \usepackage{cite}, benötigt aber biber als Backend, 
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber,sortlocale=de_CH,natbib=true]{biblatex}
 
 \usepackage{glossary}
 
@@ -15,6 +15,10 @@
 
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
+% Umstellen auf Times, Helvetica, Courier
+\usepackage{mathptmx} % Hier steckt Times drin
+\usepackage[scaled]{helvet}
+\usepackage{courier}
 
 % Layout
 
@@ -39,6 +43,7 @@
 \usepackage{makeidx}
 
 % Einfügen von Bildern
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{svg}
 
@@ -52,10 +57,35 @@
 \usepackage[ngerman]{cleveref}
 
 % Listings Darstellung
-% \usepackage{listings}
+% https://tex.stackexchange.com/questions/124953/syntax-highlighting-in-listings-for-c-that-it-looks-like-in-visual-studio/124966
 \usepackage{listingsutf8}
-\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue}}
-\lstset{style=sharpc,basicstyle=\sffamily ,showstringspaces=false,literate={ö}{{\"o}}1
+\usepackage{color}
+\definecolor{bluekeywords}{rgb}{0,0,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.64,0.08,0.08}
+\definecolor{xmlcomments}{rgb}{0.5,0.5,0.5}
+\definecolor{types}{rgb}{0.17,0.57,0.68}
+
+\lstset{
+	language=[Sharp]C,
+	captionpos=b,
+	numbers=left, %Nummerierung
+	numberstyle=\tiny, % kleine Zeilennummern
+%	backgroundcolor=\color{light-gray},
+    tabsize=4,	
+    frame=lines,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	breaklines=true,
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+	commentstyle=\color{greencomments},
+	morekeywords={partial, var, value, get, set},
+	keywordstyle=\color{bluekeywords},
+	stringstyle=\color{redstrings},
+	basicstyle=\ttfamily\small,
+	literate={ö}{{\"o}}1
            {ä}{{\"a}}1
            {ü}{{\"u}}1
 }

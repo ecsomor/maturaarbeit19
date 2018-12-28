@@ -1,50 +1,78 @@
 \chapter{Grundlagen}
 
 \section{Werkzeuge}
-
+Im folgenden beschreibe ich die Werkzeuge, die ich für die Erstellung meiner Maturaarbeit gebraucht habe.
+Jedes dieser Programme ist für allen grossen Betriebssystemen verfügbar.
 \subsection{Unity 3D Programmierumgebung}
-Beschreibung der Oberfläche Einsatz
 
-\subsubsection{Scene View}
+Unity 3D lernte ich bereits im Alter von 11 Jahren kennen.
+Damals tat ich mich sehr schwer mit der englischen Sprache, konnte aber schon dann mit der Hilfe eines Buches und meines Vaters kleinere "Spiele" programmieren.
+Dazu kommmt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Programmen sehr einfach zu handhaben ist, durch diese Einfachheit aber nichts an Optionen und Möglichkeiten einbüsst.
+Deshalb habe ich mich für Unity als Programmierumgebung meiner Maturaarbeit entschieden.
+
+
+Die Umgebung ist folgendermassen aufgebaut:
+
+\begin{figure}[H]
+\includegraphics[scale=0.4]{screenshots/unityide.png}
+\caption{Unity Benutzeroberfläche}
+\end{figure}
+
+\paragraph{Scene View (1)}
 Dieses Fenster ermöglicht das Interaktive bearbeiten von Szenen und Welten.
-Man kann sich in der Spielwelt überall hin und durch alle Objekte hindurch bewegen. Um Objekte zu editieren kann man sie mit X,Y und Z achsen positionieren,
+Man kann sich in der Spielwelt überall hin und durch alle Objekte bewegen. Um Objekte zu editieren kann man sie mit X,Y und Z Achsen positionieren,
 skalieren und drehen.
 
-\subsubsection{Game View}
+\paragraph{Game View (2)}
 Dieses Fenster zeigt eine Vorschau des Spiels.
 Sobald Play gedrückt wird, kann man darin das Spiel spielen.
-Um veränderungen auszutesten, kann man während des Spiels pausieren, veränderungen vornehmen und das Spiel mit diesen Veränderungen fortsetzen. Sobald der Spielvorgang durch ein zweites betätigen des Play buttons gestoppt wird, werden die Veränderungen wieder rückgängig gemacht.
+Um Veränderungen auszutesten, kann man während des Spiels pausieren, Veränderungen vornehmen und das Spiel mit diesen Veränderungen fortsetzen. Sobald der Spielvorgang durch ein zweites betätigen des Play Buttons gestoppt wird, werden die Veränderungen wieder rückgängig gemacht.
 
-\subsubsection{Hierarchy}
-Dieses Fenster Zeigt alle in der aktuell geöffneten Szene existierenden Objekte und deren Hierarchiestruktur.
+\paragraph{Hierarchy (3)}
+Dieses Fenster zeigt alle in der aktuell geöffneten Szene existierenden Objekte und deren Hierarchiestruktur.
 
-\subsubsection{Inspector}
+\paragraph{Inspector (4)}
 Dieses Fenster zeigt alle öffentlichen Parameter und Komponenten des aktuell ausgewählten Objekts (GameObject) an.
 
-\subsubsection{Project Browser}
-Dieses Fenster dient der visualisierten Navigation durch die Projektdateien \textbf{(Assets)}
-
-\subsubsection{Console}
-In diesem Fenster werden alle Outputs, Warnungen und Fehlermeldungen angezeigt
+\paragraph{Project Browser (5)}
+Dieses Fenster dient der visualisierten Navigation durch die Projektdateien \textbf{(Assets)}.
+Alternativ wird in diesem Bereich die Konsole angezeigt, ein Fenster mit allen Outputs, Warnungen und Fehlermeldungen.
 
 \subsection{Blender}
+Blender ist eine frei verfügbare 3D Modellierungssoftware.
+3D Modelle lassen sich damit viel besser und genauer bearbeiten als mit dem Standard Unity Editor. 
+Zum Beispiel wäre das Erstellen einer komplexen Blüte in Unity ohne sehr grossen Zeitaufwand nicht möglich gewesen.
+
+\begin{figure}[H]
+\includegraphics[scale=0.66]{screenshots/blenderflower.png}
+\caption{3D Modell der Blume in Blender}
+\end{figure}
 
 \subsection{LaTeX}
 
+Gemäss Vorgabe verfasste ich den schriftlichen Teil der Arbeit in LaTeX.
+Als Editor verwendete ich Texmaker.
+
 \subsection{MonoDevelop}
 
-\subsubsection{Oberfläche}
+Scripts wurden in \textbf{MonoDevelop} entwickelt.
+Diese Umgebung verfügt über einen hochwertigen Debugger, welcher die Fehlersuche zur Laufzeit stark erleichtert.
 
-Scripts werden in \textbf{MonoDevelop} geschrieben und haben in dieser Umgebung auch einen Debugger
-
+\begin{figure}[H]
+\includegraphics[scale=0.5]{screenshots/monodevelop.png}
+\caption{Breakpoint im MonoDevelop Debugger mit Anzeige der Variablen}
+\end{figure}
 
 \subsection{Git}
 
-Versionsverwaltung
+Für die Versionsverwaltung verwendete ich das weitverbreitete Programm Git.
+Als Oberfläche kam Sourcetree zum Einsatz.
+Dafür erstellte ich mir einen Studentzugang auf Github.
+Damit wurde die Kommunikation und das schnelle Austauschen mit meiner Betreuungsperson einfacher, da man sich nicht mehr für alles treffen musste.
 
 \subsection{astah UML}
 
-UML Diagramme
+UML Diagramme zeichnete ich mit der gratis Studentenversion von astah UML.
 
 \section{Programmiersprache und Framework}
 
@@ -75,9 +103,9 @@ Basis Methoden
 
 \section{Glossar}
 
-Im Folgenden möchte ich die wichtigesten Fachbegriffe kurz erläutern. \cite{unity3dglossary}
+Im Folgenden möchte ich die wichtigsten Fachbegriffe kurz erläutern. \footfullcite{unity3dglossary}
 
-\subsubsection{Game-Engine}
+\paragraph{Game-Engine}
 Ein spezielles Programm, welches die grundlegende Funktionalität für den Ablauf und die Steuerung des Spieles zur Verfügung stellt.
 
 
