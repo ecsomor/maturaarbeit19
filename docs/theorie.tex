@@ -77,29 +77,56 @@ UML Diagramme zeichnete ich mit der gratis Studentenversion von astah UML.
 \section{Programmiersprache und Framework}
 
 \subsection{C\#}
+C\# ist eine objektorientierte Programmiersprache die von Microsoft entwickelt wurde.
+Unity Funktioniert mit C\# und Javascript.
+Letzteres kannte ich schon, also habe ich die neue gewählt, um mein Basiswissen der Informatik zu vergrössern.
 
-Objektorientierte Programmiersprache
 
 \subsection{Unity Framework}
+Die Funktionalitäten (Klassen, Skripts etc.) bauen auf dem von Unity für nicht kommerzielle Zwecke gratis zur Verfügung gestellten Framework auf.
+Unten sind die zwei meist benutzten Basisklassen aufgeführt.
 
 \subsubsection{Wichtigste Basisklassen}
 
 \paragraph{GameObject}
+GameObject ist die Basisklasse für alle Objekte, die auf der Benutzeroberfläche erstellt werden.
+Die wichtigste Eigenschaft eines GameObjects ist \lstinline{transform}.
+Dieses beinhaltet die Position,Drehung und Skalierung im Raum.
+\lstinline{GetComponent<Komponentenklasse>} ist die meist benutzte Methode. 
+Sie liefert die Komponente z.B. das Kollisionsobjekt oder Skripts des GameObjects. 
 
-\paragraph{MonoBehaviour}
+\paragraph{MonoBehavior}
 
-Basis Methoden
+MonoBehavior ist die Basisklasse wenn ein GameObject mit einem Skript erweitert wird.
+Die zwei geerbten Methoden die standardmässig überschrieben werden sind:
+\lstinline{Start()} wird zu Laufzeitbeginn ein mal aufgerufen.
+Es wird benutzt um Initialisierungen durchzuführen.
 
-- Start
-
-- Update
-
+\lstinline{Update()} wird jedes Mal aufgerufen bevor ein neues Bild des Spiels berechnet wird. Darin werden Elemente wie Bewegungen fortlaufend aktualisiert.
 \subsection{Physik}
 
-\subsubsection{Schwerkraft}
+\subsubsection{Rigidbody}
+Jedes GameObject, auf welche sich Physikalische Kräfte wie Gravitation auswirken besitzt einen Rigidbody.
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/rigidbody.png}
+\caption{Rigidbodykomponente}
+\end{figure}
+Hier wird die Masse des Players auf 1 festgelegt. Dies wird z.B. beim berechnen des Springens verwendet.
 
 \subsubsection{Kollisionen}
 \label{subsubsec:collider}
+Die Kollisionserkennung ist einer der wichtigsten Bestandteile eines Spiels. Sie werden nicht nur für die Geltendmachung eines Treffers verwendet sondern sie entscheidet auch, wann z.B. ein Element im Sichtfeld eines Spielers ist oder nicht.
+Die Hauptkomponente für das Feststellen einer Kollision ist der Collider.
+Dessen Umrisse werden in der IDE definiert.
+\begin{figure}[H]
+\includegraphics[scale=0.8]{screenshots/katanacollider.png}
+\caption{Kollisionskomponente des Katanas}
+\end{figure}
+Hier sieht man den Collider in Grün. Man sieht dass er nicht die ganze Waffe abdeckt, da nur die Klinge als Trefferzone gelten soll.
+
+Um diese Kollision einem Skript zu übermitteln gibt es zwei Methodengruppen.
+OnCollision: OnColision wird ausgelöst, sobald ein Physikalischer Treffer zwischen zwei Körpern festgestellt wird.
+OnTrigger: OnTrigger wird ausgelöst, wenn ein designierter Collider getroffen wird. Dieser muss hierbei nicht zwischen zwei Körpern stattfinden, sondern z.B. bei einem Treffer einer Vektorabfrage (\cref{subsubsec:interactibleobject})
 
 \section{Glossar}
 

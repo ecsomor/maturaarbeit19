@@ -61,7 +61,7 @@ Damit das Spiel wirklich gut benutzbar wird, benötigt es gewisse Funktionen, di
 
 
 
-\subsubsection{Menu}
+\subsubsection{Menü}
 Skript: Menu.cs\\
 Start Menu
 
@@ -127,7 +127,7 @@ Heads-Up Display
 \end{figure}
 
 Ein Heads-up Display ist eine Anzeigefläche die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
-Somit sind die Informationen in jeder situation Ablesbar.
+Somit sind die Informationen in jeder Situation Ablesbar.
  
 \paragraph{Aufgabenbereich (1)}\mbox{} \\
 Der Aufgabenbereich befindet sich oben rechts.
@@ -323,7 +323,7 @@ kann, aber diese habe ich nicht benutzt).
 \caption{Animationskurven}
 \end{figure}
 
-In diesem Beispiel handelt sich hier um eine Laufanimation welche nur die Füsse kontrolliert.
+In diesem Beispiel handelt sich hier um eine Laufanimation, welche nur die Füsse kontrolliert. Links sieht man die einzelnen Elemente mit ihren X-,Y- und Z-Koordinaten mit dazugehöriger Farbe. Rechts sind die Kurven welche Beschreiben, wie sich diese Koordinaten im Ablauf der Animation verändern (zum Beispiel hier sichtbar: Bewegung nur in Y und Z Koordinaten, die X Koordinate bleibt unverändert (rot)).
 Man sieht hier besonders, wie sich die Füsse nicht Ruckartig, sondern fliessend und einander entgegengesetzt bewegen.
 
 \subsubsection{Animator}
@@ -403,11 +403,18 @@ Verwaltet die verschiedenen Waffen und deren Einsatz
 
 
 \subsubsection{InteractibleObject}
+\label{subsubsec:interactibleobject}
 Skript: InteractibleObject.cs
 Alle Drittobjekte mit denen interagiert werden kann
 
-Die Funktion des interagierens sendet einen Strahl aus.
-Wenn dieser Strahl etwas trifft wird überprüft, ob das getroffene GameObject den Tag "Interactive" hat. Falls ja, wird eine Nachricht mit dem Inhalt "Interact" an das getroffene Objekt geschickt. Falls der Tag nicht vorhanden ist, passiert nichts.
+Die Funktion des interagierens sendet einen Strahl aus. In der Entwicklungsumgebung kann dies während des Spiels dargestellt werden (1).
+
+\begin{figure}[H]
+\includegraphics[scale=0.5]{screenshots/raycastthirdkind.png}
+\caption{Vektorabfrage bei Interaktion mit der dritten Art.}
+\end{figure}
+
+Wenn dieser Strahl etwas trifft wird überprüft, ob das getroffene GameObject den Tag \textbf{Interactive} hat. Falls ja, wird eine Nachricht mit dem Inhalt "Interact" an das getroffene Objekt geschickt. Falls der Tag nicht vorhanden ist, passiert nichts.
 
 \begin{lstlisting}[caption={Auslösen der Interaktion}]
 // Interaktion (standard button "E")
@@ -474,6 +481,7 @@ void Interact(Player p)
 OO-Beispiel: Subclassing, Polymorphism
 
 \subsubsection{NPC.cs}
+\label{subsubsec:npc}
 Skript: NPC.cs
 Autonome Gegner
 \begin{figure}[H]
@@ -611,6 +619,20 @@ Shielding Interface
 Encapsulation and Information Hiding
 
 %%%
+
+\section{Feinarbeit}
+
+Fehlersuche
+
+- Debug.Log
+- Raycast
+
+Optimierung
+
+- 3 Arten für Referenzen zwischen Objekten
+	- IDE D und D
+	- Find by Tag
+	- Find by Name
 
 \section{Versionsverwaltung}
 
