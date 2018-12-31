@@ -3,12 +3,12 @@
 \section{Werkzeuge}
 Im folgenden beschreibe ich die Werkzeuge, die ich für die Erstellung meiner Maturaarbeit gebraucht habe.
 Jedes dieser Programme ist für allen grossen Betriebssystemen verfügbar.
-\subsection{Unity 3D Programmierumgebung}\footfullcite{unity3doverview}
+
+\subsection{Unity 3D}
 
 Unity 3D lernte ich bereits im Alter von 11 Jahren kennen.
 Damals tat ich mich sehr schwer mit der englischen Sprache, konnte aber schon dann mit der Hilfe eines Buches und meines Vaters kleinere \glqq Spiele\grqq programmieren.
-Dazu kommmt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Programmen sehr einfach zu handhaben ist, durch diese Einfachheit aber nichts an Optionen und Möglichkeiten einbüsst.
-Deshalb habe ich mich für Unity als Programmierumgebung meiner Maturaarbeit entschieden. Die Umgebung ist folgendermassen aufgebaut:
+Dazu kommmt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Programmen sehr einfach zu handhaben ist, durch diese Einfachheit aber nichts an Optionen und Möglichkeiten einbüsst. Deshalb habe ich mich für Unity als Programmierumgebung meiner Maturaarbeit entschieden. Die Umgebung ist folgendermassen aufgebaut\footfullcite{unity3doverview}:
 
 \begin{figure}[H]
 \includegraphics[scale=0.4]{screenshots/unityide.png}
@@ -35,6 +35,10 @@ Dieses Fenster zeigt alle öffentlichen Parameter und Komponenten des aktuell au
 Dieses Fenster dient der visualisierten Navigation durch die Projektdateien \textbf{(Assets)}.
 Alternativ wird in diesem Bereich die Konsole angezeigt, ein Fenster mit allen Outputs, Warnungen und Fehlermeldungen.
 
+\paragraph{Game-Engine}
+Unity liefert nicht nur die Programmierumgebung sondern auch eine selbständige Game-Engine\footfullcite{unity3dglossary}, ein spezielles Programm, welches die grundlegende Funktionalität für den selbständigen Ablauf und die Steuerung des Spieles zur Verfügung stellt, ohne dass es dafürt die Programmierumgebung braucht.
+
+
 \subsection{Blender}
 Blender\footfullcite{blender} ist eine frei verfügbare 3D Modellierungssoftware.
 3D Modelle lassen sich damit viel besser und genauer bearbeiten als mit dem Standard Unity Editor. 
@@ -47,7 +51,7 @@ Zum Beispiel wäre das Erstellen einer komplexen Blüte in Unity ohne sehr gross
 
 \subsection{LaTeX}
 
-Gemäss Vorgabe verfasste ich den schriftlichen Teil der Arbeit in LaTeX\footfullcite{latex}.
+Gemäss Vorgabe verfasste ich den schriftlichen Teil der Arbeit in LaTeX\footfullcite{latex}, basierend auf einer Vorlage der Kantonsschule Wattwil \footfullcite{latexwattwil}.
 Als Editor verwendete ich Texmaker\footfullcite{texmaker}.
 
 \subsection{MonoDevelop}
@@ -137,7 +141,7 @@ private void Update ()
 \subsection{Physik}
 
 \subsubsection{Rigidbody}
-Jedes GameObject, auf welches sich physikalische Kräfte wie Gravitation auswirken besitzt einen Rigidbody\footfullcite{unity3drigidbodyoverview}.
+Jedes GameObject, auf welches sich physikalische Kräfte wie Gravitation auswirken, besitzt einen Rigidbody\footfullcite{unity3drigidbodyoverview}.
 \begin{figure}[H]
 \includegraphics[scale=0.8]{screenshots/rigidbody.png}
 \caption{Rigidbodykomponente}
@@ -159,12 +163,7 @@ Um diese Kollision einem Skript zu übermitteln gibt es zwei Methodengruppen.
 \paragraph{\lstinline{OnCollisionEnter/Stay/Exit}} wird ausgelöst, sobald ein Physikalischer Treffer zwischen zwei Körpern festgestellt wird.
 \paragraph{\lstinline{OnTriggerEnter/Stay/Exit}} wird ausgelöst, wenn ein designierter Collider getroffen wird. Dieser muss hierbei nicht zwischen zwei Körpern stattfinden, sondern z.B. bei Eintreten in ein Sichtfeld (\cref{subsubsec:npc}).
 
-\section{Glossar}
 
-Im Folgenden möchte ich wichtige Fachbegriffe, die noch nicht erwähnt wurden, kurz erläutern. \footfullcite{unity3dglossary}
-
-\paragraph{Game-Engine}
-Ein spezielles Programm, welches die grundlegende Funktionalität für den Ablauf und die Steuerung des Spieles zur Verfügung stellt.
 
 
 

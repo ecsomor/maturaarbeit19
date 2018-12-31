@@ -72,11 +72,9 @@ Damit das Spiel wirklich gut benutzbar wird, benötigt es gewisse Funktionen, di
 \item Das Heads-Up-Displays (HUD) hat die Aufgabe, dem Spieler alle nötigen Informationen über den Zustand seiner Spielfigur zu liefern.
 \end{itemize}
 
-
-
 \subsubsection{Start Menü}
-Skript: Menu.cs\\
-Das Menü beinhaltet vier Elemente: Einen \textbf{Canvas}, also eine "Plache", die für uns hier als Hintergrundabdunklung fungiert. Dann gibt es 3 Buttons:
+Skript: Menu.cs\\\\
+Das Menü beinhaltet vier Elemente: Einen \textbf{Canvas}, also eine Art \glqq Plache\grqq, die für uns hier als Hintergrundabdunklung fungiert. Dann gibt es 3 Buttons:
 
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/menuscreen.png}
@@ -123,7 +121,7 @@ public void OnButtonEndPressed ()
 \end{lstlisting}
 
 \subsubsection{GameData}
-Skript: GameData.cs\\
+Skript: GameData.cs\\\\
 Um die Daten des aktuellen Spiels zu Speichern oder diejenigen des letzten Spiels zu laden, schuf ich die Klasse GameData.
 Mit Hilfe der PlayerPref Klasse schreibt oder liest sie übergebene Daten in oder aus eine/r Datei. 
 Im Folgenden zeige ich die fürs Speichern verwendete Reihe von Aufrufen.
@@ -156,15 +154,15 @@ public void SaveGame ()
 \end{lstlisting}
 
 \subsubsection{Head-Up Display (HUD)}
-Skript: HUD.cs\\
+Skript: HUD.cs\\\\
+Ein Head-up Display ist eine Anzeigefläche die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
+Somit sind die Informationen in jeder Situation ablesbar.
 
 \begin{figure}[H]
 \includegraphics[scale=0.8]{screenshots/hud.png}
 \caption{HUD}
 \end{figure}
 
-Ein Head-up Display ist eine Anzeigefläche die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
-Somit sind die Informationen in jeder Situation ablesbar.
  
 \paragraph{Aufgabenbereich (1)}\mbox{} \\
 Der Aufgabenbereich befindet sich oben rechts.
@@ -204,7 +202,7 @@ public class HUD : MonoBehaviour
 \end{lstlisting}
 
 \paragraph{Kommunikationsbereich (3)}\mbox{} \\
-Der Kommunikationsbereich befindet sich im unteren Drittel des Bildschirmes. \todo{im unteren Drittel}
+Der Kommunikationsbereich befindet sich im unteren Drittel des Bildschirmes.
 Normalerweise ist er deaktiviert und damit unsichtbar.
 Aktiviert wird er dann, wenn eine Methode, z.B. ein \lstinline{Interact}, das Attribut \lstinline{lastTalk} des Players neu setzt. 
 
@@ -269,22 +267,23 @@ public class HUD : MonoBehaviour
 
 \subsection{Spieler}
 
+Das 3D Modell des Spielers besteht rein aus Würfeln und Rechtecken:
+
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/player.png}
 \caption{Player 3D Modell}
 \end{figure}
 
-Das Modell besteht rein aus Würfeln und Rechtecken.
-
+Die Funktionalität für den Spieler ist auf verschiedene Klassen verteilt:
 
 \subsubsection{Player}
-Skript: Player.cs\\
+Skript: Player.cs\\\\
+In dieser Klasse finden sich die Funktionen für den Zustand des Spielers (z.B. Gesundheit und Ausdauer), die Fortbewegung und die Interaktionen mit anderen Objekten.
 
 \paragraph{Gesundheitszustand}\mbox{} \\
 Der Gesundheitszustand wird im HUD angezeigt und kann über einen Methodenaufruf z.B. von Waffen verändert werden.
-
 Der Player wie auch der NPC haben beide in ihrem eigenen Script das Setup ihrer Gesundheit.
-\begin{lstlisting}
+\begin{lstlisting}[caption={Gesundheit als öffentliche Variable}]
 //Health
 public float health = 100f;
 \end{lstlisting}
@@ -305,17 +304,9 @@ public void ChangeHealth(float change)
 	}
 }
 \end{lstlisting}
+Wichtig ist, dass alle Veränderungen über diese Methode gemacht werden, damit es nur \textbf{einen Ort} gibt, an welchem z.B. Entscheide über Tod gefällt werden können.
 
-Damit health von ausserhalb nicht mehr geändert werden kann, passte ich die Eigenschaft bezüglich der
-
-\begin{lstlisting}
-// Gesundheit
-public float health { get; private set ; } 
-\end{listing}
-
-OO-Beispiel:Data Encapsulation, Single Definition Rule, private members, public Methods, , damit keine Veränderung von aussen, und 1 Ort, an welchem z.B. Entscheide über Tod gefällt werden können.
-
-\paragraph{Bewegen}\mbox{} \\
+\paragraph{Laufen}\mbox{} \\
 Der hier gezeigte Codeausschnitt zeigt das Abfragen der Bewegungsinputs und deren Umsetzung.
 Danach wird die Laufanimation initialisiert.
 
@@ -331,7 +322,8 @@ Danach wird die Laufanimation initialisiert.
 	transform.Translate (x, 0, z);
 \end{lstlisting}
 
-Um zu Springen muss der Spieler zuerst noch den Boden berühren.
+\paragraph{Springen}\mbox{} \\
+Um zu springen muss der Spieler zuerst noch den Boden berühren.
 Ob sich etwas unter ihm befindet, wird mit einem \lstinline{Raycast} überprüft.
 Wenn dieser Raycast etwas trifft, ist Springen erlaubt.
 Der Sprung erfolgt, indem ich dem Spieler eine Anfangsgeschwindigkeit in Y-Richtung (=Kraftstoss aus der Physik) gebe. Den Rest übernimmt Unitys Physik-Komponente.
@@ -357,13 +349,35 @@ Der Sprung erfolgt, indem ich dem Spieler eine Anfangsgeschwindigkeit in Y-Richt
 
 \paragraph{Kämpfen}\mbox{} \\
 
-Die Abläufe beim Kämpfen des Spielers werden im folgenden Bereich \textbf{Waffen} beschrieben.
+Beim Angriff wird im \lstinline{Player} zunächst überprüft, ob überhaupt noch genügend Kraft für den Einsatz der individuellen Waffe vorhanden ist. Wenn ja, dann wird sie verwendet und die Ausdauer des Players um den Betrag vermindert.
+
+\begin{lstlisting}[caption={Angriff}]
+	// Angriff
+	if (Input.GetButtonDown ("Fire1")) {	
+		// hole und vergleiche Waffenwerte
+		GameObject weapon = GetComponent<WeaponManager> ().getActiveWeapon();
+		var stats = weapon.GetComponent<Stats> ();
+		float weaponstamina = stats.WeaponStamina;
+		string weaponname = stats.WeaponName;
+		if (stamina >= weaponstamina) {
+			//Spiel Attackier-Animation
+			Debug.Log ("Player attacked");
+			if (weaponname == "Katana" || weaponname == "Bo")
+				anim.Play ("Katana 0");
+			else if (weaponname == "Hands")
+				anim.Play ("Katana 0"); 
+			ChangeStamina (-weaponstamina);
+		}
+	}
+\end{lstlisting}
+		
+Die weiteren Abläufe beim Kämpfen des Spielers werden im \cref{subsec:weapons} beschrieben.
 
 \subsubsection{Drehbewegung des Spielers}
-Skript: MouseLookAtIt.cs\\
+Skript: MouseLookAtIt.cs\\\\
+Im Gegensatz zu allen anderen Code-Ausschnitten die mit einer Art Bewegung zu tun haben geht es hier nicht um eine Verschiebung, sondern um eine Drehung.
+Dieser Code sorgt dafür, dass sich für eine Links/Rechts Drehung die Spielfigur selbst bewegt, für eine Auf/Ab Bewegung hingegen nur die Kamera (Kopf).
 
-Im Gegensatz zu allen anderen Codesnippets die mit einer Art Bewegung zu tun haben geht es hier nicht um eine Translation, sondern um eine Drehung.
-Diese sorgt dafür, dass sich für eine Links/Rechts Drehung die Spielfigur selbst bewegt, für eine Auf/Ab Bewegung hingegen nur die Kamera (Kopf).
 
 \begin{lstlisting}[caption={Drehbewegungen}]
 	// Ermittle die Maus-Position
@@ -419,6 +433,7 @@ Der Animator ist das Element, welches den Wechsel zwischen verschiedenen Animati
 \end{figure}
 
 \subsection{Waffen}
+\label{subsec:weapons}
 %todo shuriken?
 
 Es gibt drei  Waffen: Das Katana, Das Bo, und die Fäuste.
@@ -436,8 +451,8 @@ Jede Waffe hat verschiedene Werte was Schaden, Ausdauerkosten und Reichweite ang
 
 
 \subsubsection{Stats}
-Skript: Stats.cs\\
-Werte der Waffen, verwendet von WeaponHit
+Skript: Stats.cs\\\\
+Diese Klasse führt die Werte der Waffen. Die jeweiligen Werte werden in der Programmierumgebung deklariert. Diese verwenden dann die anderen Klassen.
 
 \begin{lstlisting}
 public string WeaponName = "Katana";
@@ -448,10 +463,13 @@ public float WeaponSpeed = 3;
 public float WeaponStamina = 10;
 \end{lstlisting}
 
+\begin{figure}[H]
+\includegraphics[scale=1]{screenshots/bostats.png}
+\caption{Bo Stats Werte}
+\end{figure}
 
 \subsubsection{WeaponHit}
-Skript: WeaponHit.cs\\
-
+Skript: WeaponHit.cs\\\\
 Jede Waffe hat einen \lstinline{Collider} (siehe \cref{subsubsec:collider}). Dieses Element löst ein Ereignis \lstinline{OnTriggerEnter} Ereignis aus, sobald es mit einem anderen \lstinline{Collider} in Berührung kommt.
 Das hier verwendete Script ermittelt das Kennzeichen des getroffenen Objekts und fügt Schaden zu, entweder dem Gegner oder dem Spieler selbst, je nachdem ob es sich dabei um ein Element mit dem Tag "Enemy" oder mit dem Tag "Player" handelt.
 Der Wert des Schadens, berechnet sich aus der Waffenwirkung, welche es aus den \lstinline{Stats} der jeweiligen Waffe ausliest. Dieser wird dann dem getroffenen Objekt zugefügt.
@@ -472,25 +490,63 @@ void OnTriggerEnter(Collider col)
 \end{lstlisting}
 
 \subsubsection{WeaponManager.cs}
-Skript: WeaponManager.cs\\
-Verwaltet die verschiedenen Waffen und deren Einsatz
-- Waffen wechseln
-- animation
+Skript: WeaponManager.cs\\\\
+Der WeaponManager verwaltet die verschiedenen Waffen und wird verwendet, um die aktive Waffe zu wechseln \footfullcite{forumweaponsswitching}.
 
-\footfullcite{forumweaponsswitching}
+\begin{lstlisting}[caption={Wechsel der Waffen ja nach Taste}]
+	void Update ()
+	{
+		// Wechseln der Waffe
+		if (isplayer == true) {
+			if (Input.GetAxis ("1") > 0f) {
+				SetActiveWeapon (Katana);
+				equipped = "Katana";
+			}
+
+			if (Input.GetAxis ("2") > 0f) {
+				SetActiveWeapon (Bo);
+				equipped = "Bo";
+			}
+
+			if (Input.GetAxis ("3") > 0f) {
+				SetActiveWeapon (Hands);
+				equipped = "Hands";
+			}
+		}
+	}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Aktivieren einer Waffe}]
+	private void SetActiveWeapon (GameObject activeWeapon)
+	{
+		for (int j = 0; j < weaponList.Count; j++) {
+			if (weaponList [j] == activeWeapon) {
+				for (int i = 0; i < enabledWeaponList.Count; i++) {
+					if (enabledWeaponList [i] == activeWeapon) {
+						weaponList [j].SetActive (true);
+						weaponInHand = activeWeapon;
+					}
+				}
+			} else {
+				weaponList [j].SetActive (false);
+			}
+		}
+	}
+\end{lstlisting}
+
+Die Methode \lstinline{SetActiveWeapon} hat die Aufgabe die \lstinline{activeWeapon} aktivieren und anderen zu deaktivieren, sonst würden sie gleichzeitig erscheinen.
 
 \subsection{Figuren}
 
 \subsubsection{InteractibleObject}
 \label{subsubsec:interactibleobject}
-Skript: InteractibleObject.cs
-Alle Drittobjekte mit denen interagiert werden kann
-
-Die Funktion \textbf{Interaktion} sendet einen Strahl aus. In der Entwicklungsumgebung kann dies während des Spiels dargestellt werden (1).
+Skript: InteractibleObject.cs\\\\
+Alle GameObjekte mit denen interagiert werden kann sind von dieser Klasse oder erben von dieser.
+Die Funktion \textbf{Interaktion} sendet einen Strahl vom Spieler aus. In der Entwicklungsumgebung kann dies während des Spiels dargestellt werden (1).
 
 \begin{figure}[H]
 \includegraphics[scale=0.5]{screenshots/raycastthirdkind.png}
-\caption{Vektorabfrage bei Interaktion mit der dritten Art.}
+\caption{Vektorabfrage bei Interaktion mit \lstinline{TheThirdKind}}
 \end{figure}
 
 Wenn dieser Strahl etwas trifft wird überprüft, ob das getroffene GameObject den Tag \textbf{Interactive} hat. Falls ja, wird eine Nachricht \lstinline{Interact} an das getroffene Objekt geschickt. Falls der Tag nicht vorhanden ist, passiert nichts.
@@ -567,20 +623,18 @@ void Update()
 
 \subsubsection{Autonome Gegner}
 \label{subsubsec:npc}
-Skript: NPC.cs\\
-Erklärung NPC \todo{More}
-
-Der NPC ist der Antagonist meines Spiels.
+Skript: NPC.cs\\\\
+NPC bedeutet \textbf{Non-Player-Character}. Der Gegner war in der Anfangsphase der Programmierung dieses Spieles der einzige Nicht-Spieler-Character, deswegen blieb der Klassenname. Der NPC ist der Antagonist meines Spiels.
 Er ist neben dem Player selber das komplizierteste Objekt in meinem Spiel.
 
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/npc.png}
 \caption{NPC 3D Modell}
 \end{figure}
-Das 3D Modell besteht rein aus Sphären.
+Das 3D Modell des NPC besteht nur aus Sphären.
 
 \paragraph{aktivieren}
-Dass der NPC auf den Spieler aufmerksam wird, muss er ihn zuerst sehen.
+Damit der NPC auf den Spieler aufmerksam wird, muss er ihn zuerst sehen.
 Dafür hat der NPC einen Collider, welcher sein Sichtfeld darstellt.
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/fov.png}
@@ -655,83 +709,76 @@ if (hasseenplayer == true) {
 
 \end{lstlisting}
 \subsubsection{TheThirdKind.cs}
-Skript: TheThirdKind.cs\\
-\todo{More}
-Weiser der den Spieler über die nächsten Schritte
-
-TheThirdKind ist ein Schlüsselelement des Spiels. Zu ihm muss man zu Beginn gehen, um die Blumen-Aufgabe zu erhalten.
+Skript: TheThirdKind.cs\\\\
+\lstinline{TheThirdKind} ist ein Schlüsselelement des Spiels. Er ist ein Weiser, der den Spieler leitet. Zu ihm muss man zu Beginn gehen, um die Blumen-Aufgabe zu erhalten.
 Er sollte der aus vielen RPGs bekannten Auftraggeber sein, der einen quer durch die Welt schickt um ein paar Rohstoffe zu sammeln.
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/t3k.png}
 \caption{ TheThirdKind 3D Modell}
 \end{figure}
-Dieses 3D Modell besteht nur aus Kegel.
+Sein 3D Modell besteht nur aus Kegeln.
 
 \subsection{Aufgaben}
 
 \subsubsection{Quest.cs}
-\todo{More}
-Skript: Quest.cs
-Eine einzelne Aufgabe
+Skript: Quest.cs\\\\
+Eine \lstinline{Quest} ist eine einzelne Aufgabe. Sie hat einen beschreibenden Text und ein zugehöriges GameObject, das über seinen Namen festgelegt wird. Zusätzlich können Vorbedingungen in Form von zuvor zu absolvierenden Aufgaben angegeben werden.
+
+\begin{lstlisting}
+public Quest (string nameString, string taskString, Quest[] preconditions = null)
+{
+	name = nameString;
+	task = taskString;
+	done = false;
+	precond = preconditions;
+}
+\end{lstlisting}
+
+Eine Aufgabe kann nur dann erfüllt werden (\lstinline{CanBeDone}) wenn ihre Vorbedingungen erfüllt sind. Bei der Interaktion wird in diesem Fall die \lstinline{Done} Methode aufgerufen.
 
 \subsubsection{Quests.cs}
-Skript: Quests.cs
-Die Sammlung aller Aufgaben
-- Hinzufügen
-- Kontrollieren
+Skript: Quests.cs\\\\
+Diese Klasse führt die Liste aller Aufgaben, ob erledigt oder nicht. Sie  aktualisiert den HUD mit der Beschreibung der aktuellen Aufgabe und gibt bei Interaktion mit einem GameObject an, ob für dieses eine noch offene Quest \lstinline{GetActiveQuest} vorhanden ist. Aus Gründen der Einfachheit ist sie ein Attribut der \lstinline{Player} Klasse, deswegen kommunizieren die GameObjekte über die entsprechenden Methoden von \lstinline{Player}:
 
-\begin{itemize}
-\item Grundgerüst (Einfaches Terrain, Lightsource, charactermodel+controller) //Implementiert
-\item Waffensystem	//currently working on
-\item Player HUD
-\item Inventarsystem
-\item NPCs
-\item Skilltree
-\item Savegames
-\item Story
-\item Quests
+\begin{lstlisting}
+	// Fügt der Liste eine neue Aufgabe hinzu
+	public void AddQuest (Quest q)
+	{
+		quests.AddQuest (q);
+	}
 
-\end{itemize}
+	// Sucht nach einer Aufgabe per Name
+	public Quest GetQuest (string name)
+	{
+		return quests.GetQuest (name);
+	}
 
+	// Sucht nach einer aktiven Aufgabe per Name
+	public Quest GetActiveQuest (string name)
+	{
+		return quests.GetActiveQuest (name);
+	}
+\end{lstlisting}
 
+%\section{Feinarbeit}
 
-%%%
+%Fehlersuche
 
-OO
+%Debug.Log
 
-Subclasses
+%Raycast
 
-Composition
+%Optimierung
 
-Delegation
+%- 3 Arten für Referenzen zwischen Objekten
 
-Shielding Interface
-
-Encapsulation and Information Hiding
-
-%%%
-
-\section{Feinarbeit}
-
-Fehlersuche
-
-- Debug.Log
-- Raycast
-
-Optimierung
-
-- 3 Arten für Referenzen zwischen Objekten
-	- IDE D und D
-	- Find by Tag
-	- Find by Name
+%	- IDE D und D
+%	- Find by Tag
+%	- Find by Name
 
 \section{Versionsverwaltung}
 
-\todo{More}
-
-\footfullcite{missingprefabs}
-
-Blender muss installiert sein, sonst kann das Projekt von Unity nicht geöffnet werden.
+Beim Clonen des Projekts auf einen Laptop stellte sich das Problem, dass das Projekt dort nicht mehr geöffnet werden konnte. Eine Suche im Forum ergab, dass Blender installiert sein muss, sonst kann das Projekt von Unity nicht geöffnet werden.\footfullcite{missingprefabs}
 
 \section{Verteilung und Test}
 
