@@ -9,13 +9,13 @@ public class Quests : MonoBehaviour
 
 	public Text Questtext;
 
-	// Use this for initialization
+
 	void Start ()
 	{
 		questlist = new List<Quest> ();
 	}
 	
-	// Update is called once per frame
+
 	void Update ()
 	{
 		bool everythingDone = true;
@@ -43,13 +43,13 @@ public class Quests : MonoBehaviour
 		}
 	}
 
-	// adds a new quest to the list
+	// fügt der Liste eine neue Aufgabe hinzu
 	public void AddQuest (Quest q)
 	{
 		questlist.Add (q);
 	}
 
-	// searches for a quest by name
+	// Sucht eine Aufgabe nach Name
 	public Quest GetQuest (string name)
 	{
 		foreach (Quest q in questlist) {
@@ -60,7 +60,7 @@ public class Quests : MonoBehaviour
 		return null;
 	}
 
-	// searches for a still active quest by name
+	// Sucht eine aktive Aufgabe nach Name
 	public Quest GetActiveQuest (string name)
 	{
 		foreach (Quest q in questlist) {

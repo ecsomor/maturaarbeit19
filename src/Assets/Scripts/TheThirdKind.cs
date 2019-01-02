@@ -37,7 +37,7 @@ public class TheThirdKind : InteractibleObject
 			p.AddQuest (bringFlowers);
 			p.lastTalk = "You must pick the two flowers and bring them to me";
 		} else if (qFlowerRed.IsDone () && qFlowerBlue.IsDone ()) {
-			// the first time coming back, task is not yet done - give money once
+			// Beim ersten mal zurückkommen wenn die Aufgabe noch nicht erledigt ist - gib Geld einmal
 			if (bringFlowers.IsDone () == false) {
 				p.money += 30;
 				p.AddQuest (new Quest ("AI1", "Fight the red figures"));
@@ -45,7 +45,7 @@ public class TheThirdKind : InteractibleObject
 				p.lastTalk = "Thank you, now you must fight the red figures";
 			}
 		} else if (qFlowerRed.IsDone () != qFlowerBlue.IsDone ()) {
-			// otherwise this message is triggered immediately after getting the first quest
+			// Sonst wird diese Nachricht ausgelöst nachem die erste Aufgabe erledigt wurde.
 			p.lastTalk = "You have not yet picked both flowers";
 		}
 	}

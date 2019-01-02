@@ -12,12 +12,12 @@ public class GameData
 	}
 
 	private Player player;
-	//create new save
+	// Neues Speicherfile
 	public void InitNewGame ()
 	{
 		player.InitState ();
 	}
-	//Reading the savefile
+	// Laden des Speicherfiles
 	public void LoadGame ()
 	{
 		if (!PlayerPrefs.HasKey ("GameState")) {
@@ -26,13 +26,13 @@ public class GameData
 			player.LoadState (this);
 		}
 	}
-	//write save file
+	// Schreiben des Speicherfiles
 	public void SaveGame ()
 	{
 		PlayerPrefs.SetInt ("GameState", 0);
 		player.SaveState (this);
 	}
-	//saving player position
+	// Speichern der Koordinaten
 	public void SaveTransform (string scope, Transform transform)
 	{
 		Vector3 position = transform.position;
@@ -41,7 +41,7 @@ public class GameData
 		PlayerPrefs.SetFloat (scope + "Y", position.y);
 		PlayerPrefs.SetFloat (scope + "Z", position.z);
 	}
-	//loading players position
+	// Laden der Position
 	public void LoadTransform (string scope, Transform transform)
 	{
 		Vector3 position = new Vector3 (0, 0, 0);

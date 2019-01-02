@@ -22,7 +22,7 @@ public class NPC : MonoBehaviour
 	// Initialisiere NPC Values
 	public float health = 100f;
 	public float stamina = 100f;
-	public float Speed = 2.0f;
+	public float speed = 2.0f;
 	public bool hasseenplayer = false;
 	public bool fighting = false;
     
@@ -79,24 +79,24 @@ public class NPC : MonoBehaviour
 						(transform.position.x - 1)) {
 						// nach rechts
 						transform.position += 
-							new Vector3 (Speed * Time.deltaTime, 0, 0);
+							new Vector3 (speed * Time.deltaTime, 0, 0);
             		
 					} else {
 						// nach links
 						transform.position -= 
-							new Vector3 (Speed * Time.deltaTime, 0, 0);
+							new Vector3 (speed * Time.deltaTime, 0, 0);
 					}
 
 					// in Richtung Spieler
 					if (player.transform.position.z > transform.position.z) {
 						// nach oben
 						transform.position += 
-							new Vector3 (0, 0, Speed * Time.deltaTime);
+							new Vector3 (0, 0, speed * Time.deltaTime);
             		
 					} else {
 						// nach unten
 						transform.position -= 
-							new Vector3 (0, 0, Speed * Time.deltaTime);
+							new Vector3 (0, 0, speed * Time.deltaTime);
 					}
 					// https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
 					transform.LookAt (target);

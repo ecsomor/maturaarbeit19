@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Quest
 {
-	// a quest with the name of the target object and a task description string
-	// quests that must be done previously are given as optional parameter
+	// Eine Aufgabe mit dem namen des Zielobjekts und einer Aufgabenbeschreibung.
+	// Aufgaben die vorab erledigt werden müssen werden als optionale Parameter mitgegeben.
 	public Quest (string nameString, string taskString, Quest[] preconditions = null)
 	{
 		name = nameString;
@@ -14,7 +14,7 @@ public class Quest
 		precond = preconditions;
 	}
 
-	// determines whether all preconditions are ok
+	// Entscheidet ob alle Bedingungen erfüllt sind.
 	public bool CanBeDone ()
 	{
 		if (precond != null) {
@@ -31,7 +31,7 @@ public class Quest
 		return done;
 	}
 
-	// attempt at doing this task, test precondition, return real state
+	// Teste ob alle Bedingungen erfüllt sind und gebe Status zurück.
 	public bool Done ()
 	{
 		if (CanBeDone ())

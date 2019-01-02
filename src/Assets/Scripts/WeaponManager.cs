@@ -83,12 +83,12 @@ public class WeaponManager : MonoBehaviour
 
 	// füge eine Waffe zu der Liste der verfügbaren Waffen, 
 	// wenn man darüber läuft
-	public void pickedUpWeapon (GameObject weaponPickedUp)
+	public void PickedUpWeapon (GameObject weaponPickedUp)
 	{
 		enabledWeaponList.Add (weaponPickedUp);
 	}
 
-	public GameObject getActiveWeapon ()
+	public GameObject GetActiveWeapon ()
 	{
 		return weaponInHand;
 	}

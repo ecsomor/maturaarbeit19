@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseLookAtIt : MonoBehaviour
 {
-	//setting borders
+	// Setzen der Grenzen.
 	public float minimumX = -60f;
 	public float maximumX = 60f;
 	public float minimumY = -360f;
@@ -13,7 +13,7 @@ public class MouseLookAtIt : MonoBehaviour
 	public float sensitivityX = 15f;
 	public float sensitivityY = 15f;
 
-	//connecting the camera Gameobject
+	// Verbinden des Kameraobjekts
 	public Camera cam;
 
 	float rotationY = 0f;
@@ -23,19 +23,19 @@ public class MouseLookAtIt : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//lock mousecursor
+		// Mauscursor festhalten
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		//getting the mouses position
+		// Maus Koordinaten kriegen
 		rotationY += Input.GetAxis ("Mouse X") * sensitivityY;
 		rotationX += Input.GetAxis ("Mouse Y") * sensitivityX;
 
 		rotationX = Mathf.Clamp (rotationX, minimumX, maximumX);
-		//actually move the Gameobject
+		// Bewegen des GameObjekts
 		transform.localEulerAngles = new Vector3 (0, rotationY, 0);
 		cam.transform.localEulerAngles = new Vector3 (-rotationX, 0, 0);
 	}

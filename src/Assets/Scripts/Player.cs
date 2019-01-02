@@ -49,11 +49,20 @@ public class Player : MonoBehaviour
 
 	public Quests quests;
 
+	public GameObject flower;
+
 	/// abkürzungen etablieren
 	private void Start ()
 	{
 		gameData = new GameData (this);
 		gameData.LoadGame ();
+		for (int i = 1; i < 21; i++) {
+			GameObject go = (GameObject)Instantiate (flower, new Vector3 (Random.Range(370,650), 0, Random.Range(120,390)),
+				               Quaternion.identity);
+			go.name = "FlowerRed" + i;
+			Debug.Log (go.name + " at " + go.transform.position.x + " " +
+			go.transform.position.y + " " + go.transform.position.z);
+		}
 
 		rigid = GetComponent<Rigidbody> ();
 		m_CharacterController = GetComponent<CharacterController> ();
@@ -103,9 +112,9 @@ public class Player : MonoBehaviour
 		// Angriff
 		if (Input.GetButtonDown ("Fire1")) {	
 			// hole und vergleiche Waffenwerte
-			GameObject weapon = GetComponent<WeaponManager> ().getActiveWeapon();
-			float weaponstamina = weapon.GetComponent<Stats> ().WeaponStamina;
-			string weaponname = weapon.GetComponent<Stats> ().WeaponName;
+			GameObject weapon = GetComponent<WeaponManager> ().GetActiveWeapon();
+			float weaponstamina = weapon.GetComponent<Stats> ().weaponStamina;
+			string weaponname = weapon.GetComponent<Stats> ().weaponName;
 			if (stamina >= weaponstamina) {
 				//Spiel Attackier-Animation
 				Debug.Log ("Player attacked");
@@ -154,7 +163,7 @@ public class Player : MonoBehaviour
 
 	public void InitState ()
 	{
-		transform.position = Vector3.zero;
+		transform.position = new Vector3(429,0,226);
 		transform.rotation = Quaternion.identity;
 	}
 

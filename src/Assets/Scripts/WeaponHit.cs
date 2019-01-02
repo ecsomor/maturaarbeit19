@@ -23,16 +23,16 @@ public class WeaponHit : MonoBehaviour
 	void Start ()
 	{
 		// abfüllen der Stats
-		weaponname = Self.GetComponent<Stats> ().WeaponName;
-		damage = Self.GetComponent<Stats> ().WeaponDamage;
-		defense = Self.GetComponent<Stats> ().WeaponDefense;
-		range = Self.GetComponent<Stats> ().WeaponRange;
-		speed = Self.GetComponent<Stats> ().WeaponSpeed;
-		stamina = Self.GetComponent<Stats> ().WeaponStamina;
+		weaponname = Self.GetComponent<Stats> ().weaponName;
+		damage = Self.GetComponent<Stats> ().weaponDamage;
+		defense = Self.GetComponent<Stats> ().weaponDefense;
+		range = Self.GetComponent<Stats> ().weaponRange;
+		speed = Self.GetComponent<Stats> ().weaponSpeed;
+		stamina = Self.GetComponent<Stats> ().weaponStamina;
 	}
 
-	// Wenn der Weapon-Collider etwas trifft, überprüfe ob etwas mit dem tag 
-	// "Enemy" oder dem namen "Player" getroffen wurde undnamee Schaden zu
+	// Wenn der Weapon-Collider etwas trifft, überprüfe ob etwas mit dem Tag 
+	// "Enemy" oder dem Namen "Player" getroffen wurde und füge Schaden zu
 	void OnTriggerEnter (Collider col)
 	{
 		Debug.Log ("Hit: " + col.name + " Weapon: " + weaponname);

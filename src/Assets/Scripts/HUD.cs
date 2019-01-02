@@ -56,7 +56,7 @@ public class HUD : MonoBehaviour
 			// Zeitpunkt des Anzeigens merken
 			speechDisplayedTime = (int)Time.time;
 		} else {
-			// kein neuer text, überprüfe ob die Sprechblase wieder versteckt werden soll
+			// kein neuer Text, überprüfe ob die Sprechblase wieder versteckt werden soll
 			if (speechDisplayedTime > 0) {
 				if ((int)Time.time - speechDisplayedTime > speechDisplayDuration) {
 					speechDisplayedTime = 0;

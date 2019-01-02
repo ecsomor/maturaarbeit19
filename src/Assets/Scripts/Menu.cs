@@ -16,7 +16,7 @@ public class Menu : MonoBehaviour
 
 	/// <summary>
 	/// Wahr, wenn die Taste bereits zuvor als gedrückt erkannt wurde
-	/// Nötig, um mehrfachauswertungen der Menütasten zu verhindern
+	/// Nötig, um Mehrfachauswertungen der Menütasten zu verhindern
 	/// </summary>
 	private bool keyWasPressed = false;
 	
@@ -32,16 +32,16 @@ public class Menu : MonoBehaviour
 		} else
 			keyWasPressed = false;
 	}
-	//Ends game
+	// Beendetd das Spiel
 	public void OnButtonEndPressed ()
 	{
-		Debug.Log ("Spiel Beendet");
+		Debug.Log ("Spiel beendet");
 		Application.Quit ();
 	}
-	//Starts a new game
+	// Startet ein neues Spiel
 	public void OnButtonNewPressed ()
 	{
-		print ("Write some code here");
+		
 		player.gameData.InitNewGame ();
 	}
 
