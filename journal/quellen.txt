@@ -161,3 +161,35 @@ you now gain 10$ per kill of a red one
 
 19.12.18
 killing an NPC also closes a corresponding quest
+
+23.12.18
+4 hours for written Maturaarbeit
+
+24.12.18
+3 hours for written Maturaarbeit
+
+25.12.18
+4 hours for written Maturaarbeit
+
+26.12.18
+3 hours for written Maturaarbeit
+
+27.12.18
+4 hours for written Maturaarbeit
+mainly translated code commentary
+
+28.12.18
+3 hours for written Maturaarbeit
+
+29.12.18
+3 hours for written Maturaarbeit
+
+30.12.18
+1 hours for written Maturaarbeit
+
+31.12.18
+5 hours for written Maturaarbeit, updated readme
+
+2.12.18
+Added a campfire with 4 NPCs around it.
+gave the flower a script https://docs.unity3d.com/ScriptReference/Object.Instantiate.html
