@@ -5,51 +5,51 @@
 \subsection{Arbeitsdokumentation} 
 
 Ich hatte jeden Tag ein Heft in meiner Schultasche mit mir getragen, in welchem ich auftauchende Ideen sofort notierte.
-Wenn ich dann wieder an meinem Computer sass, wurden diese Ideen nochmals durchgeschaut und entweder verworfen oder Implementiert.
-Ich sorgte dafür dass ich jede Woche \textbf{mindestens einmal} daran arbeitete, und hörte, wenn ich mal begonnen hatte auch nicht so schnell wieder auf.
+Wenn ich dann wieder an meinem Computer sass, wurden diese Ideen nochmals durchgeschaut und entweder verworfen oder implementiert.
+Ich sorgte dafür, dass ich jede Woche \textbf{mindestens einmal} daran arbeitete, und hörte, wenn ich mal begonnen hatte, auch nicht so schnell wieder auf.
 In einer Textdatei \lstinline{journal/quellen.txt} führte ich ein Arbeitsjournal in welchem ich festhielt, wann ich woran gearbeitet habe.
-Die Versionskontrolle erfolgte über \textbf{GitHub}. Damit bin ich abgesichert, für den Fall, dass Daten verloren oder kaputt gehen würden. Auch wenn ich beim Entwickeln feststelle, dass die Version von vor zwei Tagen besser funktionierte als die jetzige, kann ich auf diese zurück wechseln.
+Die Versionskontrolle erfolgte über \textbf{GitHub}. Damit bin ich abgesichert für den Fall, dass Daten verloren oder kaputt gehen würden. Auch wenn ich beim Entwickeln feststelle, dass die Version von vor zwei Tagen besser funktionierte als die jetzige, kann ich auf diese zurück wechseln.
 Der Entwicklungsfortschritt wird mit Git automatisch erfasst.
 
 \subsection{Inspirationsquellen}
 Was das Erfinden der Objekte und Geschichte angeht, diente mir vor allem meine rege Fantasie als Inspiration.
-Doch ab und an half auch diese nichts, gerade dann wenn es um komplizierte Funktionalitäten ging (z.B. Sicht-Vektoren für Interaktionen und der Sprung des Spielers).
+Doch ab und an half auch diese nichts, gerade wenn es um komplizierte Funktionalitäten ging (z.B. Sicht-Vektoren für Interaktionen und der Sprung des Spielers).
 
-In diesen Fällen konsultierte ich eine Website namens Udemy. Diese bietet eine grosse Spannweite an Kursen. Mein Vater hatte mir dort vor ein paar Monaten einen Programmierkurs für C\# geschenkt, welcher sich nun als nützlich erweisen sollte.
+In diesen Fällen konsultierte ich eine Webseite namens Udemy. Diese bietet eine grosse Spannweite an Kursen. Mein Vater hatte mir dort vor ein paar Monaten einen Programmierkurs für C\# geschenkt, welcher sich nun als nützlich erweisen sollte.
 Dieser Kurs war eine auf sich aufbauende Videoserie, in welcher ein 2D Spiel von A-Z entwickelt wurde.
-Da mein Spiel jedoch 3D sein sollte und der Udemy Kurs beim besten willen nicht alle Thematiken abdecken konnte, blieb mir als oft letzte Hoffnung noch die öffentliche Tutorialwebseite und das Forum von Unity. \footfullcite{unity3dtutorial}
+Da mein Spiel jedoch 3D sein sollte und der Udemy Kurs beim besten Willen nicht alle Thematiken abdecken konnte, blieb mir als oft letzte Hoffnung noch die öffentliche Tutorialwebseite und das Forum von Unity. \footfullcite{unity3dtutorial}
 
 
 \subsection{Vorgehen}
-Nachdem ich die grundlegenden Objekte wie z.B. den Spieler und die einfachen Funktion wie z.B. Laufen erstellt hatte, ging es daran, das Spiel zu erweitern. Ich bin nicht einer der wenigen, die sich ein Script im Kopf überlegen und dies dann fehlerfrei beim ersten Versuch zum Laufen kriegen können, noch nicht. Wenn es also an die Umsetzung einer Idee ging, schrieb ich den Code in ein schon existierendes Skript.
+Nachdem ich die grundlegenden Objekte wie den Spieler und die einfachen Funktionen wie z.B. Laufen erstellt hatte, ging es daran, das Spiel zu erweitern. Ich bin nicht einer der wenigen, die sich ein Skript im Kopf überlegen und dies dann fehlerfrei beim ersten Versuch zum laufen kriegen können, noch nicht. Wenn es also an die Umsetzung einer Idee ging, schrieb ich den Code in ein schon existierendes Skript.
 Falls es nicht funktionierte, wurde entweder ein anderer Ansatz gewählt oder ich arbeitete daran bis es geklappt hat.
 
-Sobald funktional alles glatt lief, musste der Code aufgeräumt werden. Dabei wurden die noch vorhandenen Spuren der nicht erfolgreichen Versuche entfernt, der gewünschte Code allenfalls bereinigt und vereinfacht. Das Aufräumen oder Auslagern passierte entweder dadurch, dass ich den Code manuell geändert btw. den getesteten Code in ein neues Skript hinein kopierte, oder indem ich den Code mit Hilfe von MonoDevelop umgebaut habe.
+Sobald funktional alles glatt lief, musste der Code aufgeräumt werden. Dabei wurden die noch vorhandenen Spuren der nicht erfolgreichen Versuche entfernt, der gewünschte Code allenfalls bereinigt und vereinfacht. Das Aufräumen oder Auslagern passierte entweder dadurch, dass ich den Code manuell geändert bzw. den getesteten Code in ein neues Skript hinein kopierte, oder indem ich den Code mit Hilfe von MonoDevelop umgebaut habe.
 
 \subsection{Code-Umbau}
 \label{subsubsec:refactoring}
-Das Umbauen von Code ist vor allem in der Objektorientierten Programmierung sehr wichtig, was dem Vorgang seinen eigenen Namen einbrachte: Refactoring. Ins deutsche wurde es als \glqq Refaktorisieren\grqq übersetzt, was eigentlich falsch ist, da das umbauen von Code wenig mit  dem Faktorisieren der Mathematik zu tun hat.
+Das Umbauen von Code ist vor allem in der objektorientierten Programmierung sehr wichtig, was dem Vorgang seinen eigenen Namen einbrachte: Refactoring. Ins deutsche wurde es als \glqq Refaktorisieren\grqq übersetzt, was eigentlich falsch ist, da das umbauen von Code wenig mit  dem Faktorisieren der Mathematik zu tun hat.
 Treffender wäre der Begriff \glqq Restrukturierung\grqq.
 
 
 \paragraph{Umbennen}\mbox{} \\
-Wenn ich einfach vorwärts arbeite, leidet meine Rechtschreibung sehr stark. Ebenfalls tendiere ich dazu, während dem Kommentieren in andere Sprachen zu fallen. Ich habe auch während des Codens manchmal die Gross- und Kleinschreibung nicht eingehalten. Standard ist aber, alle Methoden Gross anfangen, Variabeln und Eigenschaften hingegen klein.
+Wenn ich einfach vorwärts arbeite, leidet meine Rechtschreibung sehr stark. Ebenfalls tendiere ich dazu, während dem Kommentieren in andere Sprachen zu fallen. Ich habe auch während des Kodierens manchmal die Gross- und Kleinschreibung nicht eingehalten. Standard ist aber, alle Methoden Gross anfangen, Variablen und Eigenschaften hingegen klein.
 
-Beim Umbenennen wird also z.B. folgendes gemacht:
+Beim Umbenennen wird also folgendes gemacht:
 Wenn ich nun ein rein textuelles "Suchen und Ersetzen" machen würde, könnte es passieren, dass an gewissen Stellen etwas falsch ersetzt wird und dann könnte nicht mehr kompiliert werden.
-Um dies zu beheben hat Monodevelop einen eigenen Mechanismus, welcher NUR genau die angegebene Variable/Methode/Eigenschaft verändert, und diese überall.
+Um dies zu beheben hat MonoDevelop einen eigenen Mechanismus, welcher NUR genau die angegebene Variable/Methode/Eigenschaft verändert, und diese überall.
 
 Das einzige, was manuell angepasst werden muss, ist der Dateiname des Skripts beim Umbenennen der Hauptklasse (Hauptklasse und Dateiname müssen übereinstimmen) und deren Referenzen in der Unity Umgebung.
 
 \paragraph{Vereinfachen}\mbox{} \\
-Beim Entwickeln kann es passieren, dass mehrmals hintereinander die gleichen Aufrufsketten stehen. Aus Gründern der Lesbarkeit und Geschwindigkeit ist es sinnvoll, diese in eine Variabel zwischenzuspeichern. Dabei unterstützt einen die Monodevelop IDE:
+Beim Entwickeln kann es passieren, dass mehrmals hintereinander die gleichen Aufrufs-Ketten stehen. Aus Gründern der Lesbarkeit und Geschwindigkeit ist es sinnvoll, diese in eine Variabel zwischenzuspeichern. Dabei unterstützt einen die Monodevelop IDE:
 
 \begin{figure}[H]
 \includegraphics[scale=0.67]{screenshots/refactor.png}
 \caption{Vereinfachen des GetComponent<> Aufrufs}
 \end{figure}
 
-und das Resultat schaut folgendermassen aus.
+Das Resultat schaut folgendermassen aus:
 
 \begin{lstlisting}[caption={Code nach Vereinfachung}]
 var stats = weapon.GetComponent<Stats> ();
@@ -58,18 +58,16 @@ string weaponname = stats.WeaponName;
 \end{lstlisting}
 
 \paragraph{Aufteilen}\mbox{} \\
-
-Wenn es grosse Code-Teile waren, die neu enstanden, dann sollten die benötigten Teile eigenständig werden, denn ein einziges riesiges Skript welches das ganze Spiel steuert, ist weder besonders gut für das rasche Arbeiten, noch wird es von anderen Programmierern/Programmiererinnen gerne gesehen, da die Übersichtlichkeit verloren geht.
-
-Während dem Entwickeln des Waffenwechsels im Playerskript wurde der Code immer grösser. Nach einer Zeit ergab es Sinn, diesen Teil des Codes in ein eigenes Skript auszulagern nicht zuletzt zur besseren Übersichtlichkeit.
+Wenn es grosse Code-Teile waren, die neu entstanden, dann sollten die benötigten Teile eigenständig werden, denn ein einziges riesiges Skript welches das ganze Spiel steuert ist weder besonders gut für das rasche Arbeiten, noch wird es von anderen Programmierern/Programmiererinnen gerne gesehen, da die Übersichtlichkeit verloren geht.
+Während dem Entwickeln des Waffenwechsels im Playerskript wurde der Code immer grösser. Nach einer Zeit ergab es Sinn, diesen Teil des Codes in ein eigenes Skript auszulagern, nicht zuletzt zur besseren Übersichtlichkeit.
 
 \section{Problemstellungen und deren Umsetzung}
 
 \subsection{Spielführung}
 Damit das Spiel wirklich gut benutzbar wird, benötigt es gewisse Funktionen, die den Spieler unterstützen und an der Hand durch das Spiel begleiten:
 \begin{itemize}
-\item Um nicht jedes mal neu anfangen zu müssen, gibt es ein Menü mit der Möglichkeit des Unterbruchs und Wiederaufnahmedes Spiels, verbunden mit einer Speicherfunktion des Spielstands.
-\item Das Heads-Up-Displays (HUD) hat die Aufgabe, dem Spieler alle nötigen Informationen über den Zustand seiner Spielfigur zu liefern.
+\item Um nicht jedes Mal neu anfangen zu müssen, gibt es ein Menü mit der Möglichkeit des Unterbruchs und Wiederaufnahme des Spiels, verbunden mit einer Speicherfunktion des Spielstands.
+\item Das Head-Up-Display (HUD) hat die Aufgabe, dem Spieler alle nötigen Informationen über den Zustand seiner Spielfigur zu liefern.
 \end{itemize}
 
 \subsubsection{Start Menü}
@@ -86,7 +84,7 @@ Das Menü beinhaltet vier Elemente: Einen \textbf{Canvas}, also eine Art \glqq P
 Dies setzt alle gespeicherten Spieldaten zurück und startet das Spiel neu.
 
 \begin{lstlisting}[caption={New Game}]
-//Starts a new game
+// Startet ein neues Spiel
 public void OnButtonNewPressed ()
 {
 	print ("Write some code here");
@@ -96,10 +94,10 @@ public void OnButtonNewPressed ()
 \end{lstlisting}
 
 \paragraph{Save Game}
-Dieser Knopf bewirkt, dass bestimmte Daten wie die X,Y,Z position des Spielers, Gegners sowie wichtige Spieldaten wie Gesundheitszustand etc. in eine Datei geschrieben werden. Bei einem Neustart des Spiels werden diese Angaben wieder eingelesen und übernommen.
+Dieser Knopf bewirkt, dass bestimmte Daten wie die X-, Y-, Z-Position des Spielers, Gegners sowie wichtige Spieldaten wie Gesundheitszustand etc. in eine Datei geschrieben werden. Bei einem Neustart des Spiels werden diese Angaben wieder eingelesen und übernommen.
 
 \begin{lstlisting}[caption={Save Game}]
-//Speicherfunktion
+// Speicherfunktion
 public void OnButtonSavePressed ()
 {
 	Debug.Log ("Speichern");
@@ -112,7 +110,7 @@ public void OnButtonSavePressed ()
 Das Knopf führt einen Unity Befehl namens \lstinline{Application.quit}  aus, welcher das ganze Programm beendet. 
 
 \begin{lstlisting}[caption={End Game}]
-//Ends game
+// Beendet das Spiel
 public void OnButtonEndPressed ()
 {
 	Debug.Log ("Spiel Beendet");
@@ -122,7 +120,7 @@ public void OnButtonEndPressed ()
 
 \subsubsection{GameData}
 Skript: GameData.cs\\\\
-Um die Daten des aktuellen Spiels zu Speichern oder diejenigen des letzten Spiels zu laden, schuf ich die Klasse GameData.
+Um die Daten des aktuellen Spiels zu speichern oder diejenigen des letzten Spiels zu laden, schuf ich die Klasse GameData.
 Mit Hilfe der PlayerPref Klasse schreibt oder liest sie übergebene Daten in oder aus eine/r Datei. 
 Im Folgenden zeige ich die fürs Speichern verwendete Reihe von Aufrufen.
 \begin{lstlisting}[caption={Methode zur Speicherung des Spielstandes in GameData}]
@@ -153,9 +151,9 @@ public void SaveGame ()
 	}
 \end{lstlisting}
 
-\subsubsection{Head-Up Display (HUD)}
+\subsubsection{Head-Up-Display (HUD)}
 Skript: HUD.cs\\\\
-Ein Head-up Display ist eine Anzeigefläche die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
+Ein Head-up-Display ist eine Anzeigefläche, die sich nicht aus dem Sichtfeld bewegt, auch wenn der Benutzer seinen Kopf neigt und oder schwenkt.
 Somit sind die Informationen in jeder Situation ablesbar.
 
 \begin{figure}[H]
@@ -170,16 +168,15 @@ Darin wird die jeweils aktuelle Aufgabe angezeigt.
 
 \paragraph{Zustandsdisplay (2)}\mbox{} \\
 Das Zustandsdisplay befindet sich oben links im HUD.
-
 Es besteht aus zwei Schiebereglern \lstinline{Slider}, einem für die Gesundheit \lstinline{player.health} und einem für die Ausdauer \lstinline{player.stamina} des Spielers.
-Ein Schieberegler ist ein 2D Balken, der einen Wert verkörpert. Man kann ihm in der Entwicklungsumgebung einen minimalen und einen maximalen Wert geben, hier ist das bei beiden 0-100:
+Ein Schieberegler ist ein 2D Balken, der einen Wert verkörpert. Man kann ihm in der Entwicklungsumgebung einen minimalen und einen maximalen Wert geben. Hier ist das bei beiden 0-100:
 
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/nullhundert.png}
 \caption{Schieberegler Konfiguration}
 \end{figure}
 
-Abgefüllt werden diese Balken durch das HUD-Skript, welches bei jedem \lstinline{Update} Aufruf die aktuellen Werte aus dem \lstinline{Player} ausliest und an die Schieberegler weitergibt.
+\noindent Abgefüllt werden diese Balken durch das HUD-Skript, welches bei jedem \lstinline{Update} Aufruf die aktuellen Werte aus dem \lstinline{Player} ausliest und an die Schieberegler weitergibt.
 
 \begin{lstlisting}[caption={Schieberegler aktualisieren}]
 public class HUD : MonoBehaviour
@@ -215,7 +212,7 @@ void Interact(Player p)
 }
 \end{lstlisting}
 
-Dann erscheint eine Sprechblase mit dem entsprechenden Text. Im folgenden Codeausschnitt wird gezeigt, wie das Ein- und Ausschalten der Sprechblase und  das Aktualisieren des beinhalteten Textes funktioniert. Dies geschieht in der periodisch aufgerufenen \lstinline{Update} Methode, zum besseren Verständnis:\lstinline{Time.time} liefert die Zeit in Sekunden seit Spielstart.
+Dann erscheint eine Sprechblase mit dem entsprechenden Text. Im folgenden Codeausschnitt wird gezeigt, wie das Ein- und Ausschalten der Sprechblase und  das Aktualisieren des beinhalteten Textes funktioniert. Dies geschieht in der periodisch aufgerufenen \lstinline{Update} Methode, zum besseren Verständnis: \lstinline{Time.time} liefert die Zeit in Sekunden seit Spielstart.
 
 \begin{lstlisting}[caption={Sprechblase ein- und ausblenden}]
 public class HUD : MonoBehaviour
@@ -284,13 +281,13 @@ In dieser Klasse finden sich die Funktionen für den Zustand des Spielers (z.B. 
 Der Gesundheitszustand wird im HUD angezeigt und kann über einen Methodenaufruf z.B. von Waffen verändert werden.
 Der Player wie auch der NPC haben beide in ihrem eigenen Script das Setup ihrer Gesundheit.
 \begin{lstlisting}[caption={Gesundheit als öffentliche Variable}]
-//Health
+// Gesundheit
 public float health = 100f;
 \end{lstlisting}
-Um die Gesundheit zu verändern benutze ich eine Methode, in der der Wert um den die Gesundheit geändert werden soll in den Aufruf mitgegeben wird. Dieser Wert kann sowohl positiv als auch negativ sein.
-Dieser Wert wird dann zur vorherigen Gesundheit addiert.
+Um die Gesundheit zu verändern benutze ich eine Methode, in welcher der Wert um den die Gesundheit geändert werden soll in den Aufruf mitgegeben wird. Dieser kann sowohl positiv als auch negativ sein.
+Er wird dann zur vorherigen Gesundheit addiert.
 
-Dass die Gesundheit nicht über 100 geht und falls sie unter 0 geht man auch tatsächlich stirbt, dafür sorgen die If-statements. Für den NPC sieht es so gut wie gleich aus.
+Dass die Gesundheit nicht über 100 geht und falls sie unter 0 geht, man auch tatsächlich stirbt, dafür sorgen die If-statements. Für den NPC sieht es so gut wie gleich aus:
 \begin{lstlisting}
 public void ChangeHealth(float change)
 {
@@ -304,10 +301,10 @@ public void ChangeHealth(float change)
 	}
 }
 \end{lstlisting}
-Wichtig ist, dass alle Veränderungen über diese Methode gemacht werden, damit es nur \textbf{einen Ort} gibt, an welchem z.B. Entscheide über Tod gefällt werden können.
+Wichtig ist, dass alle Veränderungen über diese Methode gemacht werden, damit es nur \textbf{einen Ort} gibt, an welchem Entscheide über Tod gefällt werden können.
 
 \paragraph{Laufen}\mbox{} \\
-Der hier gezeigte Codeausschnitt zeigt das Abfragen der Bewegungsinputs und deren Umsetzung.
+Der hier gezeigte Codeausschnitt beinhaltet das Abfragen der Bewegungsinputs und deren Umsetzung.
 Danach wird die Laufanimation initialisiert.
 
 \begin{lstlisting}[caption={Laufen}]
@@ -324,7 +321,7 @@ Danach wird die Laufanimation initialisiert.
 
 \paragraph{Springen}\mbox{} \\
 Um zu springen muss der Spieler zuerst noch den Boden berühren.
-Ob sich etwas unter ihm befindet, wird mit einem \lstinline{Raycast} überprüft.
+Ob sich etwas unter ihm befindet, wird mit einem \lstinline{Raycast} überprüft, einem virtuellen Strahl.
 Wenn dieser Raycast etwas trifft, ist Springen erlaubt.
 Der Sprung erfolgt, indem ich dem Spieler eine Anfangsgeschwindigkeit in Y-Richtung (=Kraftstoss aus der Physik) gebe. Den Rest übernimmt Unitys Physik-Komponente.
 
@@ -348,7 +345,6 @@ Der Sprung erfolgt, indem ich dem Spieler eine Anfangsgeschwindigkeit in Y-Richt
 \end{lstlisting}
 
 \paragraph{Kämpfen}\mbox{} \\
-
 Beim Angriff wird im \lstinline{Player} zunächst überprüft, ob überhaupt noch genügend Kraft für den Einsatz der individuellen Waffe vorhanden ist. Wenn ja, dann wird sie verwendet und die Ausdauer des Players um den Betrag vermindert.
 
 \begin{lstlisting}[caption={Angriff}]
@@ -360,7 +356,7 @@ Beim Angriff wird im \lstinline{Player} zunächst überprüft, ob überhaupt noc
 		float weaponstamina = stats.WeaponStamina;
 		string weaponname = stats.WeaponName;
 		if (stamina >= weaponstamina) {
-			//Spiel Attackier-Animation
+			// Spiel Attackier-Animation
 			Debug.Log ("Player attacked");
 			if (weaponname == "Katana" || weaponname == "Bo")
 				anim.Play ("Katana 0");
@@ -398,10 +394,10 @@ In Unity Animationen zu erstellen braucht etwas Geschick und viel Geduld. Jede d
 \subsubsection{Die verschiedenen Animationen}
 \paragraph{Lauf-Animation}
 
-Die Lauf-Animation besteht daraus, dass der Fuss gehoben nach vorne geht und gesenkt nach hinten. Diese Animation wird versetzt auf den zweiten Fuss so versetzt kopiert, dass immer wenn der eine Fuss hinten ist ,der andere vorne ist und umgekehrt. Die grösste Schwierigkeit bei dieser Animation war es, die beiden Füsse auf einander abzustimmen. Dazu kam, dass die Fortbewegungsgeschwindigkeit des Objekts ungefähr mit der Fussbewegung der Animation übereinstimmen sollte. TheThirdKind hat zwar eine Laufanimation, benutzt sie jedoch aktuell nicht, da er sich noch nicht bewegt.
+Die Lauf-Animation besteht daraus, dass der Fuss gehoben nach vorne geht und gesenkt nach hinten. Diese Animation wird versetzt auf den zweiten Fuss kopiert, so dass immer, wenn der eine Fuss hinten ist, der andere vorne ist und umgekehrt. Die grösste Schwierigkeit bei dieser Animation war es, die beiden Füsse auf einander abzustimmen. Dazu kam, dass die Fortbewegungsgeschwindigkeit des Objekts ungefähr mit der Fussbewegung der Animation übereinstimmen sollte. TheThirdKind hat zwar eine Laufanimation, benutzt sie jedoch aktuell nicht, da er sich noch nicht bewegt.
 
 \paragraph{Untätig-Animation}
-Die Untätig-Animation oder auch \textbf{Idle-Animation} war die einfachste Animation zum erstellen, da sie rein aus einem synchronen heben und senken der Hände besteht.
+Die Untätig-Animation (oder auch \textbf{Idle-Animation}) war die einfachste Animation zum Erstellen, da sie rein aus einem synchronen heben und senken der Hände besteht.
 
 \paragraph{Angriffs-Animation}
 
@@ -414,7 +410,7 @@ Das bedeutet es verändert sich immer noch ein wenig, aber nicht mehr in einem s
 Um eine Animation neu hinzuzufügen gibt man ihr zuerst einen Namen.
 Danach öffnet sich ein leeres Fenster des Unity-Animators \footfullcite{unity3danimationeditor}
 .
-Dort hinein kann man per drag and drop GameObjekte hinzufügen und wählen, ob man Rotation, Proportion oder Position verändern will (es gibt noch viele andere Optionen die man verändern 
+Dort hinein kann man per drag and drop GameObjekte hinzufügen und wählen, ob man Rotation, Proportion oder Position verändern will (es gibt noch viele andere Optionen, die man verändern 
 kann, aber diese habe ich nicht benutzt).
 
 \begin{figure}[H]
@@ -422,7 +418,7 @@ kann, aber diese habe ich nicht benutzt).
 \caption{Animationskurven}
 \end{figure}
 
-In diesem Beispiel handelt sich hier um eine Laufanimation, welche nur die Füsse kontrolliert. Links sieht man die einzelnen Elemente mit ihren X-,Y- und Z-Koordinaten mit dazugehöriger Farbe. Rechts sind die Kurven welche beschreiben, wie sich diese Koordinaten im Ablauf der Animation verändern (zum Beispiel hier sichtbar: Bewegung nur in Y und Z Koordinaten, die X Koordinate bleibt unverändert (rot)).
+In diesem Beispiel handelt sich hier um eine Laufanimation, welche nur die Füsse kontrolliert. Links sieht man die einzelnen Elemente mit ihren X-, Y- und Z-Koordinaten mit dazugehöriger Farbe. Rechts sind die Kurven, welche beschreiben, wie sich diese Koordinaten im Ablauf der Animation verändern (zum Beispiel hier sichtbar: Bewegung nur in Y und Z Koordinaten, die X-Koordinate bleibt unverändert (rot)).
 Man sieht hier besonders, wie sich die Füsse nicht ruckartig, sondern fliessend und einander entgegengesetzt bewegen.
 
 \subsubsection{Animator}
@@ -436,7 +432,7 @@ Der Animator ist das Element, welches den Wechsel zwischen verschiedenen Animati
 \label{subsec:weapons}
 %todo shuriken?
 
-Es gibt drei  Waffen: Das Katana, Das Bo, und die Fäuste.
+Es gibt drei  Waffen: Das Katana, das Bo, und die Fäuste.
 Jede Waffe hat verschiedene Werte was Schaden, Ausdauerkosten und Reichweite angeht.
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/katana.png}
@@ -470,9 +466,9 @@ public float WeaponStamina = 10;
 
 \subsubsection{WeaponHit}
 Skript: WeaponHit.cs\\\\
-Jede Waffe hat einen \lstinline{Collider} (siehe \cref{subsubsec:collider}). Dieses Element löst ein Ereignis \lstinline{OnTriggerEnter} Ereignis aus, sobald es mit einem anderen \lstinline{Collider} in Berührung kommt.
-Das hier verwendete Script ermittelt das Kennzeichen des getroffenen Objekts und fügt Schaden zu, entweder dem Gegner oder dem Spieler selbst, je nachdem ob es sich dabei um ein Element mit dem Tag "Enemy" oder mit dem Tag "Player" handelt.
-Der Wert des Schadens, berechnet sich aus der Waffenwirkung, welche es aus den \lstinline{Stats} der jeweiligen Waffe ausliest. Dieser wird dann dem getroffenen Objekt zugefügt.
+Jede Waffe hat einen \lstinline{Collider} (siehe \cref{subsubsec:collider}). Dieses Element löst ein \lstinline{OnTriggerEnter} Ereignis aus, sobald es mit einem anderen \lstinline{Collider} in Berührung kommt.
+Das hier verwendete Script ermittelt das Kennzeichen des getroffenen Objekts und fügt Schaden zu, entweder dem Gegner oder dem Spieler selbst, je nachdem ob es sich dabei um ein Element mit dem Tag "Enemy" oder mit dem Namen "Player" handelt. %todo fix "enemy"
+Der Wert des Schadens berechnet sich aus der Waffenwirkung, welche es aus den \lstinline{Stats} der jeweiligen Waffe ausliest. Dieser wird dann dem getroffenen Objekt zugefügt.
 
 \begin{lstlisting}[caption={Waffentreffer}]
 damage = Self.GetComponent<Stats>().WeaponDamage;
@@ -534,7 +530,7 @@ Der WeaponManager verwaltet die verschiedenen Waffen und wird verwendet, um die 
 	}
 \end{lstlisting}
 
-Die Methode \lstinline{SetActiveWeapon} hat die Aufgabe die \lstinline{activeWeapon} aktivieren und anderen zu deaktivieren, sonst würden sie gleichzeitig erscheinen.
+Die Methode \lstinline{SetActiveWeapon} hat die Aufgabe die \lstinline{activeWeapon} zu aktivieren und alle anderen zu deaktivieren, sonst würden sie gleichzeitig erscheinen.
 
 \subsection{Figuren}
 
@@ -542,7 +538,7 @@ Die Methode \lstinline{SetActiveWeapon} hat die Aufgabe die \lstinline{activeWea
 \label{subsubsec:interactibleobject}
 Skript: InteractibleObject.cs\\\\
 Alle GameObjekte mit denen interagiert werden kann sind von dieser Klasse oder erben von dieser.
-Die Funktion \textbf{Interaktion} sendet einen Strahl vom Spieler aus. In der Entwicklungsumgebung kann dies während des Spiels dargestellt werden (1).
+Die Funktion \textbf{Interact} sendet einen Strahl vom Spieler aus. In der Entwicklungsumgebung kann dies während des Spiels dargestellt werden (1).
 
 \begin{figure}[H]
 \includegraphics[scale=0.5]{screenshots/raycastthirdkind.png}
@@ -552,7 +548,7 @@ Die Funktion \textbf{Interaktion} sendet einen Strahl vom Spieler aus. In der En
 Wenn dieser Strahl etwas trifft wird überprüft, ob das getroffene GameObject den Tag \textbf{Interactive} hat. Falls ja, wird eine Nachricht \lstinline{Interact} an das getroffene Objekt geschickt. Falls der Tag nicht vorhanden ist, passiert nichts.
 
 \begin{lstlisting}[caption={Auslösen der Interaktion}]
-// Interaktion (standard button "E")
+// Interaktion (Standard button "E")
 if (Input.GetAxis ("Interact") > 0f) {
 	Vector3 forward = transform.TransformDirection (Vector3.forward);
 
@@ -569,7 +565,7 @@ if (Input.GetAxis ("Interact") > 0f) {
 }
 \end{lstlisting}
 
-Im getroffenen Objekt wird damit, falls vorhanden, die Methode \lstinline{Interact} aufgerufen. Diese kann je nach Art des Objekts, eine andere Handlung bewirken (sogenannte \textbf{Polymorphie} im objektorientierten Programmieren). So wird z.B. gesammelt oder gesprochen:
+Im getroffenen Objekt wird damit, falls vorhanden, die Methode \lstinline{Interact} aufgerufen. Diese kann je nach Art des Objekts eine andere Handlung bewirken (sogenannte \textbf{Polymorphie} im objektorientierten Programmieren). So wird z.B. gesammelt oder gesprochen:
 
 \paragraph{Sammeln}\mbox{} \\
 Wie jedes gute RPG braucht auch das meine eine klassische Sammel-Aufgabe.
@@ -625,7 +621,7 @@ void Update()
 \label{subsubsec:npc}
 Skript: NPC.cs\\\\
 NPC bedeutet \textbf{Non-Player-Character}. Der Gegner war in der Anfangsphase der Programmierung dieses Spieles der einzige Nicht-Spieler-Character, deswegen blieb der Klassenname. Der NPC ist der Antagonist meines Spiels.
-Er ist neben dem Player selber das komplizierteste Objekt in meinem Spiel.
+Er ist neben dem Player selber das komplizierteste Objekt.
 
 \begin{figure}[H]
 \includegraphics[scale=1]{screenshots/npc.png}
@@ -658,14 +654,14 @@ void OnTriggerEnter(Collider fov)
 }
 \end{lstlisting}
 \paragraph{bewegen }
-Der NPC richtet sich nach dem Spieler aus und geht so lange auf ihn zu, bis die X und Y Koordinaten auf eine Differenz von 1 genau übereinstimmen.
+Der NPC richtet sich nach dem Spieler aus und geht so lange auf ihn zu, bis die X und Y Koordinaten auf eine Differenz von 1 genau übereinstimmen.\footfullcite{npcmove}
 Dann spielt der NPC seine Attackieren-Animation ab.
 \begin{lstlisting}
 if (hasseenplayer == true) {	
-	//if player is in range, attack (set fighting true)
+	// wenn Spieler in Reichweite, angreifen (fighting = true )
 	Vector3 forward = transform.TransformDirection (Vector3.forward);
 
-	//check if "player" is in Range to attack, if so do so
+	
 	if (Physics.Raycast (transform.position, forward, out hit, 10)) {	
 
 		Debug.DrawLine (transform.position, hit.point);
@@ -677,27 +673,27 @@ if (hasseenplayer == true) {
 			anim.ResetTrigger ("Attack");
 		}
 
-		//if fight is true fight,
 		if (fighting == true) {
+			// Animation Angriff starten
 			anim.SetTrigger ("Attack");
-			//fight
+			
 		} else {	
 			anim.SetBool ("iswalking", true);
 					
 			if (player.transform.position.x > (transform.position.x - 1)) {
-				//go right
+				// Gehe nach rechts
 				transform.position += new Vector3 (Speed * Time.deltaTime, 0, 0);
             		
 			} else {
-				//Go left
+				// Gehe nach links
 				transform.position -= new Vector3 (Speed * Time.deltaTime, 0, 0);
 					}
-			//go towards Players'z
+			// Gehe zu Player's Z-Koordinate
 			if (player.transform.position.z > transform.position.z) {
-				//Go up
+				// Gehe hoch
 				transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
 			} else {
-				//go down
+				// Gehe runter
 				transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
 			}
 			transform.LookAt (target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
@@ -778,13 +774,13 @@ Diese Klasse führt die Liste aller Aufgaben, ob erledigt oder nicht. Sie  aktua
 
 \section{Versionsverwaltung}
 
-Beim Clonen des Projekts auf einen Laptop stellte sich das Problem, dass das Projekt dort nicht mehr geöffnet werden konnte. Eine Suche im Forum ergab, dass Blender installiert sein muss, sonst kann das Projekt von Unity nicht geöffnet werden.\footfullcite{missingprefabs}
+Beim Klonen des Projekts auf einen Laptop stellte sich das Problem, dass das Projekt dort nicht mehr geöffnet werden konnte. Eine Suche im Forum ergab, dass Blender installiert sein muss, sonst kann das Projekt von Unity nicht geöffnet werden.\footfullcite{missingprefabs}
 
 \section{Verteilung und Test}
 
 \subsection{Verteilung über Github}
 
-Da ich von Anfang an die Versionskontrolle dieser Maturaarbeit mit Github durchgeführt habe konnte sich theoretisch jeder der meinen Github-Namen kannte meine komplette Arbeit herunterladen.\cite{csomormaturaarbeit19github}
+Da ich von Anfang an die Versionskontrolle dieser Maturaarbeit mit Github durchgeführt habe konnte sich theoretisch jeder, der meinen Github-Namen kannte, meine komplette Arbeit herunterladen.\cite{csomormaturaarbeit19github}
 Ich erzählte also in der Schulklasse von meinem Projekt und einige meiner Freunde fragten, ob sie es downloaden könnten.
 
 Leider schieden sofort einige Kandidaten aus, da sie kein Windows-Gerät besassen. Aus den restlichen drei Interessierten wurden die SimpleRPG-Beta-Tester.
@@ -792,7 +788,7 @@ Leider schieden sofort einige Kandidaten aus, da sie kein Windows-Gerät besasse
 \subsection{Testphase}
 
 Diese informierten mich schon früh über Abstürze, Bugs und Unschönheiten.
-An ihnen konnte ich ebenfalls die Effektivität meines \textbf{README.MD} Textes zu testen, welches ihnen Instruktionen für das korrekte Aufstarten des Spiels und Informationen über die Steuerung lieferte.
+An ihnen konnte ich ebenfalls die Effektivität meines \textbf{README.MD} Textes testen, welches ihnen Instruktionen für das korrekte Starten des Spiels und Informationen über die Steuerung lieferte.
 Oft redeten wir in den kurzen Pausen zwischen den Lektionen über mein Spiel.
 Das gab mir eine Plattform, wo ich meine weiterführenden Ideen präsentieren und sofort Feedback einholen konnte, was mir half, mich auf Inhalte zu fokussieren, die von der Mehrheit auch gemocht wurden.
 
