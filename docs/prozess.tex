@@ -32,7 +32,7 @@ Das Umbauen von Code ist vor allem in der objektorientierten Programmierung sehr
 Treffender wäre der Begriff "Restrukturierung".
 
 
-\paragraph{Umbenennen}\mbox{} \\
+\paragraph{Umbenennen}
 Wenn ich im Schwung vorwärts arbeite, leidet meine Rechtschreibung. Ebenfalls neige ich dazu, während des Kommentierens in andere Sprachen zu fallen. Ich habe auch beim Kodieren manchmal die Gross- und Kleinschreibung nicht eingehalten. Standard ist aber, dass alle Namen von Methoden gross anzufangen, diejenigen von Variablen und Eigenschaften hingegen klein.
 
 Beim Umbenennen wird Folgendes gemacht:
@@ -51,7 +51,7 @@ Beim Entwickeln kann es passieren, dass mehrmals hintereinander die gleichen Auf
 Das Resultat schaut folgendermassen aus:
 
 \begin{lstlisting}[caption={Code nach Vereinfachung}]
-var stats = weapon.GetComponent<Stats> ();
+var stats = weapon.GetComponent<Stats>();
 float weaponstamina = stats.WeaponStamina;
 string weaponname = stats.WeaponName;
 \end{lstlisting}
@@ -82,9 +82,9 @@ Dies setzt alle gespeicherten Spieldaten zurück und startet das Spiel neu.
 
 \begin{lstlisting}[caption={New Game}]
 // Startet ein neues Spiel
-public void OnButtonNewPressed ()
+public void OnButtonNewPressed()
 {
-	player.gameData.InitNewGame ();
+	player.gameData.InitNewGame();
 }
 
 \end{lstlisting}
@@ -94,10 +94,10 @@ Dieser Knopf bewirkt, dass bestimmte Daten wie die X-, Y-, Z-Position des Spiele
 
 \begin{lstlisting}[caption={Save Game}]
 // Speicherfunktion
-public void OnButtonSavePressed ()
+public void OnButtonSavePressed()
 {
-	Debug.Log ("Speichern");
-	player.gameData.SaveGame ();
+	Debug.Log("Speichern");
+	player.gameData.SaveGame();
 }
 	
 \end{lstlisting}
@@ -107,10 +107,10 @@ Der Knopf führt einen Unity Befehl namens \lstinline{Application.quit}  aus, we
 
 \begin{lstlisting}[caption={End Game}]
 // Beendet das Spiel
-public void OnButtonEndPressed ()
+public void OnButtonEndPressed()
 {
-	Debug.Log ("Spiel Beendet");
-	Application.Quit ();
+	Debug.Log("Spiel Beendet");
+	Application.Quit();
 }
 \end{lstlisting}
 
@@ -119,31 +119,38 @@ Um die Daten des aktuellen Spiels zu speichern oder diejenigen des letzten Spiel
 Mit Hilfe der PlayerPref Klasse schreibt oder liest sie übergebene Daten in oder aus eine/r Datei. 
 Im Folgenden zeige ich die fürs Speichern verwendete Reihe von Aufrufen.
 \begin{lstlisting}[caption={Methode zur Speicherung des Spielstandes in GameData}]
-public void SaveGame ()
+public void SaveGame()
 {
 	PlayerPrefs.SetInt ("GameState", 0);
 	player.SaveState (this);
-	(...)
+	foreach (GameObject go in enemies) {
+		NPC npc = go.GetComponent<NPC>();
+		npc.SaveState(this);
+	}
+	theThirdKind.SaveState(this, player);
 }
 \end{lstlisting}
 
 
 \begin{lstlisting}[caption={Methode SaveState in Player}]
-	public void SaveState (GameData gameData)
-	{
-		gameData.SaveTransform ("player", transform);
-	}
+public void SaveState (GameData gameData)
+{
+	gameData.SaveTransform("player", transform);
+	gameData.SaveFloat("playerhealth", health);
+	gameData.SaveFloat("playerstamina", stamina);
+	gameData.SaveInt("playerrp", regenerationPoints);
+}
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Methode SaveTransform in GameData}]
-	public void SaveTransform (string scope, Transform transform)
-	{
-		Vector3 position = transform.position;
-
-		PlayerPrefs.SetFloat (scope + "X", position.x);
-		PlayerPrefs.SetFloat (scope + "Y", position.y);
-		PlayerPrefs.SetFloat (scope + "Z", position.z);
-	}
+public void SaveTransform (string scope, Transform transform)
+{
+	Vector3 position = transform.position;
+	
+	PlayerPrefs.SetFloat (scope + "X", position.x);
+	PlayerPrefs.SetFloat (scope + "Y", position.y);
+	PlayerPrefs.SetFloat (scope + "Z", position.z);
+}
 \end{lstlisting}
 
 \subsubsection{Head-Up-Display (Klasse HUD)}
@@ -344,13 +351,13 @@ Beim Angriff wird im \lstinline{Player} zunächst überprüft, ob überhaupt noc
 	// Angriff
 	if (Input.GetButtonDown ("Fire1")) {	
 		// hole und vergleiche Waffenwerte
-		GameObject weapon = GetComponent<WeaponManager> ().getActiveWeapon();
-		var stats = weapon.GetComponent<Stats> ();
+		GameObject weapon = GetComponent<WeaponManager>().getActiveWeapon();
+		var stats = weapon.GetComponent<Stats>();
 		float weaponstamina = stats.WeaponStamina;
 		string weaponname = stats.WeaponName;
 		if (stamina >= weaponstamina) {
 			// Spiel Attackier-Animation
-			Debug.Log ("Player attacked");
+			Debug.Log("Player attacked");
 			if (weaponname == "Katana" || weaponname == "Bo")
 				anim.Play ("Katana 0");
 			else if (weaponname == "Hands")
@@ -479,7 +486,7 @@ damage = Self.GetComponent<Stats>().WeaponDamage;
 Der WeaponManager verwaltet die verschiedenen Waffen und wird verwendet, um die aktive Waffe zu wechseln \footfullcite{forumweaponsswitching}.
 
 \begin{lstlisting}[caption={Wechsel der Waffen je nach Taste}]
-	void Update ()
+	void Update()
 	{
 		// Wechseln der Waffe
 		if (isplayer == true) {
@@ -537,15 +544,15 @@ Wenn dieser Strahl etwas trifft, wird überprüft, ob das getroffene GameObject 
 
 \begin{lstlisting}[caption={Auslösen der Interaktion}]
 // Interaktion (Standard button "E")
-if (Input.GetAxis ("Interact") > 0f) {
-	Vector3 forward = transform.TransformDirection (Vector3.forward);
+if (Input.GetKeyDown("e")) {
+	Vector3 forward = transform.TransformDirection(Vector3.forward);
 
-	if (Physics.Raycast (transform.position, forward, out interactHit, 10)) {	
+	if (Physics.Raycast(transform.position, forward, out interactHit, 10)) {	
 		
-		Debug.DrawLine (transform.position, interactHit.point);
+		Debug.DrawLine(transform.position, interactHit.point);
 		if (interactHit.collider.gameObject.tag == "Interactive") {
 			// sende eine Nachricht
-			interactHit.collider.gameObject.SendMessage ("Interact", (Player)this);
+			interactHit.collider.gameObject.SendMessage("Interact", (Player)this);
 			// aktualisiere Aufgabe - wenn vorhanden
 			quests.Interacted(interactHit.collider.gameObject);
 		}
@@ -581,14 +588,14 @@ Dies passiert, wenn der Spieler mit dem \lstinline{TheThirdKind} Objekt interagi
 
 Mit der Methode \lstinline{Instantiate} können neue Objekte einer bestimmten Klasse an einem gewünschten Ort neu erstellt werden. Ich verwende dies für die Erstellung von Blumen an zufälligen Orten im Bereich des Landes von TheThirdKind.
 \begin{lstlisting}[caption={Generieren von Blumen beim Start (Player.cs)}]
-void Start ()
+void Start()
 {
 	(...)
 	for (int i = 1; i < 21; i++) {
-		GameObject go = (GameObject)Instantiate (flower, new Vector3 (Random.Range(370,650), 0, Random.Range(120,390)),
+		GameObject go = (GameObject)Instantiate(flower, new Vector3 (Random.Range(370,650), 0, Random.Range(120,390)),
 				               Quaternion.identity);
 		go.name = "FlowerRed" + i;
-		Debug.Log (go.name + " at " + go.transform.position.x + " " +
+		Debug.Log(go.name + " at " + go.transform.position.x + " " +
 			go.transform.position.y + " " + go.transform.position.z);
 	}
 	(...)
@@ -617,7 +624,7 @@ Dafür hat der NPC einen Collider, welcher sein Sichtfeld darstellt:
 public bool hasseenplayer = false;
 private void Start()
 {
-	player = GameObject.FindGameObjectWithTag ("Player");
+	player = GameObject.FindGameObjectWithTag("Player");
 }
 	
 // Den Spieler entdecken
@@ -635,47 +642,48 @@ Dann spielt der NPC seine Angriffs-Animation ab.
 \begin{lstlisting}
 if (hasseenplayer == true) {	
 	// wenn Spieler in Reichweite, angreifen (fighting = true )
-	Vector3 forward = transform.TransformDirection (Vector3.forward);
+	Vector3 forward = transform.TransformDirection(Vector3.forward);
 
 	
-	if (Physics.Raycast (transform.position, forward, out hit, 10)) {	
+	if (Physics.Raycast(transform.position, forward, out hit, 10)) {	
 
-		Debug.DrawLine (transform.position, hit.point);
+		Debug.DrawLine(transform.position, hit.point);
 		if (hit.collider.gameObject.tag == "Player") {
 			fighting = true;
 			Debug.Log("NPC is attacking");
 		} else {
 			fighting = false;
-			anim.ResetTrigger ("Attack");
+			anim.ResetTrigger("Attack");
 		}
 
 		if (fighting == true) {
 			// Animation Angriff starten
-			anim.SetTrigger ("Attack");
+			anim.SetTrigger("Attack");
 			
 		} else {	
-			anim.SetBool ("iswalking", true);
+			anim.SetBool("iswalking", true);
 					
 			if (player.transform.position.x > (transform.position.x - 1)) {
 				// Gehe nach rechts
-				transform.position += new Vector3 (Speed * Time.deltaTime, 0, 0);
+				transform.position += new Vector3(Speed * Time.deltaTime, 0, 0);
             		
 			} else {
 				// Gehe nach links
-				transform.position -= new Vector3 (Speed * Time.deltaTime, 0, 0);
+				transform.position -= new Vector3(Speed * Time.deltaTime, 0, 0);
 					}
 			// Gehe zu Player's Z-Koordinate
 			if (player.transform.position.z > transform.position.z) {
 				// Gehe hoch
-				transform.position += new Vector3 (0, 0, Speed * Time.deltaTime);
+				transform.position += new Vector3(0, 0, Speed * Time.deltaTime);
 			} else {
 				// Gehe runter
-				transform.position -= new Vector3 (0, 0, Speed * Time.deltaTime);
+				transform.position -= new Vector3(0, 0, Speed * Time.deltaTime);
 			}
-			transform.LookAt (target);//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+			//https://docs.unity3d.com/ScriptReference/Transform.LookAt.html
+			transform.LookAt(target);
 		}
 	} else {
-			anim.SetBool ("iswalking", false);
+			anim.SetBool("iswalking", false);
 	}
 }
 
@@ -692,40 +700,76 @@ Er sollte der aus vielen RPGs bekannten Auftraggeber sein, der einen quer durch 
 \subsection{Aufgaben}
 
 \subsubsection{Quest (Klasse)}
-Eine \lstinline{Quest} ist eine einzelne Aufgabe. Sie hat einen beschreibenden Text und ein zugehöriges GameObject, das über seinen Namen festgelegt wird. Zusätzlich können Vorbedingungen in Form von zuvor zu absolvierenden Aufgaben angegeben werden.
+Eine \lstinline{Quest} ist eine einzelne Aufgabe. Sie hat einen beschreibenden Text und ein zugehöriges GameObject, das über seinen Namen festgelegt wird.
 
-\begin{lstlisting}
-public Quest (string nameString, string taskString, Quest[] preconditions = null)
+\begin{lstlisting}[caption={Quest Constructor}]
+public class Quest
 {
-	name = nameString;
-	task = taskString;
-	done = false;
-	precond = preconditions;
+	// Eine Aufgabe mit dem namen des Zielobjekts und einer Aufgabenbeschreibung.
+	public Quest(string nameString, string taskString)
+	{
+		name = nameString;
+		task = taskString;
+		done = false;
+	}
+
+	virtual public bool IsDone()
+	{
+		return done;
+	}
+
+	public bool Done()
+	{
+		done = true;
+		return IsDone();
+	}
+
+\end{lstlisting}
+
+Bei der Interaktion wird die \lstinline{Done} Methode aufgerufen, die \lstinline{IsDone} Methode gibt an, ob die Aufgabe wirklich erfüllt wurde. In der Subklasse FreedomQuest ist das z.B. erst der Fall, wenn alle Gegner erledigt sind:
+
+\begin{lstlisting}[caption={FreedomQuest Subklasse}]
+public class FreedomQuest : Quest
+{
+    public static int npcsAlive;
+
+    public FreedomQuest(string taskString) : base("A1", taskString)
+    {
+    }
+
+    public override bool IsDone()
+    {
+        return npcsAlive < 1;
+    }
+
+    public override string Task()
+    {
+        return "Fight the remaining\n" + npcsAlive + " red figures";
+    }
 }
 \end{lstlisting}
 
-Eine Aufgabe kann nur dann erfüllt werden (\lstinline{CanBeDone}) wenn ihre Vorbedingungen erfüllt sind. Bei der Interaktion wird in diesem Fall die \lstinline{Done} Methode aufgerufen.
 
 \subsubsection{Quests (Klasse)}
 Diese Klasse führt die Liste aller Aufgaben, ob erledigt oder nicht. Sie  aktualisiert den HUD mit der Beschreibung der aktuellen Aufgabe und gibt bei Interaktion mit einem GameObject an, ob für dieses eine noch offene Quest vorhanden ist\lstinline{GetActiveQuest}. Aus Gründen der Einfachheit ist sie ein Attribut der \lstinline{Player} Klasse, deswegen kommunizieren die GameObjekte über die entsprechenden Methoden von \lstinline{Player}:
 
 \begin{lstlisting}[caption={Schnittstelle für Aufgaben in der Klasse Player}]
 	// Fügt der Liste eine neue Aufgabe hinzu
-	public void AddQuest (Quest q)
+	public void AddQuest(Quest q)
 	{
-		quests.AddQuest (q);
+		quests.AddQuest(q);
 	}
 
 	// Sucht nach einer Aufgabe per Name
-	public Quest GetQuest (string name)
+	public Quest GetQuest(string name)
 	{
-		return quests.GetQuest (name);
+		return quests.GetQuest(name);
 	}
 
 	// Sucht nach einer aktiven Aufgabe per Name
-	public Quest GetActiveQuest (string name)
+	public Quest GetActiveQuest(string name)
 	{
-		return quests.GetActiveQuest (name);
+		return quests.GetActiveQuest(name);
 	}
 \end{lstlisting}
 
@@ -746,16 +790,6 @@ void OnTriggerEnter(Collider col)
 }
 \end{lstlisting}
 
-
-%Raycast
-
-%Optimierung
-
-%- 3 Arten für Referenzen zwischen Objekten
-
-%	- IDE D und D
-%	- Find by Tag
-%	- Find by Name
 \newpage
 \section{Versionsverwaltung}
 

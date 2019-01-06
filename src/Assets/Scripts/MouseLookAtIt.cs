@@ -20,14 +20,12 @@ public class MouseLookAtIt : MonoBehaviour
 
 	float rotationX = 0f;
 
-	// Use this for initialization
 	void Start()
 	{
 		// Mauscursor festhalten
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		// Maus Koordinaten kriegen

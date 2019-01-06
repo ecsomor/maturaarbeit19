@@ -7,7 +7,6 @@ public class Menu : MonoBehaviour
 
 	public Player player;
 
-	// Use this for initialization
 	void Start()
 	{
 		GetComponent<Canvas>().enabled = false;
@@ -20,7 +19,6 @@ public class Menu : MonoBehaviour
 	/// </summary>
 	private bool keyWasPressed = false;
 
-	// Update is called once per frame
 	void Update()
 	{
 
@@ -33,7 +31,8 @@ public class Menu : MonoBehaviour
 		else
 			keyWasPressed = false;
 	}
-	// Beendetd das Spiel
+
+	// Beendet das Spiel
 	public void OnButtonEndPressed()
 	{
 		Debug.Log("Spiel beendet");
@@ -42,7 +41,6 @@ public class Menu : MonoBehaviour
 	// Startet ein neues Spiel
 	public void OnButtonNewPressed()
 	{
-
 		player.gameData.InitNewGame();
 	}
 
@@ -52,10 +50,6 @@ public class Menu : MonoBehaviour
 	{
 		Debug.Log("Speichern");
 		player.gameData.SaveGame();
-
-		//		GameData savegame = new GameData ();
-		//		savegame.SaveGame ();
-
 	}
 
 

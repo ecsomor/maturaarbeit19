@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Quest
 {
+	private string name;
+	private string task;
+	private bool done;
+
 	// Eine Aufgabe mit dem namen des Zielobjekts und einer Aufgabenbeschreibung.
 	public Quest(string nameString, string taskString)
 	{
@@ -32,8 +36,4 @@ public class Quest
 	{
 		return task;
 	}
-
-	private string name;
-	private string task;
-	private bool done;
 };

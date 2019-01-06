@@ -13,3 +13,6 @@ docs/*.sync*
 src/obj/
 src/Temp/
 src/.idea/
+src/Assets/Scripts/.vs/
+*.bak
+.vs/

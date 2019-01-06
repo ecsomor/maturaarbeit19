@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
 	public GameObject flower;
 
-	/// abkürzungen etablieren
+	// Abkürzungen etablieren
 	void Start()
 	{
 		gameData = new GameData(this);
@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
 
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		// ChangeStamina (Time.deltaTime * 5);
@@ -97,8 +96,6 @@ public class Player : MonoBehaviour
 		RaycastHit hit;
 		// raycast für "Interact"
 		RaycastHit interactHit;
-
-
 
 		transform.Translate(x, 0, z);
 

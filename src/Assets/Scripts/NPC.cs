@@ -13,7 +13,7 @@ public class NPC : MonoBehaviour
 	public GameObject AILeftHand;
 	public GameObject AIRightHand;
 
-	//Spieler Objelt
+	//Spieler Object
 	public GameObject player;
 
 	// Field-of-View (kann sehen)
@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
 	private Transform originalTransform;
 
 	// find Player src https://www.quora.com/How-do-I-make-an-NPC-move-in-Unity# 
-	private void Start()
+	void Start()
 	{
 		// Verbinde Komponenten
 		rigid = GetComponent<Rigidbody>();
@@ -51,7 +51,7 @@ public class NPC : MonoBehaviour
 		originalTransform = gameObject.transform;
 	}
 
-	private void Update()
+	void Update()
 	{
 		// wenn Gesundheit unter 0, zerstöre Objekt
 		if (health < 0) {

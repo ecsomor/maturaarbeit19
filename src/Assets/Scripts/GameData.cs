@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[System.Serializable]
 public class GameData
 {
 	private GameObject[] enemies;
@@ -14,8 +12,8 @@ public class GameData
 		player = p;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		GameObject[] interactives = GameObject.FindGameObjectsWithTag("Interactive");
-		foreach( GameObject go in interactives ){
-			if( go.name == "TheThirdKind" ) {
+		foreach (GameObject go in interactives) {
+			if (go.name == "TheThirdKind") {
 				theThirdKind = go.GetComponent<TheThirdKind>();
 				break;
 			}
@@ -45,7 +43,7 @@ public class GameData
 				NPC npc = go.GetComponent<NPC>();
 				npc.LoadState(this);
 			}
-			theThirdKind.LoadState(this,player);
+			theThirdKind.LoadState(this, player);
 		}
 	}
 	// Schreiben des Speicherfiles
@@ -57,8 +55,7 @@ public class GameData
 			NPC npc = go.GetComponent<NPC>();
 			npc.SaveState(this);
 		}
-		theThirdKind.SaveState(this,player);
-
+		theThirdKind.SaveState(this, player);
 	}
 	// Speichern der Koordinaten
 	public void SaveTransform(string scope, Transform transform)

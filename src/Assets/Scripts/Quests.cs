@@ -9,7 +9,6 @@ public class Quests : MonoBehaviour
 
 	public Text Questtext;
 
-
 	void Start()
 	{
 		questlist = new List<Quest>();
