@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\DisplayHealth.cs" />
      <Compile Include="Assets\Scripts\First Person.cs" />
      <Compile Include="Assets\Scripts\Flower.cs" />
+     <Compile Include="Assets\Scripts\FreedomQuest.cs" />
      <Compile Include="Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\InteractibleObject.cs" />

@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	public GameObject flower;
 
 	/// abkürzungen etablieren
-	private void Start()
+	void Start()
 	{
 		gameData = new GameData(this);
 		gameData.LoadGame();
@@ -68,12 +68,10 @@ public class Player : MonoBehaviour
 		m_CharacterController = GetComponent<CharacterController>();
 		anim = GetComponent<Animator>();
 
-		AddQuest(
-			new Quest("TheThirdKind", "You must search the wise green man"));
 	}
 
 	// Update is called once per frame
-	private void Update()
+	void Update()
 	{
 		// ChangeStamina (Time.deltaTime * 5);
 		if (health < 50 && regenerationPoints > 0) {
@@ -138,7 +136,7 @@ public class Player : MonoBehaviour
 		}
 
 		// Interagieren (Standard "E")
-		if (Input.GetAxis("Interact") > 0f) {
+		if (Input.GetKeyDown("e")) {
 			Vector3 forward = transform.TransformDirection(Vector3.forward);
 
 			if (Physics.Raycast(transform.position, forward,
@@ -180,6 +178,7 @@ public class Player : MonoBehaviour
 		stamina = 100f;
 		regenerationPoints = 0;
 		gameObject.SetActive(true);
+		quests.Clear();
 	}
 
 	public void LoadState(GameData gameData)

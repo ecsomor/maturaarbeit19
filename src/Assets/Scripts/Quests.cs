@@ -32,6 +32,11 @@ public class Quests : MonoBehaviour
 		}
 	}
 
+	public void Clear()
+	{
+		questlist.Clear();
+	}
+
 	public void Interacted(GameObject obj)
 	{
 		Quest q = GetActiveQuest(obj.name);

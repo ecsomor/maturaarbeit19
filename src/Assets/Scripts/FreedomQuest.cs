@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FreedomQuest : Quest
 {
+	public static int npcsCreated;
 	public static int npcsAlive;
 
 	public FreedomQuest(string taskString) : base("A1", taskString)
 	{
+		npcsAlive = npcsCreated;
 	}
 
 	public override bool IsDone()

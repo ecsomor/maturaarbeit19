@@ -46,7 +46,7 @@ public class NPC : MonoBehaviour
 		anim = GetComponent<Animator>();
 		fov = FOV.GetComponent<Collider>();
 		player = GameObject.FindGameObjectWithTag("Player");
-		FreedomQuest.npcsAlive += 1;
+		FreedomQuest.npcsCreated += 1;
 		name = "A1_" + FreedomQuest.npcsAlive;
 		originalTransform = gameObject.transform;
 	}
@@ -152,6 +152,8 @@ public class NPC : MonoBehaviour
 	{
 		health = 100f;
 		stamina = 100f;
+		hasseenplayer = false;
+		fighting = false;
 		gameObject.SetActive(true);
 		transform.SetPositionAndRotation(originalTransform.position,
 			originalTransform.rotation);
@@ -162,8 +164,9 @@ public class NPC : MonoBehaviour
 		gameData.LoadTransform(name, transform);
 		health = gameData.LoadFloat(name + "ĥealth", 100f);
 		stamina = gameData.LoadFloat(name + "stamina", 100f);
-		int active = gameData.LoadInt(name + "active", 1);
-		gameObject.SetActive(active != 0);
+		gameObject.SetActive(gameData.LoadBool(name + "active", true));
+		hasseenplayer = gameData.LoadBool(name + "hasseenplayer", false);
+		fighting = gameData.LoadBool(name + "fighting", false);
 	}
 
 	public void SaveState(GameData gameData)
@@ -171,7 +174,9 @@ public class NPC : MonoBehaviour
 		gameData.SaveTransform(name, transform);
 		gameData.SaveFloat(name + "ĥealth", health);
 		gameData.SaveFloat(name + "stamina", stamina);
-		gameData.SaveInt(name + "active", gameObject.activeSelf ? 1 : 0);
+		gameData.SaveBool(name + "active", gameObject.activeSelf);
+		gameData.SaveBool(name + "hasseenplayer", hasseenplayer);
+		gameData.SaveBool(name + "fighting", fighting);
 	}
 
 }

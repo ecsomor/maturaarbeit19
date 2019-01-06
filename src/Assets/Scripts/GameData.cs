@@ -7,11 +7,19 @@ using UnityEngine;
 public class GameData
 {
 	private GameObject[] enemies;
+	private TheThirdKind theThirdKind;
 
 	public GameData(Player p)
 	{
 		player = p;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		GameObject[] interactives = GameObject.FindGameObjectsWithTag("Interactive");
+		foreach( GameObject go in interactives ){
+			if( go.name == "TheThirdKind" ) {
+				theThirdKind = go.GetComponent<TheThirdKind>();
+				break;
+			}
+		}
 	}
 
 	private Player player;
@@ -23,6 +31,7 @@ public class GameData
 			NPC npc = go.GetComponent<NPC>();
 			npc.InitState();
 		}
+		theThirdKind.InitState(player);
 	}
 	// Laden des Speicherfiles
 	public void LoadGame()
@@ -36,6 +45,7 @@ public class GameData
 				NPC npc = go.GetComponent<NPC>();
 				npc.LoadState(this);
 			}
+			theThirdKind.LoadState(this,player);
 		}
 	}
 	// Schreiben des Speicherfiles
@@ -47,6 +57,8 @@ public class GameData
 			NPC npc = go.GetComponent<NPC>();
 			npc.SaveState(this);
 		}
+		theThirdKind.SaveState(this,player);
+
 	}
 	// Speichern der Koordinaten
 	public void SaveTransform(string scope, Transform transform)
@@ -66,6 +78,11 @@ public class GameData
 	public void SaveInt(string scope, int i)
 	{
 		PlayerPrefs.SetInt(scope, i);
+	}
+
+	public void SaveBool(string scope, bool b)
+	{
+		PlayerPrefs.SetInt(scope, b ? 1 : 0);
 	}
 
 	// Laden der Position
@@ -96,5 +113,12 @@ public class GameData
 			return def;
 	}
 
+	public bool LoadBool(string scope, bool def)
+	{
+		if (PlayerPrefs.HasKey(scope))
+			return PlayerPrefs.GetInt(scope) != 0;
+		else
+			return def;
+	}
 
 }
