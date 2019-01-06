@@ -190,6 +190,18 @@ mainly translated code commentary
 31.12.18
 5 hours for written Maturaarbeit, updated readme
 
-2.12.18
-Added a campfire with 4 NPCs around it.
+2.1.19
+3 hours for written Maturaarbeit, Added a campfire with 4 NPCs around it.
 gave the flower a script https://docs.unity3d.com/ScriptReference/Object.Instantiate.html
+
+3.1.19
+3 hours for written Maturrarbeit
+
+4.1.19
+4 hours for written Maturaarbeit
+
+5.1.19
+3 hours for written Maturaarbeit, corrections
+
+6.1.19
+5 hours for written Maturaarbeit, added final enemy quest to game
