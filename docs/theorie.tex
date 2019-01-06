@@ -2,13 +2,12 @@
 
 \section{Werkzeuge}
 Im Folgenden beschreibe ich die Werkzeuge, die ich für die Erstellung meiner Maturaarbeit gebraucht habe.
-Jedes dieser Programme ist für alle grossen Betriebssystemen verfügbar.
 
 \subsection{Unity 3D}
 
 Unity 3D lernte ich bereits im Alter von 11 Jahren kennen.
-Damals tat ich mich sehr schwer mit der englischen Sprache, konnte aber schon dann mit der Hilfe eines Buches und meines Vaters kleinere \glqq Spiele\grqq programmieren.
-Dazu kommt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Programmen sehr einfach zu handhaben ist, durch diese Einfachheit aber nichts an Optionen und Möglichkeiten einbüsst. Deshalb habe ich mich für Unity als Programmierumgebung meiner Maturaarbeit entschieden. Die Umgebung ist folgendermassen aufgebaut\footfullcite{unity3doverview}:
+Damals tat ich mich sehr schwer mit der englischen Sprache, konnte aber schon mit der Hilfe eines Buches und meines Vaters kleinere Spiele programmieren.
+Dazu kommt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Programmen recht einfach zu handhaben ist. Durch diese Einfachheit büsst es aber nichts an Optionen und Möglichkeiten ein. Deshalb habe ich mich für Unity als Programmierumgebung meiner Maturaarbeit entschieden. Die Umgebung ist folgendermassen aufgebaut\footfullcite{unity3doverview}:
 
 \begin{figure}[H]
 \includegraphics[scale=0.4]{screenshots/unityide.png}
@@ -16,13 +15,13 @@ Dazu kommt, dass Unity im Unterschied zu anderen (teils kostenpflichtigen) Progr
 \end{figure}
 
 \paragraph{Scene View (1)}
-Dieses Fenster ermöglicht das interaktive bearbeiten von Szenen und Welten.
-Man kann sich in der Spielwelt überall hin und durch alle Objekte bewegen. Um Objekte zu editieren kann man sie mit X, Y und Z Achsen positionieren, skalieren und drehen.
+Dieses Fenster ermöglicht das interaktive Bearbeiten von Szenen und Objekten.
+Man kann sich in der Spielwelt überall hin und durch alle Objekte bewegen. Um Objekte zu editieren, kann man sie mit X, Y und Z Achsen positionieren, skalieren und drehen.
 
 \paragraph{Game View (2)}
 Dieses Fenster zeigt eine Vorschau des Spiels.
-Sobald \textit{Play} gedrückt wird, kann man darin das Spiel spielen.
-Um Veränderungen auszutesten, kann man während des Spiels pausieren, Veränderungen vornehmen und das Spiel mit diesen Veränderungen fortsetzen. Sobald der Spielvorgang durch ein zweites betätigen des \textit{Play} Buttons gestoppt wird, werden die Veränderungen wieder rückgängig gemacht.
+Sobald \textit{Play} gedrückt wird, beginnt man das Spiel.
+Um Veränderungen auszutesten, kann man während des Spiels pausieren, Veränderungen vornehmen und das Spiel mit diesen Veränderungen fortsetzen. Sobald der Spielvorgang durch ein zweites betätigen des \textit{Play} Buttons gestoppt wird, werden diese Veränderungen wieder rückgängig gemacht.
 
 \paragraph{Hierarchy (3)}
 Dieses Fenster zeigt alle in der aktuell geöffneten Szene existierenden Objekte und deren Hierarchiestruktur.
@@ -31,8 +30,8 @@ Dieses Fenster zeigt alle in der aktuell geöffneten Szene existierenden Objekte
 Dieses Fenster zeigt alle öffentlichen Parameter und Komponenten des aktuell ausgewählten Objekts (GameObject) an.
 
 \paragraph{Project Browser (5)}
-Dieses Fenster dient der visualisierten Navigation durch die Projektdateien \textbf{(Assets)}.
-Alternativ wird in diesem Bereich die Konsole angezeigt, ein Fenster mit allen Outputs, Warnungen und Fehlermeldungen.
+Dieses Fenster dient der Navigation durch die Projektdateien \textbf{(Assets)}.
+Alternativ wird in diesem Bereich die Konsole angezeigt, ein Fenster mit allen Outputs (mittels \lstinline{Debug.Log}), Warnungen und Fehlermeldungen.
 
 \paragraph{Game-Engine}
 Unity liefert nicht nur die Programmierumgebung, sondern auch eine selbständige Game-Engine\footfullcite{unity3dglossary}, ein spezielles Programm, welches die grundlegende Funktionalität für den selbständigen Ablauf und die Steuerung des Spieles zur Verfügung stellt, ohne dass es dafür die Programmierumgebung braucht.
@@ -65,9 +64,8 @@ Diese Umgebung verfügt über einen hochwertigen Debugger, welcher die Fehlersuc
 
 \subsection{Git}
 
-Für die Versionsverwaltung verwendete ich das weitverbreitete Programm Git\footfullcite{git}.
-Als Oberfläche kam Sourcetree\footfullcite{sourcetree} zum Einsatz.
-Dafür erstellte ich mir einen Studentenzugang auf Github\footfullcite{github}.
+Für die Versionsverwaltung verwendete ich das weitverbreitete Programm Git\footfullcite{git}. Als Oberfläche kam Sourcetree\footfullcite{sourcetree} zum Einsatz.
+Ich erstellte mir einen Studentenzugang auf Github\footfullcite{github}.
 Damit wurde die Kommunikation und das schnelle Austauschen mit meiner Betreuungsperson einfacher, da man sich nicht mehr für alles treffen musste.
 
 \subsection{astah UML}
@@ -75,20 +73,20 @@ Damit wurde die Kommunikation und das schnelle Austauschen mit meiner Betreuungs
 UML Diagramme zeichnete ich mit der gratis Studentenversion von astah UML\footfullcite{astahuml}.
 
 \subsection{Paint}
-Jegliche Texturen habe ich mit dem auf jedem Windows-PC vorinstallierten  Microsoft Paint erstellt, da es sehr einfach zu handhaben ist und ich keine weiteren Funktionalitäten als die eines einfachen Malprogrammes brauchte.
+Jegliche Texturen habe ich mit dem auf jedem Windows-PC vorinstallierten  Microsoft Paint erstellt, da es sehr einfach zu handhaben ist, und ich keine weiteren Funktionalitäten als die eines einfachen Malprogrammes brauchte.
 
 \section{Programmiersprache und Framework}
 
 \subsection{C\#}
 C\# ist eine objektorientierte Programmiersprache, die von Microsoft entwickelt wurde\footfullcite{csharp}.
-Unity kann sowohl mit C\# als auch Javascript programmiert werden.
+Unity kann sowohl in C\# als auch in Javascript programmiert werden.
 Letzteres kannte ich schon, also habe ich die neue Sprache gewählt, um mein Basiswissen der Informatik zu vergrössern.
 
 \subsection{Unity Framework}
-Die Funktionalitäten (Klassen, Skripts etc.) bauen auf dem von Unity für nicht kommerzielle Zwecke gratis zur Verfügung gestellten Framework auf.
+Die Funktionalitäten (Klassen, Skripts etc.) bauen auf dem von Unity (für nicht kommerzielle Zwecke gratis) zur Verfügung gestellten Framework auf.
 Ein Framework ist eine Sammlung von vorgefertigten Klassen, deren Verwendung enorm viel Zeit einspart, da sie meistens einwandfrei funktionieren und somit insgesamt weniger Zeit für die Fehlersuche aufgewendet werden muss. Gleichzeitig dient es als Grundlage für die eigenen Erweiterungen.
 \footfullcite{unity3dscriptreference}
-Hier sind die zwei meist benutzten Basisklassen aufgeführt.
+Hier sind die zwei meist benutzten Basisklassen aufgeführt:
 
 \subsubsection{Wichtigste Basisklassen}
 
@@ -103,7 +101,7 @@ Die wichtigste Eigenschaft eines GameObject ist \lstinline{transform}.
 Dieses beinhaltet die Position, Drehung und Skalierung im Raum.
 \lstinline{GetComponent<Komponentenklasse>} ist die meist benutzte Methode. 
 Sie liefert die Komponente z.B. das Kollisionsobjekt oder Skripts des GameObject. 
-\lstinline{SetActive} aktiviert oder deaktiviert das Objekt
+\lstinline{SetActive} aktiviert oder deaktiviert das Objekt.
 Ein inaktives GameObject wird unsichtbar und erhält keine Aufrufe mehr.
 
 \paragraph{MonoBehaviour}\footfullcite{unity3dmonobehaviour}
@@ -114,22 +112,22 @@ Die zwei geerbten Methoden die standardmässig überschrieben werden sind:
 Es wird benutzt um Initialisierungen durchzuführen.
 
 \lstinline{Update()} wird jedes Mal aufgerufen bevor ein neues Bild des Spiels berechnet wird. In abgeleiteten Klassen werden in dieser Methode deshalb Elemente wie Bewegungen fortlaufend aktualisiert.
-\lstinline{SendMessage} übermittelt einen Aufruf an alle Komponenten des Objekts.
+\lstinline{SendMessage} übermittelt einen Aufruf an alle Komponenten eines Objekts.
 
 \subsubsection{Input-Manager}
 
 Der \lstinline{Inputmanager}\footfullcite{unity3dinputmanager} dient der virtuellen Steuerung des Spielers. Er kann z.B. nach Achsen (vorwärts, seitwärts) abgefragt werden und deren Intensität mitliefern.
-Die Zuordnung von Tasten zu Achsen kann angepasst werden:
+Die Zuordnung von Tasten zu Achsen kann dabei angepasst werden:
 
 \begin{figure}[H]
 \includegraphics[scale=0.67]{screenshots/inputaxis.png}
-\caption{Der Inputmanager mit horizontaler und vertikaler Achse zugeordnet an die Tasten a-d/s-w}
+\caption{Der Inputmanager mit horizontaler und vertikaler Achse,  zugeordnet an die Tasten a-d/s-w}
 \end{figure}
 
-Die Abfrage im Code sieht folgendermassen aus:
+Die Abfrage sieht im Code folgendermassen aus:
 
 \begin{lstlisting}[caption={Abfrage der X- und Z-Achsen im Code}]
-private void Update ()
+void Update ()
 {
 	(...)
 	// x und z Koordinaten Bewegung
@@ -142,26 +140,26 @@ private void Update ()
 \subsection{Physik}
 
 \subsubsection{Rigidbody}
-Jedes GameObject, auf welches sich physikalische Kräfte wie Gravitation auswirken, besitzt einen Rigidbody\footfullcite{unity3drigidbodyoverview}.
+Jedes GameObject, auf welches sich physikalische Kräfte wie Gravitation auswirken, besitzt einen Rigidbody (=starrer Körper) \footfullcite{unity3drigidbodyoverview}.
 \begin{figure}[H]
 \includegraphics[scale=0.8]{screenshots/rigidbody.png}
 \caption{Rigidbodykomponente}
 \end{figure}
-Hier wird die Masse des Players auf 1 festgelegt. Dies wird z.B. beim berechnen des Springens verwendet.
+\noindent Hier wird die Masse des Players auf 1 festgelegt. Dies wird unter Anderem beim Berechnen des Springens verwendet.
 
 \subsubsection{Kollisionen}
 \label{subsubsec:collider}
-Die Kollisionserkennung ist einer der wichtigsten Bestandteile eines Spiels. Sie wird nicht nur für die Geltendmachung eines Treffers verwendet, sondern sie entscheidet auch, wann z.B. ein Element im Sichtfeld eines Spielers ist oder nicht.
+Die Kollisionserkennung ist einer der wichtigsten Bestandteile eines Spiels. Sie wird nicht nur für die Geltendmachung eines Treffers verwendet, sondern sie entscheidet auch, wann  ein Element im Sichtfeld eines Spielers ist und wann nicht.
 Die Hauptkomponente für das Feststellen einer Kollision ist der \lstinline{Collider}.
-Dessen Umrisse werden in der IDE definiert.
+Dessen Umrisse werden in der IDE definiert:
 \begin{figure}[H]
 \includegraphics[scale=0.8]{screenshots/katanacollider.png}
 \caption{Kollisionskomponente des Katanas}
 \end{figure}
 \noindent Hier ist der Collider in Grün zu sehen. Man sieht, dass er nicht die ganze Waffe abdeckt, da nur die Klinge als Trefferzone gelten soll.
-Um diese Kollision einem Skript zu übermitteln gibt es zwei Methodengruppen:
-\paragraph{\lstinline{OnCollisionEnter/Stay/Exit}} wird ausgelöst, sobald ein Physikalischer Treffer zwischen zwei Körpern festgestellt wird.
-\paragraph{\lstinline{OnTriggerEnter/Stay/Exit}} wird ausgelöst, wenn ein designierter Collider getroffen wird. Dieser muss hierbei nicht zwischen zwei Körpern stattfinden, sondern z.B. bei Eintreten in ein Sichtfeld (\cref{subsubsec:npc}).
+Um diese Kollision einem Skript zu übermitteln, gibt es zwei Methodengruppen:
+\paragraph{\lstinline{OnCollisionEnter/Stay/Exit}} wird ausgelöst, sobald ein physikalischer Treffer zwischen zwei Körpern festgestellt wird.
+\paragraph{\lstinline{OnTriggerEnter/Stay/Exit}} wird ausgelöst, wenn ein bestimmter Collider getroffen wird. Dies muss hierbei nicht zwischen zwei Körpern stattfinden, sondern kann zum Beispiel beim Eintreten in ein Sichtfeld geschehen(\cref{subsubsec:npc}).
 
 
 

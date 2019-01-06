@@ -1,9 +1,16 @@
 % latex template. https://www.overleaf.com/latex/templates/kantonsschule-wattwil-maturaarbeit-template
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[a4paper,openright]{scrreprt} % evtl twoside
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%\usepackage{setspace}
+%\doublespacing
+\usepackage{tikz}
+\usepackage[some,bottom]{background}
 \usepackage[utf8]{inputenc}
-\usepackage[ngerman,english]{babel}
-\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage[shorthands=off,ngerman,english]{babel}
+\usepackage[babel,autostyle=true,german=quotes]{csquotes}
+\MakeOuterQuote{"}
 \usepackage{scrhack}
 \usepackage{todonotes}
 
@@ -24,7 +31,14 @@
 % Layout
 
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-
+% paragraph mit neuer Zeile, https://latex.org/forum/viewtopic.php?f=5&t=1383
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+   {-3.25ex\@plus -1ex \@minus -.2ex}%
+   {1.5ex \@plus .2ex}%
+   {\normalfont\normalsize\bfseries}}
+\makeatother
+   
 % Mathe Packages
 
 \usepackage{amsmath}
@@ -96,13 +110,23 @@ Fachschaft Informatik \hfill Heldweg 12\\
 Rychenbergstrasse 140 \hfill 8475 Ossingen\\
 8400 Winterthur
 }
-\subject{Maturaarbeit}
+\subject{Maturitätsarbeit HS 2018/19}
 \title{SimpleRPG \\
  Ein einfaches Rollenspiel in Unity 3D}
 \subtitle{Erschaffen eines Spiels von Null}
-\author{\texorpdfstring{Elias Csomor\\[1cm]\\[1cm] {\small Betreuer: Thomas Graf}}{Elias Csomor}}
-\date{\small Stand 31.12.2018}
-
+\author{\texorpdfstring{Elias Csomor\\Klasse 4E\\[1cm] {Betreuer: Thomas Graf}}{Elias Csomor}}
+\date{Eingereicht am 7. Januar 2019\\an der Kantonsschule im Lee in Winterthur}
+\SetBgPosition{current page.south}
+\SetBgVshift{20}
+\SetBgOpacity{1}
+\SetBgScale{1}
+\SetBgContents{
+\begin{tikzpicture}
+	\node (a) at (0,0){
+	\includegraphics[width=0.7\paperwidth]{screenshots/titelbild2.png}};
+east);
+\end{tikzpicture}
+}
 % PDF Docinfo
 
 \makeatletter
@@ -125,6 +149,7 @@ Rychenbergstrasse 140 \hfill 8475 Ossingen\\
 
 \begin{document}
 \selectlanguage{ngerman}
+\BgThispage 
 \maketitle % <- Titel setzen
 \cleardoublepage
 \pagenumbering{roman} % <- römische Seitennummerierung
