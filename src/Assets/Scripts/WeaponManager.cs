@@ -23,41 +23,41 @@ public class WeaponManager : MonoBehaviour
 	// inspiriert von 
 	// https://forum.unity.com/threads/help-with-multiple-weapons-switching.465702/
 
-	void Start ()
+	void Start()
 	{
-		weaponList = new List<GameObject> (); // alle Waffen	
-		enabledWeaponList = new List<GameObject> (); // alle verfügbaren Waffen
+		weaponList = new List<GameObject>(); // alle Waffen	
+		enabledWeaponList = new List<GameObject>(); // alle verfügbaren Waffen
 
 
-		weaponList.Add (Katana);
-		weaponList.Add (Bo);
-		weaponList.Add (Hands);
+		weaponList.Add(Katana);
+		weaponList.Add(Bo);
+		weaponList.Add(Hands);
 
 
-		enabledWeaponList.Add (Katana);
-		enabledWeaponList.Add (Bo);
-		enabledWeaponList.Add (Hands);
+		enabledWeaponList.Add(Katana);
+		enabledWeaponList.Add(Bo);
+		enabledWeaponList.Add(Hands);
 
 		// mit Waffe ausrüsten
-		setActiveWeapon (Katana);  
+		setActiveWeapon(Katana);
 	}
 
-	void Update ()
+	void Update()
 	{
 		// Wechseln der Waffe
 		if (isplayer == true) {
-			if (Input.GetAxis ("1") > 0f) {
-				setActiveWeapon (Katana);
+			if (Input.GetAxis("1") > 0f) {
+				setActiveWeapon(Katana);
 				equipped = "Katana";
 			}
 
-			if (Input.GetAxis ("2") > 0f) {
-				setActiveWeapon (Bo);
+			if (Input.GetAxis("2") > 0f) {
+				setActiveWeapon(Bo);
 				equipped = "Bo";
 			}
 
-			if (Input.GetAxis ("3") > 0f) {
-				setActiveWeapon (Hands);
+			if (Input.GetAxis("3") > 0f) {
+				setActiveWeapon(Hands);
 				equipped = "Hands";
 			}
 		}
@@ -65,30 +65,31 @@ public class WeaponManager : MonoBehaviour
 
 	// die activeWeapon aktivieren und anderen zu deaktivieren, sonst 
 	// erscheinen sie gleichzeitig
-	private void setActiveWeapon (GameObject activeWeapon)
+	private void setActiveWeapon(GameObject activeWeapon)
 	{
 		for (int j = 0; j < weaponList.Count; j++) {
-			if (weaponList [j] == activeWeapon) {
+			if (weaponList[j] == activeWeapon) {
 				for (int i = 0; i < enabledWeaponList.Count; i++) {
-					if (enabledWeaponList [i] == activeWeapon) {
-						weaponList [j].SetActive (true);
+					if (enabledWeaponList[i] == activeWeapon) {
+						weaponList[j].SetActive(true);
 						weaponInHand = activeWeapon;
 					}
 				}
-			} else {
-				weaponList [j].SetActive (false);
+			}
+			else {
+				weaponList[j].SetActive(false);
 			}
 		}
 	}
 
 	// füge eine Waffe zu der Liste der verfügbaren Waffen, 
 	// wenn man darüber läuft
-	public void PickedUpWeapon (GameObject weaponPickedUp)
+	public void PickedUpWeapon(GameObject weaponPickedUp)
 	{
-		enabledWeaponList.Add (weaponPickedUp);
+		enabledWeaponList.Add(weaponPickedUp);
 	}
 
-	public GameObject GetActiveWeapon ()
+	public GameObject GetActiveWeapon()
 	{
 		return weaponInHand;
 	}

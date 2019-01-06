@@ -8,9 +8,9 @@ public class Menu : MonoBehaviour
 	public Player player;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
-		GetComponent<Canvas> ().enabled = false;
+		GetComponent<Canvas>().enabled = false;
 
 	}
 
@@ -19,43 +19,44 @@ public class Menu : MonoBehaviour
 	/// Nötig, um Mehrfachauswertungen der Menütasten zu verhindern
 	/// </summary>
 	private bool keyWasPressed = false;
-	
+
 	// Update is called once per frame
-	void Update ()
-	{	
-		
-		if (Input.GetAxisRaw ("Menu") > 0f) {
+	void Update()
+	{
+
+		if (Input.GetAxisRaw("Menu") > 0f) {
 			if (!keyWasPressed)
-				GetComponent<Canvas> ().enabled = !GetComponent<Canvas> ().enabled;
+				GetComponent<Canvas>().enabled = !GetComponent<Canvas>().enabled;
 
 			keyWasPressed = true;
-		} else
+		}
+		else
 			keyWasPressed = false;
 	}
 	// Beendetd das Spiel
-	public void OnButtonEndPressed ()
+	public void OnButtonEndPressed()
 	{
-		Debug.Log ("Spiel beendet");
-		Application.Quit ();
+		Debug.Log("Spiel beendet");
+		Application.Quit();
 	}
 	// Startet ein neues Spiel
-	public void OnButtonNewPressed ()
+	public void OnButtonNewPressed()
 	{
-		
-		player.gameData.InitNewGame ();
+
+		player.gameData.InitNewGame();
 	}
 
 
 	//Speicherfunktion
-	public void OnButtonSavePressed ()
+	public void OnButtonSavePressed()
 	{
-		Debug.Log ("Speichern");
-		player.gameData.SaveGame ();
+		Debug.Log("Speichern");
+		player.gameData.SaveGame();
 
-//		GameData savegame = new GameData ();
-//		savegame.SaveGame ();
+		//		GameData savegame = new GameData ();
+		//		savegame.SaveGame ();
 
 	}
-	
-		
+
+
 }

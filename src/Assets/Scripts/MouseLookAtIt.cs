@@ -21,22 +21,22 @@ public class MouseLookAtIt : MonoBehaviour
 	float rotationX = 0f;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		// Mauscursor festhalten
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		// Maus Koordinaten kriegen
-		rotationY += Input.GetAxis ("Mouse X") * sensitivityY;
-		rotationX += Input.GetAxis ("Mouse Y") * sensitivityX;
+		rotationY += Input.GetAxis("Mouse X") * sensitivityY;
+		rotationX += Input.GetAxis("Mouse Y") * sensitivityX;
 
-		rotationX = Mathf.Clamp (rotationX, minimumX, maximumX);
+		rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
 		// Bewegen des GameObjekts
-		transform.localEulerAngles = new Vector3 (0, rotationY, 0);
-		cam.transform.localEulerAngles = new Vector3 (-rotationX, 0, 0);
+		transform.localEulerAngles = new Vector3(0, rotationY, 0);
+		cam.transform.localEulerAngles = new Vector3(-rotationX, 0, 0);
 	}
 }

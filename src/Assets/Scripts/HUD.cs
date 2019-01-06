@@ -25,22 +25,22 @@ public class HUD : MonoBehaviour
 	private Text moneyText;
 
 	// Initialisierung
-	void Start ()
+	void Start()
 	{
-		GetComponent<Canvas> ().enabled = true;
+		GetComponent<Canvas>().enabled = true;
 
-		talking = transform.Find ("Talking").gameObject;
-		talkingText = transform.Find ("Talking/Text").gameObject.GetComponent<Text> ();
-		talking.SetActive (false);
+		talking = transform.Find("Talking").gameObject;
+		talkingText = transform.Find("Talking/Text").gameObject.GetComponent<Text>();
+		talking.SetActive(false);
 
-		healthSlider = transform.Find ("HealthSlider").gameObject.GetComponent<Slider> ();
-		staminaSlider = transform.Find ("StaminaSlider").gameObject.GetComponent<Slider> ();
-		moneyText = transform.Find ("Money/Text").gameObject.GetComponent<Text> ();
+		healthSlider = transform.Find("HealthSlider").gameObject.GetComponent<Slider>();
+		staminaSlider = transform.Find("StaminaSlider").gameObject.GetComponent<Slider>();
+		moneyText = transform.Find("Money/Text").gameObject.GetComponent<Text>();
 	}
-	
+
 	// Update wird pro frame einmal aufgerufen
 	// Statusinformationen aus Spieler übernehmen und anzeigen
-	void Update ()
+	void Update()
 	{
 		moneyText.text = player.regenerationPoints + " RP";
 		healthSlider.value = player.health;
@@ -51,19 +51,20 @@ public class HUD : MonoBehaviour
 		if (lastTalk.Length > 0) {
 			// anzeigen der Sprechblase
 			player.lastTalk = "";
-			talking.SetActive (true);
+			talking.SetActive(true);
 			talkingText.text = lastTalk;
 			// Zeitpunkt des Anzeigens merken
 			speechDisplayedTime = (int)Time.time;
-		} else {
+		}
+		else {
 			// kein neuer Text, überprüfe ob die Sprechblase wieder versteckt werden soll
 			if (speechDisplayedTime > 0) {
 				if ((int)Time.time - speechDisplayedTime > speechDisplayDuration) {
 					speechDisplayedTime = 0;
-					talking.SetActive (false);
+					talking.SetActive(false);
 					talkingText.text = "";
 				}
 			}
-		}	
+		}
 	}
 }

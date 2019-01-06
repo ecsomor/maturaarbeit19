@@ -5,30 +5,30 @@ using UnityEngine;
 public class Quest
 {
 	// Eine Aufgabe mit dem namen des Zielobjekts und einer Aufgabenbeschreibung.
-	public Quest (string nameString, string taskString)
+	public Quest(string nameString, string taskString)
 	{
 		name = nameString;
 		task = taskString;
 		done = false;
 	}
 
-	virtual public bool IsDone ()
+	virtual public bool IsDone()
 	{
 		return done;
 	}
 
-	public bool Done ()
+	public bool Done()
 	{
 		done = true;
-		return IsDone ();
+		return IsDone();
 	}
 
-	public string Name ()
+	public string Name()
 	{
 		return name;
 	}
 
-	virtual public string Task ()
+	virtual public string Task()
 	{
 		return task;
 	}
