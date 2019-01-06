@@ -128,7 +128,7 @@ public class NPC : MonoBehaviour
 		if (health > 100.0f)
 			health = 100.0f;
 		else if (health < 0.0f) {
-			Debug.Log ("I'M DEAD");
+			Debug.Log (gameObject.name + " I'M DEAD");
 			gameObject.SetActive (false);
 
 			Player p = player.GetComponent<Player> ();

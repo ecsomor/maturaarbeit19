@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 		gameData = new GameData (this);
 		gameData.LoadGame ();
 		for (int i = 1; i < 21; i++) {
-			GameObject go = (GameObject)Instantiate (flower, new Vector3 (Random.Range(370,650), 0, Random.Range(120,390)),
+			GameObject go = (GameObject)Instantiate (flower, new Vector3 (Random.Range(-50,58), 0, Random.Range(403,566)),
 				               Quaternion.identity);
 			go.name = "FlowerRed" + i;
 			Debug.Log (go.name + " at " + go.transform.position.x + " " +
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
 				Debug.Log ("Player attacked");
 				if (weaponname == "Katana" || weaponname == "Bo")
 					anim.Play ("Katana 0");
-				else if (weaponname == "Shuriken")
+				else if (weaponname == "Hands")
 					anim.Play ("Katana 0"); 
 
 				ChangeStamina (-weaponstamina);

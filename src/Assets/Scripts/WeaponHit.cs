@@ -37,10 +37,10 @@ public class WeaponHit : MonoBehaviour
 	{
 		Debug.Log ("Hit: " + col.name + " Weapon: " + weaponname);
 		if (col.tag == "Enemy") {
-			GameObject.Find (col.name).GetComponent<NPC> ().ChangeHealth (-damage);
+			col.gameObject.GetComponentInParent<NPC> ().ChangeHealth (-damage);
 			Debug.Log (damage + " Damage applied to " + col.name);
 		} else if (col.name == "Player") {
-			GameObject.Find (col.name).GetComponent<Player> ().ChangeHealth (-damage);
+			col.gameObject.GetComponentInParent<Player> ().ChangeHealth (-damage);
 			Debug.Log (damage + " Damage applied to " + col.name);
 		}
 	}
