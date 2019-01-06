@@ -42,7 +42,7 @@ public class HUD : MonoBehaviour
 	// Statusinformationen aus Spieler übernehmen und anzeigen
 	void Update ()
 	{
-		moneyText.text = player.money + " $";
+		moneyText.text = player.regenerationPoints + " RP";
 		healthSlider.value = player.health;
 		staminaSlider.value = player.stamina;
 

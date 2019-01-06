@@ -30,19 +30,17 @@ public class TheThirdKind : InteractibleObject
 			p.AddQuest (qFlowerRed);
 			p.AddQuest (qFlowerBlue);
 
-			bringFlowers = new Quest ("TheThirdKind", "You must bring the flowers to the wiser green man", new Quest[] {
-				qFlowerRed,
-				qFlowerBlue
-			});
+			bringFlowers = new Quest ("TheThirdKind", "You must come back to the wiser green man");
 			p.AddQuest (bringFlowers);
-			p.lastTalk = "You must pick the two flowers and bring them to me";
+			p.lastTalk = "You must pick the two flowers and come back to me. The picked flowers give you regeneration points";
 		} else if (qFlowerRed.IsDone () && qFlowerBlue.IsDone ()) {
 			// Beim ersten mal zurückkommen wenn die Aufgabe noch nicht erledigt ist - gib Geld einmal
 			if (bringFlowers.IsDone () == false) {
-				p.money += 30;
-				p.AddQuest (new Quest ("AI1", "Fight the red figures"));
-				p.AddQuest (new Quest ("AI2", "Fight the red figures"));
-				p.lastTalk = "Thank you, now you must fight the red figures";
+				p.AddQuest( new FreedomQuest("You must fight all red figures"));
+
+				//p.AddQuest (new Quest ("AI1", "Fight the red figures"));
+				// p.AddQuest (new Quest ("AI2", "Fight the red figures"));
+				p.lastTalk = "Great, now you must fight the red figures. Pick the flowers you find to get regeneration points";
 			}
 		} else if (qFlowerRed.IsDone () != qFlowerBlue.IsDone ()) {
 			// Sonst wird diese Nachricht ausgelöst nachem die erste Aufgabe erledigt wurde.

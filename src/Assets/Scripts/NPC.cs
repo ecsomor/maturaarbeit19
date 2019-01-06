@@ -35,6 +35,8 @@ public class NPC : MonoBehaviour
 
 	public Transform target;
 	public RaycastHit hit;
+
+	private Transform originalTransform;
     
 	// find Player src https://www.quora.com/How-do-I-make-an-NPC-move-in-Unity# 
 	private void Start ()
@@ -44,6 +46,9 @@ public class NPC : MonoBehaviour
 		anim = GetComponent<Animator> ();
 		fov = FOV.GetComponent<Collider> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
+		FreedomQuest.npcsAlive += 1;
+		name = "A1_" + FreedomQuest.npcsAlive;
+		originalTransform = gameObject.transform;
 	}
 
 	private void Update ()
@@ -130,15 +135,38 @@ public class NPC : MonoBehaviour
 		else if (health < 0.0f) {
 			Debug.Log (gameObject.name + " I'M DEAD");
 			gameObject.SetActive (false);
+			FreedomQuest.npcsAlive -= 1;
 
 			Player p = player.GetComponent<Player> ();
-			// wenn die Tötung dieses NPCs eine Aufgabe war, diese aktualisieren
-			Quest q = p.GetActiveQuest(gameObject.name);
-			if ( q != null )
-				q.Done();
-
-			// Dem Player Geld geben
-			p.money += 10;
+			// Dem Player extra Punkte geben
+			p.AddRegenerationPoints(10);
 		}
 	}
+
+	public void InitState ()
+	{
+		health = 100f;
+		stamina = 100f;
+		gameObject.SetActive (true);
+		transform.SetPositionAndRotation(originalTransform.position,
+			originalTransform.rotation);
+	}
+
+	public void LoadState (GameData gameData)
+	{
+		gameData.LoadTransform (name, transform);
+		health = gameData.LoadFloat (name+"ĥealth",100f);
+		stamina = gameData.LoadFloat (name+"stamina",100f);
+		int active = gameData.LoadInt (name+"active",1);
+		gameObject.SetActive (active != 0);
+	}
+
+	public void SaveState (GameData gameData)
+	{
+		gameData.SaveTransform (name, transform);
+		gameData.SaveFloat (name+"ĥealth", health);
+		gameData.SaveFloat (name+"stamina", stamina);
+		gameData.SaveInt (name+"active", gameObject.activeSelf ? 1:0);
+	}
+
 }

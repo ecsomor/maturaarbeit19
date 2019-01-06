@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 	// Ausdauer
 	public float stamina = 100f;
 
-	public int money = 0;
+	public int regenerationPoints = 0;
 
 	// Das Graphische Modell, ua für drehung in Laufrichtung
 	public GameObject model;
@@ -75,7 +75,17 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
 	{
-		ChangeStamina (Time.deltaTime * 5);
+		// ChangeStamina (Time.deltaTime * 5);
+		if (health < 50 && regenerationPoints > 0) {
+			int p = Mathf.Min (regenerationPoints, 10);
+			ChangeHealth (p);
+			regenerationPoints -= p;
+		}
+		if (stamina < 50 & regenerationPoints > 0) {
+			int p = Mathf.Min (regenerationPoints, 10);
+			ChangeStamina (p);
+			regenerationPoints -= p;
+		}
 		// überprüfe ob lebendig
 		// x und z Koordinaten Bewegung
 		float x = Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
@@ -165,16 +175,26 @@ public class Player : MonoBehaviour
 	{
 		transform.position = new Vector3(429,0,226);
 		transform.rotation = Quaternion.identity;
+		health = 100f;
+		stamina = 100f;
+		regenerationPoints = 0;
+		gameObject.SetActive (true);
 	}
 
 	public void LoadState (GameData gameData)
 	{
 		gameData.LoadTransform ("player", transform);
+		health = gameData.LoadFloat ("playerĥealth",100f);
+		stamina = gameData.LoadFloat ("playerstamina",100f);
+		regenerationPoints = gameData.LoadInt ("playerrp",0);
 	}
 
 	public void SaveState (GameData gameData)
 	{
 		gameData.SaveTransform ("player", transform);
+		gameData.SaveFloat ("playerĥealth", health);
+		gameData.SaveFloat ("playerstamina", stamina);
+		gameData.SaveInt ("playerrp", regenerationPoints);
 	}
 
 	public void ChangeHealth (float change)
@@ -185,7 +205,7 @@ public class Player : MonoBehaviour
 			health = 100.0f;
 		else if (health < 0.0f) {
 			Debug.Log ("YOU ARE DEAD");
-			model.SetActive (false);
+			gameData.InitNewGame ();
 		}
 	}
 
@@ -197,6 +217,11 @@ public class Player : MonoBehaviour
 			stamina = 100.0f;
 		else if (stamina < 0.0f)
 			stamina = 0.0f;
+	}
+
+	public void AddRegenerationPoints( int extra )
+	{
+		regenerationPoints += extra;
 	}
 
 	// Fügt der Liste eine neue Aufgabe hinzu

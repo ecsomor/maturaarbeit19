@@ -14,7 +14,6 @@ public class Quests : MonoBehaviour
 	{
 		questlist = new List<Quest> ();
 	}
-	
 
 	void Update ()
 	{
